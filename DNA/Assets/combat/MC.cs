@@ -16,15 +16,6 @@ public class MC : combatEntity
         target.takeDamage(10);
     }
 
-    void meditate()
-    {
-        hp += 10;
-        if (hp > maxhp)
-        {
-            hp = maxhp;
-        }
-    }
-
     void kick(combatEntity target)
     {
         target.takeDamage(15);
@@ -33,5 +24,14 @@ public class MC : combatEntity
     void insult(combatEntity target)
     {
         target.def -= 5;
+    }
+    
+    void heal(combatEntity target)
+    {
+        target.hp += 10;
+        if (target.hp > target.maxhp)
+        {
+            target.hp = target.maxhp;
+        }
     }
 }
