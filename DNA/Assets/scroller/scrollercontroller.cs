@@ -7,6 +7,7 @@ public class scrollercontroller : MonoBehaviour
 
     public int center = 0;
     public GameObject[] texts;
+    public GameObject[] buttons;
     public string[] data;
     public int numExtras;
 
@@ -59,6 +60,15 @@ public class scrollercontroller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             scroller.result = data[center];
+            foreach(GameObject b in buttons)
+            {
+                Destroy(b);
+            }
+            foreach(GameObject t in texts)
+            {
+                Destroy(t);
+            }
+            Destroy(this.gameObject);
         }
     }
 }

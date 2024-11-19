@@ -16,7 +16,7 @@ public class scrollerTester : MonoBehaviour
         scroller.box = box;
         scroller.arrow = arrow;
         scroller.result = null;
-        s = new scroller(5f, 5f, data, 3);
+        //s = new scroller(5f, 5f, data, 3);
     }
 
     void Update()

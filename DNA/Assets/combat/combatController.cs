@@ -17,34 +17,16 @@ public class combatController : MonoBehaviour
     public bool readyForTurn = false;
     public bool playerTurn = true; // if false then its the enemies turn
     public int turnNum = 0;
+    public bool started = false;
+
+    public static Sprite mcSprite, friendSprite, testenemySprite;
 
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
         SceneManager.LoadScene("combatBasic");
-        Players[0] = new MC(playerData.hp, playerData.def);
-        ((MC)Players[0]).mc.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("mcplacholder");
-        ((MC)Players[0]).mc.transform.Translate(new Vector3(-3, 1, 0));
-        Players[1] = new friend(playerData.hp, playerData.def);
-        ((friend)Players[1]).friendObj.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("friendplaceholder");
-        ((friend)Players[1]).friendObj.transform.Translate(new Vector3(-1, 1, 0));
-        for (int i = 0; i < enemys.Length; i++)
-        {
-            switch (enemys[i])
-            {
-                case "testenemy":
-                    {
-                        Enemies[i] = new testenemy(50, 0);
-                        ((testenemy)Enemies[i]).testEnemy.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("enemyplaceholder");
-                        ((testenemy)Enemies[i]).testEnemy.transform.Translate(new Vector3(i, 1, 0));
-                        break;
-                    }
 
-            }
-        }
-
-        Players = getPlayers();
-        Enemies = getEnemies();
+        StartCoroutine(starter());
     }
 
     public static combatEntity[] getPlayers()
@@ -70,14 +52,19 @@ public class combatController : MonoBehaviour
 
     private void Update()
     {
-        if (Players.All(p => !p.active))
+
+        if (started)
         {
-            Debug.Log("Game Over"); //////////////////////////////////////////////////////// placeholder for game over screen
+            if (Players.All(p => !p.active))
+            {
+                Debug.Log("Game Over"); //////////////////////////////////////////////////////// placeholder for game over screen
+            }
+            else if (Enemies.All(e => !e.active))
+            {
+                Debug.Log("Victory"); /////////////////////////////////////////////////////////////// placeholder for victory screen
+            }
         }
-        else if (Enemies.All(e => !e.active))
-        {
-            Debug.Log("Victory"); /////////////////////////////////////////////////////////////// placeholder for victory screen
-        }
+        
 
         if (readyForTurn)
         {
@@ -94,7 +81,9 @@ public class combatController : MonoBehaviour
                     {
                         case "testenemy":
                             testenemy enemy = (testenemy)Enemies[turnNum];
-                            enemy.bite(Players[Random.Range(0, Players.Length)]);
+                            combatEntity t = Players[Random.Range(0, Players.Length)];
+                            enemy.bite(t);
+                            Debug.Log(t + " " + t.hp);
                             StartCoroutine(enemyAnimate());
                             break;
                     }
@@ -102,10 +91,41 @@ public class combatController : MonoBehaviour
                     if (turnNum >= Enemies.Length)
                     {
                         playerTurn = true;
+                        turnNum = 0;
                     }
                 }
             }
         }
+    }
+
+    public IEnumerator starter()
+    {
+        yield return new WaitForSeconds(1);
+        Players = new combatEntity[numPlayers];
+        Enemies = new combatEntity[numEnemies];
+
+        Players[0] = new MC(playerData.hp, playerData.def);
+        ((MC)Players[0]).mc.AddComponent<SpriteRenderer>().sprite = mcSprite;
+        ((MC)Players[0]).mc.transform.Translate(new Vector3(-6, 0, 0));
+        Players[1] = new friend(playerData.hp, playerData.def);
+        ((friend)Players[1]).friendObj.AddComponent<SpriteRenderer>().sprite = friendSprite;
+        ((friend)Players[1]).friendObj.transform.Translate(new Vector3(-2, 0, 0));
+        for (int i = 0; i < enemys.Length; i++)
+        {
+            switch (enemys[i])
+            {
+                case "testenemy":
+                    {
+                        Enemies[i] = new testenemy(50, 0);
+                        ((testenemy)Enemies[i]).testEnemy.AddComponent<SpriteRenderer>().sprite = testenemySprite;
+                        ((testenemy)Enemies[i]).testEnemy.transform.Translate(new Vector3(2*i, 3, 0));
+                        break;
+                    }
+
+            }
+        }
+        readyForTurn = true;
+        started = true;
     }
 
     public IEnumerator enemyAnimate()
@@ -125,12 +145,12 @@ public class combatController : MonoBehaviour
 
         if (turnNum == 0)
         {
-            selector = new scroller(5, 3, playerData.MCabilities.ToArray(), 1);
+            selector = new scroller(5, 3, playerData.MCabilities.ToArray(), 1, new Vector2(-5, -3));
             scroller.result = null;
         }
         else
         {
-            selector = new scroller(5, 3, playerData.friendAbilities.ToArray(), 1);
+            selector = new scroller(5, 3, playerData.friendAbilities.ToArray(), 1, new Vector2(-5, -3));
             scroller.result = null;
         }
         
@@ -138,11 +158,12 @@ public class combatController : MonoBehaviour
 
         combatEntity target = null;
 
-        if (scroller.result == "attack" || scroller.result == "kick" || scroller.result == "insult")
+        if (scroller.result == "attack" || scroller.result == "kick" || scroller.result == "insult" || scroller.result == "swing")
         {
             if (numEnemies > 1)
             {
                 //choose enemy placeholder
+                target = Enemies[0];
             }
             else
             {
@@ -150,25 +171,49 @@ public class combatController : MonoBehaviour
             }
         }
 
-        if (scroller.result == "heal")
+        if (scroller.result == "heal" || scroller.result == "meditate")
         {
             if (numPlayers > 1)
             {
                 //choose player placeholder
+                target = Players[0];
             }
             else
             {
                 target = Players[0];
             }
         }
-        if (target is not null)
+
+        if (turnNum == 1)
         {
-            Players[turnNum].GetType().GetMethod(scroller.result).Invoke(Players[turnNum], new object[] { target });
-        }
+            if (target is not null)
+            {
+                
+            }
+            else
+            {
+                
+            }
+        } 
         else
         {
-            Players[turnNum].GetType().GetMethod(scroller.result).Invoke(Players[turnNum], null);
-        }
+            switch (scroller.result)
+            {
+                case "attack":
+                    ((MC)Players[0]).attack(target);
+                    break;
+                case "heal":
+                    ((MC)Players[0]).heal(target);
+                    break;
+                case "kick":
+                    ((MC)Players[0]).kick(target);
+                    break;
+                case "insult":
+                    ((MC)Players[0]).insult(target);
+                    break;
+
+            }
+        }      
 
         turnNum++;
         if (turnNum == 2)
@@ -176,7 +221,6 @@ public class combatController : MonoBehaviour
             turnNum = 0;
             playerTurn = false;
         }
-
-
+        readyForTurn = true;
     }
 }

@@ -17,6 +17,6 @@ public class testenemy : combatEntity
 
     public void bite(combatEntity target)
     {
-        target.takeDamage(15);
+        target.takeDamage(25);
     }
 }

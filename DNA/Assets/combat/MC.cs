@@ -9,24 +9,26 @@ public class MC : combatEntity
     {
         mc = new GameObject("mc");
         mc.tag = "player";
+        Debug.Log(mc);
     }
 
-    void attack(combatEntity target)
+    public void attack(combatEntity target)
     {
         target.takeDamage(10);
+        Debug.Log("attacked");
     }
 
-    void kick(combatEntity target)
+    public void kick(combatEntity target)
     {
         target.takeDamage(15);
     }
 
-    void insult(combatEntity target)
+    public void insult(combatEntity target)
     {
         target.def -= 5;
     }
     
-    void heal(combatEntity target)
+    public void heal(combatEntity target)
     {
         target.hp += 10;
         if (target.hp > target.maxhp)

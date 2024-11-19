@@ -17,7 +17,7 @@ public class scroller
     public static Sprite box, arrow;
     public static GameObject buttonprefab, textprefab;
 
-    public scroller(float width, float height, string[] data, int numExtras)
+    public scroller(float width, float height, string[] data, int numExtras, Vector2 pos)
     {
         this.numExtras = numExtras;
         this.width = width;
@@ -43,15 +43,20 @@ public class scroller
 
         for(int i = 0; i < buttons.Length;i++)
         {
+            
             buttons[i].transform.localScale = new Vector3(width, height / (2 * numExtras + 1), 1);
             texts[i] = GameObject.Instantiate(textprefab);
             texts[i].transform.Translate(new Vector3(0, -(i - numExtras) * height / (2 * numExtras + 1)), 0);
+            buttons[i].transform.Translate(pos);
+            texts[i].transform.Translate(pos);
         }
+        controller.transform.Translate(pos);
 
         controller.AddComponent<scrollercontroller>();
         controller.GetComponent<scrollercontroller>().texts = texts;
         controller.GetComponent<scrollercontroller>().data = data;
         controller.GetComponent<scrollercontroller>().center = 0;
         controller.GetComponent<scrollercontroller>().numExtras = numExtras;
+        controller.GetComponent<scrollercontroller>().buttons = buttons;
     }
 }
