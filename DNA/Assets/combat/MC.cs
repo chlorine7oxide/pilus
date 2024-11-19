@@ -9,13 +9,11 @@ public class MC : combatEntity
     {
         mc = new GameObject("mc");
         mc.tag = "player";
-        Debug.Log(mc);
     }
 
     public void attack(combatEntity target)
     {
         target.takeDamage(10);
-        Debug.Log("attacked");
     }
 
     public void kick(combatEntity target)

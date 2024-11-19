@@ -33,6 +33,11 @@ public class tester : MonoBehaviour
         playerData.friendAbilities.AddLast("meditate");
         playerData.friendAbilities.AddLast("heal");
 
+        playerData.items.AddLast("potion");
+        playerData.items.AddLast("potion");
+        playerData.items.AddLast("bigpotion");
+        playerData.items.AddLast("molotov");
+
         playerData.hp = 100;
         playerData.def = 10;
 

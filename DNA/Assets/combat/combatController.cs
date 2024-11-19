@@ -57,11 +57,15 @@ public class combatController : MonoBehaviour
         {
             if (Players.All(p => !p.active))
             {
-                Debug.Log("Game Over"); //////////////////////////////////////////////////////// placeholder for game over screen
+                Debug.Log("Game Over");
+                SceneManager.LoadScene("endFail");
+                Destroy(this.gameObject);
             }
             else if (Enemies.All(e => !e.active))
             {
-                Debug.Log("Victory"); /////////////////////////////////////////////////////////////// placeholder for victory screen
+                Debug.Log("Victory");
+                SceneManager.LoadScene("endSuccess");
+                Destroy(this.gameObject);
             }
         }
         
@@ -83,7 +87,6 @@ public class combatController : MonoBehaviour
                             testenemy enemy = (testenemy)Enemies[turnNum];
                             combatEntity t = Players[Random.Range(0, Players.Length)];
                             enemy.bite(t);
-                            Debug.Log(t + " " + t.hp);
                             StartCoroutine(enemyAnimate());
                             break;
                     }
@@ -138,27 +141,45 @@ public class combatController : MonoBehaviour
 
     public IEnumerator takePlayerTurn()
     {
+
+        if (Players[turnNum].hp <= 0)
+        {
+            readyForTurn = true;
+            yield break;
+        }
+
         // action type placeholder
-        yield return new WaitForSeconds(1);
+        menuSelector.response = null;
+        GameObject sel = GameObject.FindGameObjectWithTag("selector");
+        sel.AddComponent<menuSelector>();
+        yield return new WaitUntil(() => menuSelector.response != null);
+        Debug.Log(menuSelector.response);
+        string response = menuSelector.response;
+        Destroy(sel.GetComponent<menuSelector>());
+        sel.transform.Translate(new Vector3(100, 0, 0));
 
         // ability selector
-
-        if (turnNum == 0)
+        if (response == "ability")
         {
-            selector = new scroller(5, 3, playerData.MCabilities.ToArray(), 1, new Vector2(-5, -3));
-            scroller.result = null;
+            if (turnNum == 0)
+            {
+                selector = new scroller(5, 3, playerData.MCabilities.ToArray(), 1, new Vector2(-5, -3)); 
+            }
+            else
+            {
+                selector = new scroller(5, 3, playerData.friendAbilities.ToArray(), 1, new Vector2(-5, -3));
+            }
         }
         else
         {
-            selector = new scroller(5, 3, playerData.friendAbilities.ToArray(), 1, new Vector2(-5, -3));
-            scroller.result = null;
+            selector = new scroller(5, 3, playerData.items.ToArray(), 1, new Vector2(3, -3));
         }
-        
+        scroller.result = null;
         yield return new WaitUntil(() => scroller.result != null);
 
         combatEntity target = null;
 
-        if (scroller.result == "attack" || scroller.result == "kick" || scroller.result == "insult" || scroller.result == "swing")
+        if (scroller.result == "attack" || scroller.result == "kick" || scroller.result == "insult" || scroller.result == "swing" || scroller.result == "molotov")
         {
             if (numEnemies > 1)
             {
@@ -171,7 +192,7 @@ public class combatController : MonoBehaviour
             }
         }
 
-        if (scroller.result == "heal" || scroller.result == "meditate")
+        if (scroller.result == "heal" || scroller.result == "meditate" || scroller.result == "potion" || scroller.result == "bigpotion")
         {
             if (numPlayers > 1)
             {
@@ -186,13 +207,20 @@ public class combatController : MonoBehaviour
 
         if (turnNum == 1)
         {
-            if (target is not null)
+            switch (scroller.result)
             {
-                
-            }
-            else
-            {
-                
+                case "attack":
+                    ((friend)Players[1]).attack(target);
+                    break;
+                case "heal":
+                    ((friend)Players[1]).heal(target);
+                    break;
+                case "meditate":
+                    ((friend)Players[1]).meditate(target);
+                    break;
+                case "swing":
+                    ((friend)Players[1]).swing(target);
+                    break;  
             }
         } 
         else
@@ -213,8 +241,8 @@ public class combatController : MonoBehaviour
                     break;
 
             }
-        }      
-
+        }
+        Debug.Log("player tyurn");
         turnNum++;
         if (turnNum == 2)
         {
