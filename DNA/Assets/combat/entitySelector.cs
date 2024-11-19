@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 
 public class entitySelector : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class entitySelector : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             position--;
+            if (position < 0)
+            {
+                position += entities.Count;
+            }
             position %= entities.Count;
         }
 

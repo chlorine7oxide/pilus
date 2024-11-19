@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonprefab: {fileID: 5947581551081647194, guid: c8513ec681ab7d1488c9a2d2ec5f1104, type: 3}
   textprefab: {fileID: 7507292464521060786, guid: 357c2cf50d9f4a44fb31fef034446ef1, type: 3}
+  barprefab: {fileID: 2960729111507800294, guid: d4b8c47290c4e234db2e54727b911841, type: 3}
   box: {fileID: -6046207225448392893, guid: 5120ccd171bada74f94a183a8ab49c76, type: 3}
   arrow: {fileID: 3075437685931620932, guid: f29e6d8a5cd700a429012fb0304183f0, type: 3}
   mc: {fileID: 6841017324531957407, guid: 5bebdddc1ddabe642a4676f3a040a881, type: 3}

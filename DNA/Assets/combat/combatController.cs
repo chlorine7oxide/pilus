@@ -29,25 +29,13 @@ public class combatController : MonoBehaviour
         StartCoroutine(starter());
     }
 
-    public static combatEntity[] getPlayers()
+    public combatEntity[] getPlayers()
     {
-        LinkedList<combatEntity> entities = new LinkedList<combatEntity>();
-        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("player");
-        foreach(GameObject p in playerObjects)
-        {
-            entities.AddLast(p.GetComponent<combatEntity>());
-        }
-        return entities.ToArray();
+        return Players;
     }
-    public static combatEntity[] getEnemies()
+    public combatEntity[] getEnemies()
     {
-        LinkedList<combatEntity> entities = new LinkedList<combatEntity>();
-        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
-        foreach (GameObject e in enemyObjects)
-        {
-            entities.AddLast(e.GetComponent<combatEntity>());
-        }
-        return entities.ToArray();
+        return Enemies;
     }
 
     private void Update()
@@ -97,6 +85,16 @@ public class combatController : MonoBehaviour
                         turnNum = 0;
                     }
                 }
+                else
+                {
+                    readyForTurn = true;
+                    turnNum++;
+                    if (turnNum >= Enemies.Length)
+                    {
+                        playerTurn = true;
+                        turnNum = 0;
+                    }
+                }
             }
         }
     }
@@ -110,9 +108,13 @@ public class combatController : MonoBehaviour
         Players[0] = new MC(playerData.hp, playerData.def);
         ((MC)Players[0]).entity.AddComponent<SpriteRenderer>().sprite = mcSprite;
         ((MC)Players[0]).entity.transform.Translate(new Vector3(-6, 0, 0));
+        Players[0].hpBar.transform.position = (Players[0].entity.transform.position);
+        Players[0].hpBar2.transform.position = (Players[0].entity.transform.position);
         Players[1] = new friend(playerData.hp, playerData.def);
         ((friend)Players[1]).entity.AddComponent<SpriteRenderer>().sprite = friendSprite;
         ((friend)Players[1]).entity.transform.Translate(new Vector3(-2, 0, 0));
+        Players[1].hpBar.transform.position = (Players[1].entity.transform.position);
+        Players[1].hpBar2.transform.position = (Players[1].entity.transform.position);
         for (int i = 0; i < enemys.Length; i++)
         {
             switch (enemys[i])
@@ -122,6 +124,8 @@ public class combatController : MonoBehaviour
                         Enemies[i] = new testenemy(50, 0);
                         ((testenemy)Enemies[i]).entity.AddComponent<SpriteRenderer>().sprite = testenemySprite;
                         ((testenemy)Enemies[i]).entity.transform.Translate(new Vector3(2*i, 3, 0));
+                        Enemies[i].hpBar.transform.position = (Enemies[i].entity.transform.position);
+                        Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
                         break;
                     }
 

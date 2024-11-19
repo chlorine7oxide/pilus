@@ -7,7 +7,7 @@ public class tester : MonoBehaviour
     
     public combatStarter combatStarter;
 
-    public GameObject buttonprefab, textprefab;
+    public GameObject buttonprefab, textprefab, barprefab;
     public Sprite box, arrow;
 
     public Sprite mc, friend, testenemy;
@@ -40,6 +40,8 @@ public class tester : MonoBehaviour
 
         playerData.hp = 100;
         playerData.def = 10;
+
+        combatEntity.barPrefab = barprefab;
 
         combatStarter = new combatStarter(2, 2, new string[] { "testenemy", "testenemy" });
     }
