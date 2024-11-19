@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class MC : combatEntity
 {
-    public GameObject mc;
 
     public MC(int hp, int def) : base(hp, def)
     {
-        mc = new GameObject("mc");
-        mc.tag = "player";
+        entity = new GameObject("mc");
+        entity.tag = "player";
     }
 
     public void attack(combatEntity target)

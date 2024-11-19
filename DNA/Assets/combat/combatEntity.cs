@@ -5,6 +5,8 @@ public abstract class combatEntity
     public int hp, maxhp, def;
     public bool active = true;
 
+    public GameObject entity;
+
     public combatEntity(int hp, int def)
     {
         this.hp = hp;

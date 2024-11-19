@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class friend : combatEntity
 {
-    public GameObject friendObj;
 
     public friend(int hp, int def) : base(hp, def)
     {
-        friendObj = new GameObject("friend");
-        friendObj.tag = "player";
+        entity = new GameObject("friend");
+        entity.tag = "player";
     }
 
     public void attack(combatEntity target)

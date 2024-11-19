@@ -108,11 +108,11 @@ public class combatController : MonoBehaviour
         Enemies = new combatEntity[numEnemies];
 
         Players[0] = new MC(playerData.hp, playerData.def);
-        ((MC)Players[0]).mc.AddComponent<SpriteRenderer>().sprite = mcSprite;
-        ((MC)Players[0]).mc.transform.Translate(new Vector3(-6, 0, 0));
+        ((MC)Players[0]).entity.AddComponent<SpriteRenderer>().sprite = mcSprite;
+        ((MC)Players[0]).entity.transform.Translate(new Vector3(-6, 0, 0));
         Players[1] = new friend(playerData.hp, playerData.def);
-        ((friend)Players[1]).friendObj.AddComponent<SpriteRenderer>().sprite = friendSprite;
-        ((friend)Players[1]).friendObj.transform.Translate(new Vector3(-2, 0, 0));
+        ((friend)Players[1]).entity.AddComponent<SpriteRenderer>().sprite = friendSprite;
+        ((friend)Players[1]).entity.transform.Translate(new Vector3(-2, 0, 0));
         for (int i = 0; i < enemys.Length; i++)
         {
             switch (enemys[i])
@@ -120,8 +120,8 @@ public class combatController : MonoBehaviour
                 case "testenemy":
                     {
                         Enemies[i] = new testenemy(50, 0);
-                        ((testenemy)Enemies[i]).testEnemy.AddComponent<SpriteRenderer>().sprite = testenemySprite;
-                        ((testenemy)Enemies[i]).testEnemy.transform.Translate(new Vector3(2*i, 3, 0));
+                        ((testenemy)Enemies[i]).entity.AddComponent<SpriteRenderer>().sprite = testenemySprite;
+                        ((testenemy)Enemies[i]).entity.transform.Translate(new Vector3(2*i, 3, 0));
                         break;
                     }
 
@@ -184,7 +184,20 @@ public class combatController : MonoBehaviour
             if (numEnemies > 1)
             {
                 //choose enemy placeholder
-                target = Enemies[0];
+                int count = 0;
+                Dictionary<int, combatEntity> enemyDict = new Dictionary<int, combatEntity>();
+                foreach (combatEntity c in getEnemies())
+                {
+                    enemyDict.Add(count, c);
+                    count++;
+                }
+                entitySelector.selectedEntity = null;
+                sel.AddComponent<entitySelector>();
+                sel.GetComponent<entitySelector>().entities = enemyDict;
+                yield return new WaitUntil(() => entitySelector.selectedEntity != null);
+                target = entitySelector.selectedEntity;
+                Destroy(sel.GetComponent<entitySelector>());
+                sel.transform.Translate(new Vector3(100, 0, 0));
             }
             else
             {
@@ -196,8 +209,20 @@ public class combatController : MonoBehaviour
         {
             if (numPlayers > 1)
             {
-                //choose player placeholder
-                target = Players[0];
+                int count = 0;
+                Dictionary<int, combatEntity> playerDict = new Dictionary<int, combatEntity>();
+                foreach (combatEntity c in getPlayers())
+                {
+                    playerDict.Add(count, c);
+                    count++;
+                }
+                entitySelector.selectedEntity = null;
+                sel.AddComponent<entitySelector>();
+                sel.GetComponent<entitySelector>().entities = playerDict;
+                yield return new WaitUntil(() => entitySelector.selectedEntity != null);
+                target = entitySelector.selectedEntity;
+                Destroy(sel.GetComponent<entitySelector>());
+                sel.transform.Translate(new Vector3(100, 0, 0));
             }
             else
             {

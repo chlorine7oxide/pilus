@@ -1,16 +1,36 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class entitySelector : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public static combatEntity selectedEntity = null;
 
-    // Update is called once per frame
+    public Dictionary<int, combatEntity> entities = new Dictionary<int, combatEntity>();
+    public int position;
+
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            position++;
+            position %= entities.Count;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            position--;
+            position %= entities.Count;
+        }
+
+        this.gameObject.transform.position = entities[position].entity.transform.position;
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            selectedEntity = entities[position];
+        }
     }
 }
+
+
+// forward is right and down
+// back is left and up
