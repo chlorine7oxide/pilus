@@ -12,6 +12,7 @@ public class combatController : MonoBehaviour
     public int numPlayers, numEnemies;
 
     public combatEntity[] Players, Enemies;
+    public bool[] defended;
     public string[] enemys;
 
     public bool readyForTurn = false;
@@ -104,6 +105,7 @@ public class combatController : MonoBehaviour
         yield return new WaitForSeconds(1);
         Players = new combatEntity[numPlayers];
         Enemies = new combatEntity[numEnemies];
+        defended = new bool[numPlayers];
 
         Players[0] = new MC(playerData.hp, playerData.def);
         ((MC)Players[0]).entity.AddComponent<SpriteRenderer>().sprite = mcSprite;
@@ -152,12 +154,17 @@ public class combatController : MonoBehaviour
             yield break;
         }
 
+        if (defended[turnNum])
+        {
+            Players[turnNum].def -= 10;
+            defended[turnNum] = false;
+        }
+
         // action type placeholder
         menuSelector.response = null;
         GameObject sel = GameObject.FindGameObjectWithTag("selector");
         sel.AddComponent<menuSelector>();
         yield return new WaitUntil(() => menuSelector.response != null);
-        Debug.Log(menuSelector.response);
         string response = menuSelector.response;
         Destroy(sel.GetComponent<menuSelector>());
         sel.transform.Translate(new Vector3(100, 0, 0));
@@ -173,6 +180,11 @@ public class combatController : MonoBehaviour
             {
                 selector = new scroller(5, 3, playerData.friendAbilities.ToArray(), 1, new Vector2(-5, -3));
             }
+        }
+        else if(response == "defend")
+        {
+            Players[turnNum].def += 10;
+            defended[turnNum] = true;
         }
         else
         {
@@ -271,7 +283,15 @@ public class combatController : MonoBehaviour
 
             }
         }
-        Debug.Log("player tyurn");
+        if (response == "item")
+        {
+            switch (scroller.result)
+            {
+                case "potion": items.potion(target); break;
+                case "bigpotion": items.bigPotion(target); break;
+                case "molotov": items.molotov(target); break;
+            }
+        }
         turnNum++;
         if (turnNum == 2)
         {

@@ -38,4 +38,13 @@ public abstract class combatEntity
             active = false;
         }
     }
+
+    public void heal(int hp)
+    {
+        this.hp += hp;
+        if (this.hp > maxhp)
+        {
+            this.hp = maxhp;
+        }
+    }
 }

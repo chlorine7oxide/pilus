@@ -26,10 +26,6 @@ public class friend : combatEntity
 
     public void heal(combatEntity target)
     {
-        target.hp += 10;
-        if (target.hp > target.maxhp)
-        {
-            target.hp = target.maxhp;
-        }
+        target.heal(10);
     }
 }

@@ -7,25 +7,67 @@ public class menuSelector : MonoBehaviour
 
     void Update()
     {
-        if (pos == 0)
+
+        switch (pos)
         {
-            this.transform.position = new Vector3(-4.25f, -3.25f, 0);
-        } 
-        else
-        {
-            this.transform.position = new Vector3(2.75f, -3.25f, 0);
+            case 0: this.transform.position = new Vector3(-4.25f, -2f, 0); break;
+            case 1: this.transform.position = new Vector3(2.75f, -2f, 0); break;
+            case 2: this.transform.position = new Vector3(-4.25f, -4.5f, 0); break;
+            case 3: this.transform.position = new Vector3(2.75f, -4.5f, 0); break;
         }
+
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            response = pos == 0 ? "ability" : "item";
+            switch (pos)
+            {
+                case 0: response = "ability"; break;
+                case 1: response = "item"; break;
+                case 2: response = "defend"; break;
+                case 3: response = "run"; break;
+            }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            pos = 0;
+            if (pos % 2 == 0)
+            {
+                pos++;
+            } else
+            {
+                pos--;
+            }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            pos = 1;
+           if (pos % 2 == 0)
+            {
+                pos++;
+            }
+           else
+            {
+                pos--;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (pos < 2)
+            {
+                pos += 2;
+            }
+            else
+            {
+                pos -= 2;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (pos < 2)
+            {
+                pos += 2;
+            }
+            else
+            {
+                pos -= 2;
+            }
         }
     }
 }
