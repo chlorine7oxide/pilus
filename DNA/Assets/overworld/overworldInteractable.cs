@@ -2,11 +2,32 @@ using UnityEngine;
 
 public abstract class overworldInteractable : MonoBehaviour
 {
-    private void OnTriggerStay2D(Collider2D other)
+    public bool interactable = false;
+    
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (Input.GetKey(KeyCode.Z) && other.gameObject.CompareTag("player"))
+        if (other.gameObject.CompareTag("player"))
         {
-            interact();
+            interactable = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("player"))
+        {
+            interactable = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (interactable && Input.GetKeyDown(KeyCode.Z))
+        {
+            GameObject g = GameObject.FindGameObjectWithTag("dialogue");
+            if (g is null)
+            {
+                interact();
+            }
         }
     }
 

@@ -1,0 +1,13 @@
+COMBAT
+inactive entities cant be targeted
+on end return to the same place
+
+
+DIALOGUE
+make boxes lerp
+decisions
+setface
+activate speaker
+isright - direction of the box
+fix speaker and box sizes
+box height does not change

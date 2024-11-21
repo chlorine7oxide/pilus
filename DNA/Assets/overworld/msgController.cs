@@ -8,7 +8,7 @@ public class msgController : MonoBehaviour
     public List<textBox> boxes = new();
     public Queue<msg> msgs = new Queue<msg>(); 
     public bool inText = false;
-    public bool waitingForDecision = false;
+    public bool waitingForDecision = true;
 
     public List<GameObject> speakers = new();
 
@@ -32,7 +32,7 @@ public class msgController : MonoBehaviour
     {
         if (inText)
         {
-            if (!waitingForDecision && Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 nextMsg();
             }
@@ -41,6 +41,7 @@ public class msgController : MonoBehaviour
         {
             inText = true;
         }
+        
     }
 
     public void nextMsg()
@@ -62,6 +63,10 @@ public class msgController : MonoBehaviour
                 Destroy(b.text);
                 Destroy(b.name);
             }
+            foreach(GameObject s in speakers)
+            {
+                s.transform.position = new Vector3(0, 100, 0);
+            }
             boxes = null;
             Destroy(this.gameObject);
         }
@@ -70,6 +75,10 @@ public class msgController : MonoBehaviour
     public void createBox(string name, string text, bool isRight)
     {
         textBox b = new textBox(name, text, isRight);
+
+        GameObject mc = GameObject.FindGameObjectWithTag("player");
+
+        b.moveTo(mc.transform.position + new Vector3(0, -3.5f, 0));
         foreach (textBox box in boxes) {
             box.move(new Vector3(0, b.getHeight(), 0));
         }

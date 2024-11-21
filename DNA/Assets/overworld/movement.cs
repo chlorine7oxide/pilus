@@ -33,6 +33,14 @@ public class movement : MonoBehaviour
         {
             move /= 1.41421356f;
         }
-        this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
+        GameObject d = GameObject.FindGameObjectWithTag("dialogue");
+        if (d is null)
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
+        }
+        else
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        }
     }
 }

@@ -8,7 +8,7 @@ public class textBox
     public GameObject text, name;
 
     public static GameObject textPrefab;
-    public static float charsPerLine = 50f, heightPerLine = 2f;
+    public static float charsPerLine = 20f, heightPerLine = 1.5f;
     public static Sprite boxSprite1, boxSprite2, boxSprite3, boxSprite4;
     public Vector3 textpos, namePos;
 
