@@ -6,7 +6,8 @@ using Unity.VisualScripting;
 public class textBox
 {
     public GameObject box;
-    public GameObject text, name;
+    public GameObject name;
+    protected GameObject text;
 
     public static GameObject textPrefab;
     public static float charsPerLine = 31f, heightPerLine = 0.35f;
@@ -21,8 +22,6 @@ public class textBox
         this.name.GetComponent<TextMeshPro>().text = name;
 
         int height = (int)(text.Length / charsPerLine) + 1;
-        Debug.Log(height);
-        Debug.Log(text.Length);
         box = new();
         box.AddComponent<SpriteRenderer>();
         switch (height)
@@ -52,24 +51,35 @@ public class textBox
         moveTo(new Vector3(0, -5f, 0));
     }
 
-    public float getHeight()
+    public virtual float getHeight()
     {
         return ((int)(text.GetComponent<TextMeshPro>().text.Length / charsPerLine) + 1) * heightPerLine + 1.15f;
     }
 
-    public void move(Vector3 v)
+    public virtual void move(Vector3 v)
     {
         box.transform.Translate(v);
-        text.transform.Translate(v);
         name.transform.Translate(v);
+        if (text is not null)
+        {
+            text.transform.Translate(v);
+        }
 
         
     }
 
-    public void moveTo(Vector3 v)
+    public virtual void moveTo(Vector3 v)
     {
         box.transform.position = v;
-        text.transform.position = v + textpos;
         name.transform.position = v + namePos;
+        if (text is not null)
+        {
+            text.transform.position = v + textpos;
+        }
+    }
+
+    public virtual GameObject getText()
+    {
+        return text;
     }
 }

@@ -2,19 +2,23 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using System.ComponentModel;
+using Unity.VisualScripting;
 
 public class msgController : MonoBehaviour
 {
     public List<textBox> boxes = new();
     public Queue<msg> msgs = new Queue<msg>(); 
     public bool inText = false;
-    public bool decision = true;
+    public bool decision = false;
     public bool readyForbox = false;
 
     public List<GameObject> speakers = new();
     public List<GameObject> faces = new();
 
     public Dictionary<textBox, Vector3> pos = new();
+
+    public decision currentDecision;
 
     public static GameObject createDialogue(List<GameObject> speakers, Queue<msg> msgs, List<GameObject> faces)
     {
@@ -37,8 +41,17 @@ public class msgController : MonoBehaviour
     {
         if (inText)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (decision)
             {
+
+            }
+            else if (Input.GetKeyDown(KeyCode.Z) )
+            {
+                if (msgs.Count == 0)
+                {
+                    nextMsg();
+                    return;
+                }
                 foreach (textBox t in boxes)
                 {
                     t.moveTo(pos[t]);
@@ -60,9 +73,26 @@ public class msgController : MonoBehaviour
         {
             inText = true;
             msg m = msgs.Dequeue();
-            activateSpeaker(m.speaker);
-            setFace(m.speaker, m.face);
-            createBox(m.name, m.text(), (m.speaker.transform.position.x > 0));
+            string t = m.text();
+
+            if (t.Contains("decision"))
+            {
+                decision = true;
+                if (t.Contains("1"))
+                {
+                    activateSpeaker(m.speaker);
+                    setFace(m.speaker, m.face);
+                    StartCoroutine(decision1Listener(createDecision(m.name, "choice 1", "choice 2", (m.speaker.transform.position.x > 0))));
+                }
+            }
+            else
+            {
+                activateSpeaker(m.speaker);
+                setFace(m.speaker, m.face);
+                createBox(m.name, m.text(), (m.speaker.transform.position.x > 0));
+            }
+
+            
         }
         else
         {
@@ -70,7 +100,7 @@ public class msgController : MonoBehaviour
             foreach (textBox b in boxes)
             {
                 Destroy(b.box);
-                Destroy(b.text);
+                Destroy(b.getText());
                 Destroy(b.name);
             }
             foreach(GameObject s in speakers)
@@ -80,6 +110,21 @@ public class msgController : MonoBehaviour
             boxes = null;
             Destroy(this.gameObject);
         }
+    }
+
+    public IEnumerator decision1Listener(decision d)
+    {
+        yield return new WaitUntil(() => d.complete);
+        if (d.isUp)
+        {
+            msgs.Enqueue(new msg(null, () => "You chose 1", "decision1", speakers[0]));
+        }
+        else
+        {
+            msgs.Enqueue(new msg(null, () => "You chose 2", "decision2", speakers[0]));
+        }
+        decision = false;
+        nextMsg();
     }
 
     public void createBox(string name, string text, bool isRight)
@@ -92,7 +137,7 @@ public class msgController : MonoBehaviour
         foreach (textBox box in boxes) {
             StartCoroutine(moveOverTime(box.box, pos[box] + new Vector3(0, b.getHeight(), 0), 0.2f, b, Vector3.zero));
             StartCoroutine(moveOverTime(box.name, pos[box] + box.namePos + new Vector3(0, b.getHeight(), 0), 0.2f, b, box.namePos));
-            StartCoroutine(moveOverTime(box.text, pos[box] + box.textpos + new Vector3(0, b.getHeight(), 0), 0.2f, b, box.textpos));
+            StartCoroutine(moveOverTime(box.getText(), pos[box] + box.textpos + new Vector3(0, b.getHeight(), 0), 0.2f, b, box.textpos));
             pos[box] = pos[box] + new Vector3(0, b.getHeight(), 0);
         }
         if (boxes.Count == 0)
@@ -101,8 +146,29 @@ public class msgController : MonoBehaviour
         }
         boxes.Add(b);
         StartCoroutine(goafter(b, mc));
-        
-        
+    }
+
+    public decision createDecision(string name, string text1, string text2, bool isRight)
+    {
+        GameObject mc = GameObject.FindGameObjectWithTag("player");
+        decision b = new decision(name, text1, isRight, text2);
+        pos.Add(b, mc.transform.position + new Vector3(0, -3.5f, 0));
+        b.moveTo(new Vector3(10000, -5f, 0));
+        readyForbox = false;
+        foreach (textBox box in boxes)
+        {
+            StartCoroutine(moveOverTime(box.box, pos[box] + new Vector3(0, b.getHeight(), 0), 0.2f, b, Vector3.zero));
+            StartCoroutine(moveOverTime(box.name, pos[box] + box.namePos + new Vector3(0, b.getHeight(), 0), 0.2f, b, box.namePos));
+            StartCoroutine(moveOverTime(box.getText(), pos[box] + box.textpos + new Vector3(0, b.getHeight(), 0), 0.2f, b, box.textpos));
+            pos[box] = pos[box] + new Vector3(0, b.getHeight(), 0);
+        }
+        if (boxes.Count == 0)
+        {
+            readyForbox = true;
+        }
+        boxes.Add(b);
+        StartCoroutine(goafter(b, mc));
+        return b;
     }
 
     public void activateSpeaker(GameObject speaker)

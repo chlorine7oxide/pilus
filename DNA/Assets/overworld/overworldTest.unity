@@ -333,6 +333,7 @@ MonoBehaviour:
   boxSprite4: {fileID: -7594527305046405688, guid: f444ef5febd250c4baff1831c45bf9da, type: 3}
   testSpeaker: {fileID: -2097323154642717503, guid: e7956421de270534a97713f07b6449b6, type: 3}
   testFace: {fileID: 725860075296999433, guid: c987343beb32afe4c81c73b9a9b8ebb6, type: 3}
+  selector: {fileID: 6841017324531957407, guid: 5bebdddc1ddabe642a4676f3a040a881, type: 3}
   speakers:
   - {fileID: 1268293183}
   - {fileID: 937240049}
@@ -340,6 +341,7 @@ MonoBehaviour:
   - {fileID: 386510392}
   - {fileID: 479352347}
   mc: {fileID: 1356401317}
+  msgController: {fileID: 0}
 --- !u!61 &579793677
 BoxCollider2D:
   m_ObjectHideFlags: 0
