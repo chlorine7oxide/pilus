@@ -11,6 +11,7 @@ public class testnpc : overworldInteractable
     public Sprite testSpeaker, testFace;
 
     public List<GameObject> speakers = new();
+    public List<GameObject> faces = new();
     public Queue<msg> msgs = new();
 
     public GameObject mc;
@@ -29,16 +30,24 @@ public class testnpc : overworldInteractable
         GameObject p1 = speakers[0];
         GameObject p2 = speakers[1];
 
+        
+        for (int i = 0; i < 100; i++)
+        {
+            msgs.Enqueue(new msg(testFace, () => i.ToString(), "TestSpeaker1", p1));
+        }
+        
+        /*
         msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker1", p1));
         msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker2", p2));
-        msgs.Enqueue(new msg(testFace, () => "Hello, world! AGAIN", "TestSpeaker1", p1));
-        msgs.Enqueue(new msg(testFace, () => "Hello, world! AGAIN", "TestSpeaker2", p2));
-        msgs.Enqueue(new msg(testFace, () => "BBBBBBBBBOBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "TestSpeaker1", p1));
-        msgs.Enqueue(new msg(testFace, () => "ASOUIDHOASIDOAHSDOAHSDOIAHSDOIHSADOIHADOIHSADOIHASOIDHAOISHDOISAHDOIAHSDOIHSADOISAOIDHASOIDHSAOIHDAOISHDOISAHDOIASHDOIHSADOIHSADOIHSAOIDHAS", "TestSpeaker2", p2));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker1", p1));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker2", p2));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker1", p1));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker2", p2));
+        */
 
-        speakers[0].transform.position = mc.transform.position + new Vector3(6f, 0, 0);
-        speakers[1].transform.position = mc.transform.position + new Vector3(-6f, 0, 0);
-        msgController.createDialogue(speakers, msgs);
+        speakers[0].transform.position = mc.transform.position + new Vector3(-6f, 0, 0);
+        speakers[1].transform.position = mc.transform.position + new Vector3(6f, 0, 0);
+        msgController.createDialogue(speakers, msgs, faces);
     }
 }
    
