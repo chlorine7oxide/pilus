@@ -87,10 +87,12 @@ public class decision : textBox
         if (isup)
         {
             GameObject.Destroy(text2);
+            Debug.Log("destroyed text2");
         }
         else
         {
             GameObject.Destroy(text);
+            Debug.Log("destroyed text");
         }
         isUp = isup;
         complete = true;
@@ -99,15 +101,14 @@ public class decision : textBox
 
     public override GameObject getText()
     {
-        if (text is not null)
+        if (isUp)
         {
             return text;
         }
-        if (text2 is not null)
+        else
         {
             return text2;
         }
-        Debug.Log("what how");
         return null;
     }
 }

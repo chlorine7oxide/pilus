@@ -51,6 +51,12 @@ public class testnpc : overworldInteractable
         msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker1", p1));
         msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker2", p2));
         msgs.Enqueue(new msg(testFace, () => "decision1", "TestSpeaker1", p1));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker1", p1));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker2", p2));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker1", p1));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker2", p2));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker1", p1));
+        msgs.Enqueue(new msg(testFace, () => "Hello, world!", "TestSpeaker2", p2));
 
         speakers[0].transform.position = mc.transform.position + new Vector3(-6f, 0, 0);
         speakers[1].transform.position = mc.transform.position + new Vector3(6f, 0, 0);
