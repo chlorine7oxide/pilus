@@ -55,6 +55,7 @@ public class msgController : MonoBehaviour
                 foreach (textBox t in boxes)
                 {
                     t.moveTo(pos[t]);
+                    
                 }
                 nextMsg();
             }

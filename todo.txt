@@ -4,6 +4,17 @@ on end return to the same place
 
 
 DIALOGUE
-choosing the 2nd choice in a decision breaks it
 fix speaker and box sizes with actual sprites
+- portraits/faces
+- decision selector
 box moving looks a little strange with spamming
+bit of an offset in decisin text
+
+
+Inventory
+Settings menu
+Items menu - scrolling list
+genes menu - jars on shelves aesthetic maybe
+- cant unequip your remaining eye
+- first time you equip an arm a warning about arms being better in pairs
+dynamic portrait

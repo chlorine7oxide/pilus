@@ -60,25 +60,9 @@ public class decision : textBox
 
     public override void moveTo(Vector3 v)
     {
-        base.moveTo(v);
-        if (text2 is not null)
-        {
-            text2.transform.Translate(v);
-            text2.transform.Translate(new Vector3(0, -0.25f, 0));
-        }
-        else
-        {
-            text.transform.Translate(new Vector3(0, -0.25f, 0));
-        }
-        if (text is not null)
-        {
-            text.transform.Translate(new Vector3(0, 0.25f, 0));
-        }
-        else
-        {
-            text2.transform.Translate(new Vector3(0, 0.25f, 0));
-        }
-        
+        box.transform.position = v;
+        name.transform.position = v + namePos;
+        getText().transform.position = v + textpos;
     }
 
     public void endDecision(bool isup)
@@ -109,6 +93,5 @@ public class decision : textBox
         {
             return text2;
         }
-        return null;
     }
 }
