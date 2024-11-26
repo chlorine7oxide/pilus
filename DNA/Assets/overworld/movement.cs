@@ -5,6 +5,8 @@ public class movement : MonoBehaviour
     public float speed;
     public Vector2 move;
 
+    public bool inventory = false;
+
     void Update()
     {
         int presses = 0;
@@ -13,6 +15,18 @@ public class movement : MonoBehaviour
         {
             presses++;
             move += new Vector2(0, -speed);
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            inventory = true;
+            if (!inventory)
+            {
+                inventoryController.openInventory();
+            }
+            else
+            {
+                inventoryController.closeInventory();
+            }
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -36,7 +50,14 @@ public class movement : MonoBehaviour
         GameObject d = GameObject.FindGameObjectWithTag("dialogue");
         if (d is null)
         {
-            this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
+            if (!inventory)
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
+            }
+            else
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            }
         }
         else
         {
