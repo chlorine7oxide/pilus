@@ -23,20 +23,20 @@ public class tester : MonoBehaviour
         combatController.friendSprite = friend;
         combatController.testenemySprite = testenemy;
 
-        playerData.MCabilities.AddLast("attack");
-        playerData.MCabilities.AddLast("kick");
-        playerData.MCabilities.AddLast("insult");
-        playerData.MCabilities.AddLast("heal");
+        playerData.MCabilities.Add("attack");
+        playerData.MCabilities.Add("kick");
+        playerData.MCabilities.Add("insult");
+        playerData.MCabilities.Add("heal");
 
-        playerData.friendAbilities.AddLast("attack");
-        playerData.friendAbilities.AddLast("swing");
-        playerData.friendAbilities.AddLast("meditate");
-        playerData.friendAbilities.AddLast("heal");
+        playerData.friendAbilities.Add("attack");
+        playerData.friendAbilities.Add("swing");
+        playerData.friendAbilities.Add("meditate");
+        playerData.friendAbilities.Add("heal");
 
-        playerData.items.AddLast("potion");
-        playerData.items.AddLast("potion");
-        playerData.items.AddLast("bigpotion");
-        playerData.items.AddLast("molotov");
+        playerData.items.Add("potion");
+        playerData.items.Add("potion");
+        playerData.items.Add("bigpotion");
+        playerData.items.Add("molotov");
 
         playerData.hp = 100;
         playerData.def = 10;

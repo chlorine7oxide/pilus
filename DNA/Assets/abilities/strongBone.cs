@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class strongBone : Gene
 {
-    public strongBone()
+    public strongBone(Sprite s)
     {
         name = "Stronger Bones";
         description = "A couple extra inches of calcium never hurt anybody. Increased defense";
         type = "normal";
-        icon = Resources.Load<Sprite>("abilities/strongBone");
+        icon = s;
         equipped = false;
     }
 }

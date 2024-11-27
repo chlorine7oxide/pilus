@@ -1,151 +1,255 @@
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class inventoryController : MonoBehaviour
 {
-    public string mode = "base"; // base, gene, item
-    public GameObject selector;
+    public GameObject inv;
+    public GameObject[] baseButtons;
 
-    public GameObject[] eyes = new GameObject[3];
-    public GameObject[] arms = new GameObject[3];
-    public GameObject[] others = new GameObject[3];
+    public GameObject gene;
+    public GameObject[] geneButtons;
+    public GameObject[] eyebuttons;
+    public GameObject[] armButtons;
+    public GameObject[] generalButtons;
 
-    public GameObject[] equiped = new GameObject[8]; // 0, 1 eyes , 2, 3 arms, 4, 5, 6, 7 others
+    public Sprite sel;
 
-    public int equipPos = 1;
-    public int selectNum = 1;
+    public bool active = false;
 
-    public int mainPos = 0;
-    public GameObject[] baseObj = new GameObject[3];
-    
-    void Update()
+    private void Update()
     {
-        if (mode == "base")
+        if (Input.GetKeyDown(KeyCode.C) && !active)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                switch (mainPos)
-                {
-                    case 0:
-                        enterGene();
-                        break;
-                    case 1:
-                        enterItem();
-                        break;
-                    case 2:
-                        break;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                mainPos += 2;
-                mainPos %= 3;
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                mainPos++;
-                mainPos %= 3;
-            }
-            updateBase();
+            open();
+            active = true;
+            StartCoroutine(mainSel());
         }
-        /*
-        if (mode == "gene")
+        else if (Input.GetKeyDown(KeyCode.C) && active)
         {
-            if (equipPos > 0)
-            {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    equipPos += 6;
-                    equipPos %= 8;
-                }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    equipPos += 2;
-                    equipPos %= 8;
-                }
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    equipPos += 7;
-                    equipPos %= 8;
-                }
-                if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    equipPos ++;
-                    equipPos %= 8;
-                }
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    equipPos = -equipPos;
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                returnToBase();
-            }
-
-            if (equipPos < 0)
-            {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    selectNum = Mathf.Max(0, selectNum--);
-                }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    Mathf.Min(
-                }
-
-            }
-
-            updateGene();       
+            close();
+            active = false;
+            StopAllCoroutines();
         }
-        */
+    }
+
+    public void open()
+    {
+        inv.transform.position = GameObject.FindGameObjectWithTag("player").transform.position;
+    }
+
+    public void close()
+    {
+        inv.transform.position = new Vector3(1000, 0, 0);
     }
 
     public void enterGene()
     {
-        GameObject.FindGameObjectWithTag("inventory").transform.Translate(new Vector3(20, 0, 0));
-        foreach (GameObject g in GameObject.FindGameObjectsWithTag("gene"))
-        {
-            g.transform.Translate(new Vector3(-20, 0, 0));
-        }
-        mode = "gene";
+        gene.transform.position = inv.transform.position;
+        inv.transform.position = new Vector3(1000, 0, 0);
     }
 
+    public void toBase()
+    {
+        inv.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
+        gene.transform.position = new Vector3(1000, 0, 0);
+        StopAllCoroutines();
+        StartCoroutine(mainSel());
+    }
+
+    /*
     public void enterItem()
     {
 
     }
 
-    public void returnToBase()
+    public void enterSetting()
+    {
+
+    }
+    */
+
+    public IEnumerator geneMenuSel()
+    {
+        Debug.Log("Gene");
+        staticSelector s = staticSelector.create(geneButtons, 2, sel);
+
+        yield return new WaitUntil(() => (s.done || Input.GetKeyDown(KeyCode.X)));
+
+        if (!s.done)
+        {
+            toBase();
+            yield break;
+        }
+
+        switch (s.result)
+        {
+            case 0:
+                //StartCoroutine(eyeWarning());
+                break;
+            case 1:
+                StartCoroutine(eyeSel());
+                break;
+            case 2:
+                StartCoroutine(armSel(2));
+                break;
+            case 3:
+                StartCoroutine(armSel(3));
+                break;
+            case 4:
+                StartCoroutine(generalSel(4));
+                break;
+            case 5:
+                StartCoroutine(generalSel(5));
+                break;
+            case 6:
+                StartCoroutine(generalSel(6));
+                break;
+            case 7:
+                StartCoroutine(generalSel(7));
+                break;
+        }
+
+        s.destroy();
+    }
+
+    /*
+    public IEnumerator eyeWarning()
+    {
+
+    }
+    */
+
+    public IEnumerator eyeSel()
+    {
+        geneDescription.create("eye", eyebuttons[1].transform.position + new Vector3(0.5f, 0, 0));
+
+        Gene[] e = playerData.eyes.ToArray();
+        List<Sprite> eyeIcons = new();
+
+        for (int i = 0; i < playerData.eyes.Count; i++)
+        {
+            eyeIcons.Add(playerData.eyes[i].icon);
+        }
+
+        dynamicSelector d = dynamicSelector.create(eyebuttons, eyeIcons.ToArray(), sel);
+
+        yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
+
+        if (!d.done)
+        {
+            toBase();
+            yield break;
+        }
+
+        playerData.equiped[1] = e[d.result];
+        geneButtons[1].GetComponent<SpriteRenderer>().sprite = e[d.result].icon;
+
+        d.destroy();
+
+        StartCoroutine(geneMenuSel());
+
+    }
+
+    public IEnumerator armSel(int pos)
+    {
+        geneDescription.create("arm", armButtons[1].transform.position + new Vector3(0.5f, 0, 0));
+
+        Gene[] a = playerData.arms.ToArray();
+        List<Sprite> armIcons = new();
+
+        for (int i = 0; i < playerData.arms.Count; i++)
+        {
+            armIcons.Add(playerData.arms[i].icon);
+        }
+
+        dynamicSelector d = dynamicSelector.create(armButtons, armIcons.ToArray(), sel);
+
+        yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
+
+        if (!d.done)
+        {
+            toBase();
+            yield break;
+        }
+
+        playerData.equiped[pos] = a[d.result];
+        geneButtons[pos].GetComponent<SpriteRenderer>().sprite = a[d.result].icon;
+        d.destroy();
+
+        StartCoroutine(geneMenuSel());
+    }
+
+    public IEnumerator generalSel(int pos)
+    {
+        geneDescription.create("gene", generalButtons[1].transform.position + new Vector3(0.5f, 0, 0));
+
+        Gene[] g = playerData.genes.ToArray();
+        List<Sprite> geneIcons = new();
+
+        for (int i = 0; i < playerData.genes.Count; i++)
+        {
+            geneIcons.Add(playerData.genes[i].icon);
+        }
+
+        dynamicSelector d = dynamicSelector.create(generalButtons, geneIcons.ToArray(), sel);
+
+        yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
+
+        if (!d.done)
+        {
+            toBase();
+            yield break;
+        }
+
+        playerData.equiped[pos] = g[d.result];
+        geneButtons[pos].GetComponent<SpriteRenderer>().sprite = g[d.result].icon;
+        d.destroy();
+
+        StartCoroutine(geneMenuSel());
+    }
+
+    /*
+    public IEnumerator itemSel()
     {
 
     }
 
-    public void updateBase()
-    {
-        selector.transform.position = baseObj[mainPos].transform.position;
-    }
-
-    public void updateGene()
+    public IEnumerator settings()
     {
 
     }
+    */
 
-    public static void openInventory()
+    public IEnumerator mainSel()
     {
-        GameObject g = new();
-        g.AddComponent<inventoryController>();
-        g.tag = "inventoryController";
-
-        GameObject.FindGameObjectWithTag("inventory").transform.position = GameObject.FindGameObjectWithTag("player").transform.position;
-    }
-
-    public static void closeInventory()
-    {
-        GameObject.FindGameObjectWithTag("inventory").transform.position = new Vector3(1000, 1000, 1000);
-        GameObject g = GameObject.FindGameObjectWithTag("inventoryController");
-        Destroy(g);
+        staticSelector s = staticSelector.create(baseButtons, 1, sel);
         
+        yield return new WaitUntil(() => s.done);
+
+        switch (s.result)
+        {
+            case 1:
+                enterGene();
+                StartCoroutine(geneMenuSel());
+                break;
+
+                /*
+            case 0:
+                enterItem();
+                StartCoroutine(itemSel());
+                break;
+            case 2:
+                enterSetting();
+                StartCoroutine(settings());
+                break;
+                */
+        }
+
+        s.destroy();
+
     }
+
 }

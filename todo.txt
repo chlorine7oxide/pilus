@@ -18,3 +18,4 @@ genes menu - jars on shelves aesthetic maybe
 - cant unequip your remaining eye
 - first time you equip an arm a warning about arms being better in pairs
 dynamic portrait
+- make it look good

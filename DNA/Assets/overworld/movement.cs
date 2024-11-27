@@ -16,18 +16,6 @@ public class movement : MonoBehaviour
             presses++;
             move += new Vector2(0, -speed);
         }
-        if (Input.GetKey(KeyCode.C))
-        {
-            inventory = true;
-            if (!inventory)
-            {
-                inventoryController.openInventory();
-            }
-            else
-            {
-                inventoryController.closeInventory();
-            }
-        }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             presses++;
@@ -50,13 +38,14 @@ public class movement : MonoBehaviour
         GameObject d = GameObject.FindGameObjectWithTag("dialogue");
         if (d is null)
         {
-            if (!inventory)
+            if (GameObject.FindGameObjectWithTag("inv").GetComponent<inventoryController>().active)
             {
-                this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
+                
+                this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             }
             else
             {
-                this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+                this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
             }
         }
         else
