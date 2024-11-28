@@ -178,7 +178,7 @@ public class msgController : MonoBehaviour
         {
             s.transform.localScale = new Vector3(1, 1, 1);
         }
-        speaker.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        speaker.transform.localScale = new Vector3(19.0f/16.0f, 19.0f/16.0f, 1);
     }
 
     public void setFace(GameObject speaker, Sprite face)

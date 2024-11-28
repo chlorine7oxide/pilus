@@ -10,6 +10,7 @@ fix speaker and box sizes with actual sprites
 - decision selector
 box moving looks a little strange with spamming
 bit of an offset in decisin text
+make portraits resizze about the bottom
 
 passive dialogue - autoscrolling no decisions
 
