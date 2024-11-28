@@ -5,7 +5,7 @@ public class movement : MonoBehaviour
     public float speed;
     public Vector2 move;
 
-    public bool inventory = false;
+    public GameObject inv;
 
     void Update()
     {
@@ -38,7 +38,7 @@ public class movement : MonoBehaviour
         GameObject d = GameObject.FindGameObjectWithTag("dialogue");
         if (d is null)
         {
-            if (GameObject.FindGameObjectWithTag("inv").GetComponent<inventoryController>().active)
+            if (inv.GetComponent<inventoryController>().active)
             {
                 
                 this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;

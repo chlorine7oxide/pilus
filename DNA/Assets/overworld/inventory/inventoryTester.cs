@@ -6,6 +6,9 @@ public class inventoryTester : MonoBehaviour
     public Sprite eye1, eye2, arm1, arm2, gen1, gen2;
     public GameObject textPrefab;
     public GameObject box, text;
+    public GameObject canvas;
+
+    public static Sprite port;
 
     void Start()
     {
@@ -28,5 +31,15 @@ public class inventoryTester : MonoBehaviour
         geneDescription.text = text;
         geneDescription.box = box;
         geneDescription.s = s;
+
+        playerData.items.Add("item1");
+        playerData.items.Add("item2");
+        playerData.items.Add("item3");
+        playerData.items.Add("item4");
+        playerData.items.Add("item5");
+        playerData.items.Add("item6");
+
+        dynamicSelectorText.textPrefabUI = textPrefab;
+        dynamicSelectorText.canvas = canvas;
     }
 }

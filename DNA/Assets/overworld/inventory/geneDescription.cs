@@ -57,7 +57,7 @@ public class geneDescription : MonoBehaviour
             pos++;
             pos %= descriptions.Length;
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))
         {
             text.transform.Translate(Vector3.down * 10000);
             box.transform.Translate(Vector3.down * 10000);
