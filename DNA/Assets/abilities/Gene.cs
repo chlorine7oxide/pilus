@@ -7,4 +7,7 @@ public abstract class Gene
     public string type;
     public Sprite icon;
     public bool equipped;
+    public Sprite jar;
+    public Sprite top;
+    public Sprite bottom;
 }

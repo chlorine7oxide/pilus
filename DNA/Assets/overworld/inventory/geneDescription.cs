@@ -12,10 +12,11 @@ public class geneDescription : MonoBehaviour
 
     public int pos;
 
-    public static void create(string mode, Vector3 pos)
+    public static void create(string mode, GameObject button)
     {
-        text.transform.position = new Vector3(960, 540, 0);
-        box.transform.position = new Vector3(960, 540, 0);
+        text.transform.position = convertUI(button.transform.position - new Vector3(3, 0, 0));
+        box.transform.position = convertUI(button.transform.position - new Vector3(3, 0, 0));
+        box.transform.localScale = new Vector3(-1, 1, 0);
         text.AddComponent<geneDescription>();
         geneDescription d = text.GetComponent<geneDescription>();
         switch (mode)
@@ -44,15 +45,21 @@ public class geneDescription : MonoBehaviour
         }
     }
 
+    public static Vector3 convertUI(Vector3 pos)
+    {
+        GameObject p = GameObject.FindGameObjectWithTag("player");
+        return new Vector3((pos.x - p.transform.position.x) * 960 * 2 / 17.7f + 960, (pos.y - p.transform.position.y) * 540 * 2 / 9.8f + 540, 0);
+    }   
+
     private void Update()
     {
         gameObject.GetComponent<TextMeshProUGUI>().text = descriptions[pos];
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && pos != 0)
         {
             pos += descriptions.Length - 1;
             pos %= descriptions.Length;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && pos != descriptions.Length - 1)
         {
             pos++;
             pos %= descriptions.Length;

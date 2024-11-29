@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -27,7 +28,7 @@ public class inventoryController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && !active)
+        if (Input.GetKeyDown(KeyCode.C) && !active && GameObject.FindGameObjectWithTag("dialogue") == null)
         {
             open();
             active = true;
@@ -98,7 +99,7 @@ public class inventoryController : MonoBehaviour
         switch (s.result)
         {
             case 0:
-                itemDialogue i = itemDialogue.create("I don't think it's a good idea to take this one out.", inventoryTester.port, geneButtons[0].transform.position);
+                generalText i = generalText.create("I don't think it's a good idea to take this one out.", inventoryTester.port, null);
                 yield return new WaitUntil(() => i.done);
                 i.destroy();
                 StartCoroutine(geneMenuSel());
@@ -138,17 +139,21 @@ public class inventoryController : MonoBehaviour
 
     public IEnumerator eyeSel()
     {
-        geneDescription.create("eye", eyebuttons[1].transform.position + new Vector3(0.5f, 0, 0));
+        geneDescription.create("eye", eyebuttons[1]);
 
         Gene[] e = playerData.eyes.ToArray();
-        List<Sprite> eyeIcons = new();
+        List<Sprite> jars = new();
+        List<Sprite> tops = new();
+        List<Sprite> bottoms = new();
 
         for (int i = 0; i < playerData.eyes.Count; i++)
         {
-            eyeIcons.Add(playerData.eyes[i].icon);
+            jars.Add(playerData.eyes[i].jar);
+            tops.Add(playerData.eyes[i].top);
+            bottoms.Add(playerData.eyes[i].bottom);
         }
 
-        dynamicSelector d = dynamicSelector.create(eyebuttons, eyeIcons.ToArray(), sel);
+        dynamicSelector d = dynamicSelector.create(eyebuttons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray());
 
         yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
 
@@ -170,17 +175,29 @@ public class inventoryController : MonoBehaviour
 
     public IEnumerator armSel(int pos)
     {
-        geneDescription.create("arm", armButtons[1].transform.position + new Vector3(0.5f, 0, 0));
+        if (!playerData.armWarning)
+        {
+            generalText g = generalText.createAt("Having both arms the same will definetely make them more powerful.", inventoryTester.port, null, Vector3.zero);
+            playerData.armWarning = true;
+            yield return new WaitUntil(() => g.done);
+            g.destroy();
+        }
 
-        Gene[] a = playerData.arms.ToArray();
-        List<Sprite> armIcons = new();
+        geneDescription.create("arm", armButtons[1]);
+
+        Gene[] e = playerData.arms.ToArray();
+        List<Sprite> jars = new();
+        List<Sprite> tops = new();
+        List<Sprite> bottoms = new();
 
         for (int i = 0; i < playerData.arms.Count; i++)
         {
-            armIcons.Add(playerData.arms[i].icon);
+            jars.Add(playerData.arms[i].jar);
+            tops.Add(playerData.arms[i].top);
+            bottoms.Add(playerData.arms[i].bottom);
         }
 
-        dynamicSelector d = dynamicSelector.create(armButtons, armIcons.ToArray(), sel);
+        dynamicSelector d = dynamicSelector.create(armButtons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray());
 
         yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
 
@@ -191,8 +208,8 @@ public class inventoryController : MonoBehaviour
             yield break;
         }
 
-        playerData.equiped[pos] = a[d.result];
-        geneButtons[pos].GetComponent<SpriteRenderer>().sprite = a[d.result].icon;
+        playerData.equiped[pos] = e[d.result];
+        geneButtons[pos].GetComponent<SpriteRenderer>().sprite = e[d.result].icon;
         d.destroy();
 
         StartCoroutine(geneMenuSel());
@@ -200,17 +217,26 @@ public class inventoryController : MonoBehaviour
 
     public IEnumerator generalSel(int pos)
     {
-        geneDescription.create("gene", generalButtons[1].transform.position + new Vector3(0.5f, 0, 0));
+        geneDescription.create("gene", generalButtons[1]);
 
-        Gene[] g = playerData.genes.ToArray();
-        List<Sprite> geneIcons = new();
+        Gene[] e = playerData.genes.ToArray();
+        List<Gene> available = new();
+        List<Sprite> jars = new();
+        List<Sprite> tops = new();
+        List<Sprite> bottoms = new();
 
         for (int i = 0; i < playerData.genes.Count; i++)
         {
-            geneIcons.Add(playerData.genes[i].icon);
+            if (!playerData.equiped.Contains(playerData.genes[i]))
+            {
+                available.Add(playerData.genes[i]);
+            }
+            jars.Add(playerData.genes[i].jar);
+            tops.Add(playerData.genes[i].top);
+            bottoms.Add(playerData.genes[i].bottom);
         }
 
-        dynamicSelector d = dynamicSelector.create(generalButtons, geneIcons.ToArray(), sel);
+        dynamicSelector d = dynamicSelector.create(generalButtons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray());
 
         yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
 
@@ -221,8 +247,19 @@ public class inventoryController : MonoBehaviour
             yield break;
         }
 
-        playerData.equiped[pos] = g[d.result];
-        geneButtons[pos].GetComponent<SpriteRenderer>().sprite = g[d.result].icon;
+        if (available.Contains(e[d.result]))
+        {
+            playerData.equiped[pos] = available[d.result];
+            geneButtons[pos].GetComponent<SpriteRenderer>().sprite = e[d.result].icon;
+        }
+        else
+        {
+            generalText g = generalText.create("I already have this gene equiped.", inventoryTester.port, null);
+            yield return new WaitUntil(() => g.done);
+            g.destroy();
+        }
+
+        
         d.destroy();
 
         StartCoroutine(geneMenuSel());

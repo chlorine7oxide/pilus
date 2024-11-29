@@ -19,9 +19,9 @@ public abstract class overworldInteractable : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        if (interactable && Input.GetKeyDown(KeyCode.Z))
+        if (interactable && Input.GetKeyDown(KeyCode.Z) && !GameObject.FindGameObjectWithTag("inventory").GetComponent<inventoryController>().active)
         {
             GameObject g = GameObject.FindGameObjectWithTag("dialogue");
             if (g is null)

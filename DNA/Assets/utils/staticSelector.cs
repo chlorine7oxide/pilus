@@ -67,6 +67,10 @@ public class staticSelector : MonoBehaviour
             result = pos;
             done = true;
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            destroy();
+        }
         updatePos();
     }
 

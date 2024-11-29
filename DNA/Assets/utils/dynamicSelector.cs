@@ -4,6 +4,8 @@ public class dynamicSelector : MonoBehaviour
 {
     public GameObject[] buttons;
     public Sprite[] options;
+    public Sprite[] tops;
+    public Sprite[] bottoms;
 
     public static Sprite empty;
 
@@ -13,7 +15,7 @@ public class dynamicSelector : MonoBehaviour
 
     public bool e = false;
 
-    public static dynamicSelector create(GameObject[] buttons, Sprite[] options, Sprite sel)
+    public static dynamicSelector create(GameObject[] buttons, Sprite[] options, Sprite sel, Sprite[] tops, Sprite[] bottoms)
     {
         GameObject g = new();
         g.AddComponent<dynamicSelector>();
@@ -23,6 +25,8 @@ public class dynamicSelector : MonoBehaviour
         d.buttons = buttons;
         d.options = options;
         d.GetComponent<SpriteRenderer>().sortingOrder = 20;
+        g.GetComponent<dynamicSelector>().tops = tops;
+        g.GetComponent<dynamicSelector>().bottoms = bottoms;
 
         return d;
     }
@@ -38,7 +42,7 @@ public class dynamicSelector : MonoBehaviour
     {
         if (pos - 1 >= 0)
         {
-            buttons[0].GetComponent<SpriteRenderer>().sprite = options[pos - 1];
+            buttons[0].GetComponent<SpriteRenderer>().sprite = bottoms[pos - 1];
         }
         else
         {
@@ -48,7 +52,7 @@ public class dynamicSelector : MonoBehaviour
         
         if (pos + 1 < options.Length)
         {
-            buttons[2].GetComponent<SpriteRenderer>().sprite = options[pos + 1];
+            buttons[2].GetComponent<SpriteRenderer>().sprite = tops[pos + 1];
         }
         else
         {

@@ -6,24 +6,18 @@ dialogue in combat - autoscrolling no decisions
 
 DIALOGUE
 fix speaker and box sizes with actual sprites
-- portraits/faces
+- faces
 - decision selector
 box moving looks a little strange with spamming
 bit of an offset in decisin text
 make portraits resizze about the bottom
 
-passive dialogue - autoscrolling no decisions
-
 
 Inventory
 Settings menu
-Items menu - scrolling list
-genes menu - jars on shelves aesthetic maybe
-- cant unequip your remaining eye
-- first time you equip an arm a warning about arms being better in pairs
 dynamic portrait
 - make it look good
--cant double up on general genes
+-cant double up on general genes --
 
 ART
 finish stone tileset - add a few more little things
@@ -31,3 +25,7 @@ gene menu background
 character walking animation
 selector sprite
 redo textbox
+fix up inventory sprite
+
+
+
