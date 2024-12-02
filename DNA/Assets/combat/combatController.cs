@@ -6,6 +6,7 @@ using UnityEditor;
 using Mono.Cecil;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class combatController : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class combatController : MonoBehaviour
     public bool started = false;
 
     public static Sprite mcSprite, friendSprite, testenemySprite;
+
+    public static GameObject[] buttons = new GameObject[4];
 
     void Start()
     {
@@ -143,7 +146,7 @@ public class combatController : MonoBehaviour
         readyForTurn = true;
     }
 
-    protected scroller selector;
+    protected dynamicSelectorText selector;
 
     public IEnumerator takePlayerTurn()
     {
@@ -161,137 +164,114 @@ public class combatController : MonoBehaviour
         }
 
         // action type placeholder
-        menuSelector.response = null;
-        GameObject sel = GameObject.FindGameObjectWithTag("selector");
-        sel.AddComponent<menuSelector>();
-        yield return new WaitUntil(() => menuSelector.response != null);
-        string response = menuSelector.response;
-        Destroy(sel.GetComponent<menuSelector>());
-        sel.transform.Translate(new Vector3(100, 0, 0));
+        staticSelector s = staticSelector.create(buttons, 2, mcSprite);
+        yield return new WaitUntil(() => s.done);
+        int res = s.result;
+        s.destroy();
 
         // ability selector
-        if (response == "ability")
+        switch (res)
         {
-            if (turnNum == 0)
-            {
-                selector = new scroller(5, 3, playerData.MCabilities.ToArray(), 1, new Vector2(-5, -3)); 
-            }
-            else
-            {
-                selector = new scroller(5, 3, playerData.friendAbilities.ToArray(), 1, new Vector2(-5, -3));
-            }
-        }
-        else if(response == "defend")
-        {
-            Players[turnNum].def += 10;
-            defended[turnNum] = true;
-        }
-        else
-        {
-            selector = new scroller(5, 3, playerData.items.ToArray(), 1, new Vector2(3, -3));
-        }
-        scroller.result = null;
-        yield return new WaitUntil(() => scroller.result != null);
-
-        combatEntity target = null;
-
-        if (scroller.result == "attack" || scroller.result == "kick" || scroller.result == "insult" || scroller.result == "swing" || scroller.result == "molotov")
-        {
-            if (numEnemies > 1)
-            {
-                //choose enemy placeholder
-                int count = 0;
-                Dictionary<int, combatEntity> enemyDict = new Dictionary<int, combatEntity>();
-                foreach (combatEntity c in getEnemies())
+            case 0: // ability
+                Vector3[] pos = new Vector3[5]
                 {
-                    enemyDict.Add(count, c);
-                    count++;
-                }
-                entitySelector.selectedEntity = null;
-                sel.AddComponent<entitySelector>();
-                sel.GetComponent<entitySelector>().entities = enemyDict;
-                yield return new WaitUntil(() => entitySelector.selectedEntity != null);
-                target = entitySelector.selectedEntity;
-                Destroy(sel.GetComponent<entitySelector>());
-                sel.transform.Translate(new Vector3(100, 0, 0));
-            }
-            else
-            {
-                target = Enemies[0];
-            }
-        }
+                    new Vector3(-8, -2, 0),
+                    new Vector3(-8, -2.5f, 0),
+                    new Vector3(-8, -3, 0),
+                    new Vector3(-8, -3.5f, 0),
+                    new Vector3(-8, -4, 0),
+                };
+                selector = dynamicSelectorText.create(pos, turnNum == 0 ? playerData.MCabilities.ToArray() : playerData.friendAbilities.ToArray(), mcSprite);
+                yield return new WaitUntil(() => selector.done);
+                string ability = turnNum == 0 ? playerData.MCabilities[selector.result] : playerData.friendAbilities[selector.result];
+                selector.destroy();
 
-        if (scroller.result == "heal" || scroller.result == "meditate" || scroller.result == "potion" || scroller.result == "bigpotion")
-        {
-            if (numPlayers > 1)
-            {
-                int count = 0;
-                Dictionary<int, combatEntity> playerDict = new Dictionary<int, combatEntity>();
-                foreach (combatEntity c in getPlayers())
+                // target selector
+                if (ability == "Punch" || ability == "Slam" || ability == "attack" || ability == "swing" || ability == "Insult" || ability == "Check")
                 {
-                    playerDict.Add(count, c);
-                    count++;
+                    staticSelector se = staticSelector.create(Enemies.Select(e => e.entity).ToArray(), 1, mcSprite);
+                    yield return new WaitUntil(() => se.done);
+                    combatEntity res2 = Enemies[se.result];
+
+                    switch (ability)
+                    {
+                        case "Punch":
+                            ((MC)Players[turnNum]).punch(res2);
+                            break;
+                        case "Slam":
+                            ((MC)Players[turnNum]).slam(res2);
+                            break;
+                        case "attack":
+                            ((friend)Players[turnNum]).attack(res2);
+                            break;
+                        case "swing":
+                            ((friend)Players[turnNum]).swing(res2);
+                            break;
+                        case "Insult":
+                            ((MC)Players[turnNum]).insult(res2);
+                            break;
+                        case "Check":
+                            ((MC)Players[turnNum]).check(res2);
+                            break;
+                    }
                 }
-                entitySelector.selectedEntity = null;
-                sel.AddComponent<entitySelector>();
-                sel.GetComponent<entitySelector>().entities = playerDict;
-                yield return new WaitUntil(() => entitySelector.selectedEntity != null);
-                target = entitySelector.selectedEntity;
-                Destroy(sel.GetComponent<entitySelector>());
-                sel.transform.Translate(new Vector3(100, 0, 0));
-            }
-            else
-            {
-                target = Players[0];
-            }
+                else if (ability == "heal" || ability == "Focus" || ability == "meditate")
+                {
+                    staticSelector se = staticSelector.create(Players.Select(e => e.entity).ToArray(), 1, mcSprite);
+                    yield return new WaitUntil(() => se.done);
+                    combatEntity res2 = Players[se.result];
+                    switch (ability)
+                    {
+                        case "heal":
+                            ((friend)Players[turnNum]).heal(res2);
+                            break;
+                        case "Focus":
+                            ((MC)Players[turnNum]).focus(res2);
+                            break;
+                        case "meditate":
+                            ((friend)Players[turnNum]).meditate(res2);
+                            break;
+                    }
+                }
+                break;
+            case 2: // defend
+                defended[turnNum] = true;
+                break;
+            case 1: // item
+                Vector3[] poss = new Vector3[5]
+                {
+                    new Vector3(0, -2, 0),
+                    new Vector3(0, -2.5f, 0),
+                    new Vector3(0, -3, 0),
+                    new Vector3(0, -3.5f, 0),
+                    new Vector3(0, -4, 0),
+                };
+
+                selector = dynamicSelectorText.create(poss, playerData.items.ToArray(), mcSprite);
+                yield return new WaitUntil(() => selector.done);
+                Debug.Log(selector.result + " result");
+                Debug.Log(playerData.items.Count + " length"); 
+                string item = playerData.items[selector.result];
+                selector.destroy();
+                
+
+                switch (item)
+                {
+                    case "Potion":
+                        Players[turnNum].heal(20);
+                        break;
+                    case "Defend":
+                        defended[turnNum] = true;
+                        break;
+                }
+                playerData.items.Remove(item);
+
+                break;
+            case 3: // run
+                break;
         }
 
-        if (turnNum == 1)
-        {
-            switch (scroller.result)
-            {
-                case "attack":
-                    ((friend)Players[1]).attack(target);
-                    break;
-                case "heal":
-                    ((friend)Players[1]).heal(target);
-                    break;
-                case "meditate":
-                    ((friend)Players[1]).meditate(target);
-                    break;
-                case "swing":
-                    ((friend)Players[1]).swing(target);
-                    break;  
-            }
-        } 
-        else
-        {
-            switch (scroller.result)
-            {
-                case "attack":
-                    ((MC)Players[0]).attack(target);
-                    break;
-                case "heal":
-                    ((MC)Players[0]).heal(target);
-                    break;
-                case "kick":
-                    ((MC)Players[0]).kick(target);
-                    break;
-                case "insult":
-                    ((MC)Players[0]).insult(target);
-                    break;
 
-            }
-        }
-        if (response == "item")
-        {
-            switch (scroller.result)
-            {
-                case "potion": items.potion(target); break;
-                case "bigpotion": items.bigPotion(target); break;
-                case "molotov": items.molotov(target); break;
-            }
-        }
         turnNum++;
         if (turnNum == 2)
         {

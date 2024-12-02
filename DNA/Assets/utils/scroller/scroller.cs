@@ -31,12 +31,15 @@ public class scroller
         {
             this.buttons[i] = GameObject.Instantiate(buttonprefab);
             this.buttons[i].transform.Translate(new Vector3(0, (i + 1) * height / (2 * numExtras + 1)), 0);
+            this.buttons[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
         this.buttons[numExtras] = GameObject.Instantiate(buttonprefab);
+        this.buttons[numExtras].GetComponent<SpriteRenderer>().sortingOrder = 1;
         for (int i = 0; i < numExtras; i++)
         {
             this.buttons[i + numExtras + 1] = GameObject.Instantiate(buttonprefab);
             this.buttons[i + numExtras + 1].transform.Translate(new Vector3(0, -(i + 1) * height / (2 * numExtras + 1)), 0);
+            this.buttons[i + numExtras + 1].GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
 
         controller = new GameObject();
@@ -49,6 +52,7 @@ public class scroller
             texts[i].transform.Translate(new Vector3(0, -(i - numExtras) * height / (2 * numExtras + 1)), 0);
             buttons[i].transform.Translate(pos);
             texts[i].transform.Translate(pos);
+           
         }
         controller.transform.Translate(pos);
 

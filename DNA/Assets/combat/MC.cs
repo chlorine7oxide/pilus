@@ -10,12 +10,12 @@ public class MC : combatEntity
         entity.tag = "player";
     }
 
-    public void attack(combatEntity target)
+    public void punch(combatEntity target)
     {
         target.takeDamage(10);
     }
 
-    public void kick(combatEntity target)
+    public void slam(combatEntity target)
     {
         target.takeDamage(15);
     }
@@ -25,8 +25,13 @@ public class MC : combatEntity
         target.def -= 5;
     }
     
-    public void heal(combatEntity target)
+    public void focus(combatEntity target)
     {
         target.heal(10);
+    }
+
+    public void check(combatEntity target)
+    {
+        Debug.Log("check placeholder");
     }
 }

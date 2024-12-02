@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class dynamicSelectorText : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class dynamicSelectorText : MonoBehaviour
     public static Vector3 convertUI(Vector3 pos)
     {
         GameObject p = GameObject.FindGameObjectWithTag("player");
+        if (p == null)
+        {
+            return new Vector3((pos.x) * 960 * 2 / 17.7f + 960, (pos.y) * 540 * 2 / 9.8f + 540, 0);
+        }
         return new Vector3((pos.x - p.transform.position.x) * 960 * 2 / 17.7f + 960, (pos.y - p.transform.position.y) * 540 * 2 / 9.8f + 540, 0);
     }
 
@@ -52,13 +57,18 @@ public class dynamicSelectorText : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            try
+            if (texts[i] != null)
             {
-                texts[i].GetComponent<TextMeshProUGUI>().text = options[i - 2 + pos];
-            } catch (IndexOutOfRangeException)
-            {
-                texts[i].GetComponent<TextMeshProUGUI>().text = "";
+                try
+                {
+                    texts[i].GetComponent<TextMeshProUGUI>().text = options[i - 2 + pos];
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    texts[i].GetComponent<TextMeshProUGUI>().text = "";
+                }
             }
+
         }
     }
 

@@ -273,7 +273,7 @@ public class inventoryController : MonoBehaviour
         Vector3[] pos = new Vector3[5];
         for(int i = 0;i < 5; i++)
         {
-            pos[i] = itemButtons[i].transform.position;
+            pos[i] = itemButtons[i].transform.position + new Vector3(1.5f, -0.2f, 0);
         }
 
         if (items.Length == 0)
