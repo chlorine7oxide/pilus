@@ -9,6 +9,7 @@ public class inventoryTester : MonoBehaviour
     public GameObject textPrefab;
     public GameObject box, text;
     public GameObject canvas;
+    public GameObject money;
 
     public static Sprite port;
 
@@ -16,6 +17,8 @@ public class inventoryTester : MonoBehaviour
 
     void Start()
     {
+        inventoryController.money = money;
+
         playerData.eyes.Add(new eye(eye1, eye1t, eye1b, eye1j));
         playerData.eyes.Add(new watchfulEye(eye2, eye2t, eye2b, eye2j));
         playerData.arms.Add(new arm(arm1, arm1t, arm1b, arm1j));

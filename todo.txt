@@ -1,17 +1,10 @@
 COMBAT
 inactive entities cant be targeted
-on end return to the same place
-dialogue in combat - autoscrolling no decisions
-
 
 DIALOGUE
-fix speaker and box sizes with actual sprites
-- faces
-- decision selector
 box moving looks a little strange with spamming
 bit of an offset in decisin text
 make portraits resizze about the bottom
-
 
 Inventory
 Settings menu
@@ -19,13 +12,19 @@ dynamic portrait
 - make it look good
 -cant double up on general genes --
 
+HEAT PUZZLE
+postprocessing heat effect
+reset block, heat/cold triggers, arch for block to go through but not player more heat/ combined puzzles.
+
 ART
 finish stone tileset - add a few more little things
 gene menu background
-character walking animation
+character walking animation - diagonals
 selector sprite
 redo textbox
 fix up inventory sprite
+
+water tiles, push boxes, heat changers, buttons, doors
 
 
 

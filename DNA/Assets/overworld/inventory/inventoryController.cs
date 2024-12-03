@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -21,6 +22,8 @@ public class inventoryController : MonoBehaviour
     public GameObject[] itemButtons;
     public GameObject[] itemOptionButtons;
     public GameObject portrait;
+
+    public static GameObject money;
 
     public Sprite sel;
 
@@ -45,6 +48,8 @@ public class inventoryController : MonoBehaviour
     public void open()
     {
         inv.transform.position = GameObject.FindGameObjectWithTag("player").transform.position;
+        money.transform.position = new Vector3(-480 + 960, -350 + 540, 0);
+        money.GetComponent<TextMeshProUGUI>().text = playerData.money.ToString() + " money";
     }
 
     public void close()
@@ -52,12 +57,14 @@ public class inventoryController : MonoBehaviour
         inv.transform.position = new Vector3(1000, 0, 0);
         gene.transform.position = new Vector3(1000, 0, 0);
         item.transform.position = new Vector3(1000, 0, 0);
+        money.transform.position = new Vector3(10000, 0, 0);
     }
 
     public void enterGene()
     {
         gene.transform.position = inv.transform.position;
         inv.transform.position = new Vector3(1000, 0, 0);
+        money.transform.position = new Vector3(10000, 0, 0);
     }
 
     public void toBase()
@@ -65,6 +72,7 @@ public class inventoryController : MonoBehaviour
         inv.transform.position = GameObject.FindGameObjectWithTag("player").transform.position;
         gene.transform.position = new Vector3(1000, 0, 0);
         item.transform.position = new Vector3(1000, 0, 0);
+        money.transform.position = new Vector3(-480 + 960, -350 + 540, 0);
         StopAllCoroutines();
         StartCoroutine(mainSel());
     }
@@ -74,6 +82,7 @@ public class inventoryController : MonoBehaviour
     {
         item.transform.position = inv.transform.position;
         inv.transform.position = new Vector3(1000, 0, 0);
+        money.transform.position = new Vector3(10000, 0, 0);
     }
 
     /*
@@ -249,7 +258,7 @@ public class inventoryController : MonoBehaviour
 
         if (available.Contains(e[d.result]))
         {
-            playerData.equiped[pos] = available[d.result];
+            playerData.equiped[pos] = e[d.result]; 
             geneButtons[pos].GetComponent<SpriteRenderer>().sprite = e[d.result].icon;
         }
         else

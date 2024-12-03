@@ -76,6 +76,8 @@ public static class playerData
 
     public static Gene[] equiped = new Gene[8]; // 0, 1 eye 2, 3 arm 4, 5, 6, 7 general
 
+    public static int money = 0;
+
     ///////////////// flags
     public static bool armWarning = false;
 }

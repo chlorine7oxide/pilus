@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class overworldInteractable : MonoBehaviour
@@ -21,10 +22,10 @@ public abstract class overworldInteractable : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (interactable && Input.GetKeyDown(KeyCode.Z) && !GameObject.FindGameObjectWithTag("inv").GetComponent<inventoryController>().active)
+        if (interactable && Input.GetKeyDown(KeyCode.Z))
         {
             GameObject g = GameObject.FindGameObjectWithTag("dialogue");
-            if (g is null)
+            if (g is null && !GameObject.FindGameObjectWithTag("inv").GetComponent<inventoryController>().active)
             {
                 interact();
             }

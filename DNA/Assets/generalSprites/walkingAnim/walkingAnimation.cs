@@ -4,6 +4,7 @@ using UnityEngine;
 public class walkingAnimation : MonoBehaviour
 {
     public string last = "none";
+    public static int direction = 0; // up 0 right 1 down 2 left 3
 
     public Sprite up1, up2, up3, up4, d1, d2, d3, d4, side1, side2, side3, side4;
     public int count = 1;
@@ -40,6 +41,7 @@ public class walkingAnimation : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
             last = "up";
             cd = 0.15f;
+            direction = 0;
         }
         else if (Input.GetKey(KeyCode.DownArrow) && cd < 0)
         {
@@ -69,6 +71,7 @@ public class walkingAnimation : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
             last = "down";
             cd = 0.15f;
+            direction = 2;
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && cd < 0)
         {
@@ -98,6 +101,7 @@ public class walkingAnimation : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
             last = "left";
             cd = 0.15f;
+            direction = 3;
         }
         else if (Input.GetKey(KeyCode.RightArrow) && cd < 0)
         {
@@ -127,6 +131,7 @@ public class walkingAnimation : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
             last = "right";
             cd = 0.15f;
+            direction = 1;
         }
         else
         {
