@@ -958,7 +958,7 @@ MonoBehaviour:
   - {fileID: 1730746875}
   - {fileID: 1296079729}
   portrait: {fileID: 871145524}
-  sel: {fileID: -5366927048572310739, guid: ec2e9007f55dae644b51bdda4499807e, type: 3}
+  sel: {fileID: 5211086781936739708, guid: e0a6d8ff7d9f52e4d95ce27cdd1087b9, type: 3}
   active: 0
 --- !u!1 &438001040
 GameObject:

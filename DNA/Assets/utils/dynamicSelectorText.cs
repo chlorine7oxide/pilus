@@ -34,6 +34,26 @@ public class dynamicSelectorText : MonoBehaviour
         return g.GetComponent<dynamicSelectorText>();
     }
 
+    public static dynamicSelectorText create(Vector3[] positions, string[] texts, Sprite sel, Vector3 offset)
+    {
+        GameObject g = new GameObject();
+        g.AddComponent<dynamicSelectorText>();
+
+        for (int i = 0; i < positions.Length; i++)
+        {
+            GameObject t = Instantiate(textPrefabUI, convertUI(positions[i]), Quaternion.identity);
+            t.transform.SetParent(canvas.transform);
+            g.GetComponent<dynamicSelectorText>().texts[i] = t;
+        }
+        g.AddComponent<SpriteRenderer>().sprite = sel;
+        g.transform.position = positions[2] + offset;
+
+        g.GetComponent<dynamicSelectorText>().options = texts;
+        g.GetComponent<SpriteRenderer>().sortingOrder = 21;
+
+        return g.GetComponent<dynamicSelectorText>();
+    }
+
     public static Vector3 convertUI(Vector3 pos)
     {
         GameObject p = GameObject.FindGameObjectWithTag("player");

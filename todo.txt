@@ -1,6 +1,17 @@
 COMBAT
 inactive entities cant be targeted
 
+BOSS
+ground projectile
+indicator of ground projectile
+rest of boss attacks
+hitting edge of arena detection
+killing boss / taking damage
+animations and sprites
+make non dash movements a constant speed and dashes a different constant speed - make it stop less
+variations in attacks so they dont feel the same
+attack weighting
+
 DIALOGUE
 box moving looks a little strange with spamming
 bit of an offset in decisin text
@@ -10,21 +21,21 @@ Inventory
 Settings menu
 dynamic portrait
 - make it look good
--cant double up on general genes --
+dynamic selector offset
+item action buttons
 
 HEAT PUZZLE
 postprocessing heat effect
-reset block, heat/cold triggers, arch for block to go through but not player more heat/ combined puzzles.
+reset block, heat/cold triggers, more heat/ combined puzzles.
 
 ART
 finish stone tileset - add a few more little things
-gene menu background
 character walking animation - diagonals
 selector sprite
 redo textbox
 fix up inventory sprite
 
-water tiles, push boxes, heat changers, buttons, doors
+steam, water edges
 
 
 

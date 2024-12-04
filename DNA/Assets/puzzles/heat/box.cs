@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -7,7 +9,7 @@ using UnityEngine.UIElements;
 public class box : overworldInteractable
 {
     public Tilemap water;
-    public Tile waterTile;
+    public Tile[] waterTile;
 
     public override void interact()
     {
@@ -67,7 +69,7 @@ public class box : overworldInteractable
 
         if (heatController.heat <= 0)
         {
-            water.SetTile(water.WorldToCell(this.transform.position), waterTile);
+            water.SetTile(water.WorldToCell(this.transform.position), waterTile[(int)(this.transform.position.x + this.transform.position.y) % 4]);
         }
         else
         {

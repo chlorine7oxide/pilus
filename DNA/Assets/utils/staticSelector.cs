@@ -11,6 +11,8 @@ public class staticSelector : MonoBehaviour
     public int pos = 0;
     public int prow;
 
+    public Vector3 offset;
+
     public static staticSelector create(GameObject[] objs, int pRow, Sprite sel)
     {
         GameObject g = new GameObject();
@@ -19,9 +21,23 @@ public class staticSelector : MonoBehaviour
         g.GetComponent<staticSelector>().prow = pRow;
         g.AddComponent<SpriteRenderer>().sprite = sel;
         g.GetComponent<SpriteRenderer>().sortingOrder = 20;
+        g.GetComponent<staticSelector>().offset = new Vector3(0, 0, 0);
 
         return g.GetComponent<staticSelector>();
     }
+
+    public static staticSelector create(GameObject[] objs, int pRow, Sprite sel, Vector3 offset)
+    {
+        GameObject g = new GameObject();
+        g.AddComponent<staticSelector>();
+        g.GetComponent<staticSelector>().objs = objs;
+        g.GetComponent<staticSelector>().prow = pRow;
+        g.GetComponent<staticSelector>().offset = offset;
+        g.AddComponent<SpriteRenderer>().sprite = sel;
+        g.GetComponent<SpriteRenderer>().sortingOrder = 20;
+
+        return g.GetComponent<staticSelector>();
+    } 
 
     public void destroy()
     {
@@ -32,7 +48,7 @@ public class staticSelector : MonoBehaviour
     {
         if (!done)
         {
-            this.gameObject.transform.position = objs[pos].transform.position;
+            this.gameObject.transform.position = objs[pos].transform.position + offset;
         }
         else
         {

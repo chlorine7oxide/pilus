@@ -30,6 +30,22 @@ public class dynamicSelector : MonoBehaviour
 
         return d;
     }
+    public static dynamicSelector create(GameObject[] buttons, Sprite[] options, Sprite sel, Sprite[] tops, Sprite[] bottoms, Vector3 offset)
+    {
+        GameObject g = new();
+        g.AddComponent<dynamicSelector>();
+        dynamicSelector d = g.GetComponent<dynamicSelector>();
+        d.transform.position = buttons[1].transform.position + offset;
+        g.AddComponent<SpriteRenderer>().sprite = sel;
+        d.buttons = buttons;
+        d.options = options;
+        d.GetComponent<SpriteRenderer>().sortingOrder = 20;
+        g.GetComponent<dynamicSelector>().tops = tops;
+        g.GetComponent<dynamicSelector>().bottoms = bottoms;
+        g.transform.Rotate(new Vector3(0, 0, 90));
+
+        return d;
+    }
 
     public void destroy()
     {

@@ -95,7 +95,7 @@ public class inventoryController : MonoBehaviour
     public IEnumerator geneMenuSel()
     {
         Debug.Log("Gene");
-        staticSelector s = staticSelector.create(geneButtons, 2, sel);
+        staticSelector s = staticSelector.create(geneButtons, 2, sel, new Vector3(-1, 0, 0));
 
         yield return new WaitUntil(() => (s.done || Input.GetKeyDown(KeyCode.X)));
 
@@ -162,7 +162,7 @@ public class inventoryController : MonoBehaviour
             bottoms.Add(playerData.eyes[i].bottom);
         }
 
-        dynamicSelector d = dynamicSelector.create(eyebuttons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray());
+        dynamicSelector d = dynamicSelector.create(eyebuttons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray(), new Vector3(0, -2, 0));
 
         yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
 
@@ -206,7 +206,7 @@ public class inventoryController : MonoBehaviour
             bottoms.Add(playerData.arms[i].bottom);
         }
 
-        dynamicSelector d = dynamicSelector.create(armButtons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray());
+        dynamicSelector d = dynamicSelector.create(armButtons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray(), new Vector3(0, -2, 0));
 
         yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
 
@@ -245,7 +245,7 @@ public class inventoryController : MonoBehaviour
             bottoms.Add(playerData.genes[i].bottom);
         }
 
-        dynamicSelector d = dynamicSelector.create(generalButtons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray());
+        dynamicSelector d = dynamicSelector.create(generalButtons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray(), new Vector3(0, -2, 0));
 
         yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
 
@@ -290,7 +290,7 @@ public class inventoryController : MonoBehaviour
             items = new string[] { "No items" };
         }
 
-        dynamicSelectorText d = dynamicSelectorText.create(pos, items, sel);
+        dynamicSelectorText d = dynamicSelectorText.create(pos, items, sel, new Vector3(-4, 0.15f, 0));
 
         yield return new WaitUntil(() => d.done || Input.GetKeyDown(KeyCode.X));
 
@@ -462,7 +462,7 @@ public class inventoryController : MonoBehaviour
 
     public IEnumerator mainSel()
     {
-        staticSelector s = staticSelector.create(baseButtons, 1, sel);
+        staticSelector s = staticSelector.create(baseButtons, 1, sel, new Vector3(-3.5f, 0, 0));
         
         yield return new WaitUntil(() => s.done);
 
