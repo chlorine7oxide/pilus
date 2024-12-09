@@ -34,4 +34,18 @@ fix up inventory sprite
 steam, water edges
 
 
+1. Sea monster boss overworld - bug that when going back theres 2 bosses
+2. arena for it art / water animation such that the water in the bg will fill in the gaps
+3. tentacle fight in regular combat
+4. extra little things in the arena art like plants or whateevr
+5. actual ice puzzles
+6. little extra decorations for the puzle area
+7. design main area next to the crater
+8. shops and money
+9. main area art
+10. another puzzle mechanic - (potentialy the one i was thinking abt with the picking up and placing items in the right place)
+11. some character portraits
+12. some dialogue in the main area, ice puzzles and sea monster boss.
+
+
 

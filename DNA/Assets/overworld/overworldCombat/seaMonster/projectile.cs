@@ -22,7 +22,8 @@ public class projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("player"))
         {
             collision.gameObject.GetComponent<realcombatController>().takeDamage(damage);
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        
     }
 }

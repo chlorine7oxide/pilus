@@ -56,8 +56,18 @@ public class combatController : MonoBehaviour
             else if (Enemies.All(e => !e.active))
             {
                 Debug.Log("Victory");
-                SceneManager.LoadScene("endSuccess");
-                Destroy(this.gameObject);
+                if (GameObject.Find("boss1") != null)
+                {
+                    GameObject g = GameObject.Find("boss1");
+                    g.GetComponent<boss1Controller>().isCombat = false;
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    SceneManager.LoadScene("endSuccess");
+                    Destroy(this.gameObject);
+                }
+               
             }
         }
         
@@ -80,6 +90,25 @@ public class combatController : MonoBehaviour
                             combatEntity t = Players[Random.Range(0, Players.Length)];
                             enemy.bite(t);
                             StartCoroutine(enemyAnimate());
+                            break;
+                        case "tentacleEnemy":
+                            tentacleEnemy tent = (tentacleEnemy)Enemies[turnNum];
+                            switch ((int)Random.Range(0, 2)) {
+                                case 0:
+                                    {
+                                        tent.slash(Players);
+                                        StartCoroutine(tentacleAnimate());
+                                        break;
+                                    }
+                                case 1:
+                                    {
+                                        tent.slam(Players[(int)Random.Range(0, 2)]);
+                                        StartCoroutine(tentacleAnimate());
+                                        break;
+                                    }
+                            }
+
+                            StartCoroutine(tentacleAnimate());
                             break;
                     }
                     turnNum++;
@@ -133,6 +162,15 @@ public class combatController : MonoBehaviour
                         Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
                         break;
                     }
+                case "tentacle":
+                    {
+                        Enemies[i] = new tentacleEnemy(100, 0);
+                        ((tentacleEnemy)Enemies[i]).entity.AddComponent<SpriteRenderer>().sprite = testenemySprite;///////////////////////////////////// placeholer sprite
+                        ((tentacleEnemy)Enemies[i]).entity.transform.Translate(new Vector3(2 * i, 3, 0));
+                        Enemies[i].hpBar.transform.position = (Enemies[i].entity.transform.position);
+                        Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
+                        break;
+                    }
 
             }
         }
@@ -142,6 +180,12 @@ public class combatController : MonoBehaviour
 
     public IEnumerator enemyAnimate()
     {
+        yield return new WaitForSeconds(1);
+        readyForTurn = true;
+    }
+    public IEnumerator tentacleAnimate()
+    {
+        print("tried to ready next turn");
         yield return new WaitForSeconds(1);
         readyForTurn = true;
     }
