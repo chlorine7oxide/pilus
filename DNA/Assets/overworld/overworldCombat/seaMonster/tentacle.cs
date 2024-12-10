@@ -7,6 +7,7 @@ public class tentacle : MonoBehaviour
 
     public bool alive = true;
     public bool active = false;
+    public bool ready = true;
 
     public static float submergeTime = 0.5f;
     public static float emergeTime = 0.5f;
@@ -18,10 +19,11 @@ public class tentacle : MonoBehaviour
 
     public bool interactable = false;
     public bool combatable = false;
+    public bool slamming = false;
 
     public static tentacle create()
     {
-        GameObject g = new();
+        GameObject g = new("tentacle");
         g.AddComponent<tentacle>();
         g.AddComponent<BoxCollider2D>();
         g.AddComponent<Rigidbody2D>().gravityScale = 0;
@@ -30,7 +32,6 @@ public class tentacle : MonoBehaviour
 
         return g.GetComponent<tentacle>();
     }
-
     public void activate(Vector3 pos)
     {
         this.transform.position = pos;
@@ -44,12 +45,29 @@ public class tentacle : MonoBehaviour
     {
         // animation placeholder
         this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
+        StartCoroutine(submergeAnimation());
+    }
+
+    public IEnumerator submergeAnimation()
+    {
+        ready = false;
+        yield return new WaitForSeconds(submergeTime);
+        ready = true;
     }
 
     public void emerge(Vector3 pos)
     {
+        slamming = false;
         this.transform.position = pos;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = baseSprite;
+        StartCoroutine(emergeAnimation());
+    }
+
+    public IEnumerator emergeAnimation()
+    {
+        ready = false;
+        yield return new WaitForSeconds(emergeTime);
+        ready = true;
     }
 
     public void slash(Vector3 target)
@@ -59,16 +77,17 @@ public class tentacle : MonoBehaviour
 
     public IEnumerator slashAttack(Vector3 target)
     {
+        ready = false;
         //indication placeholder
         yield return new WaitForSeconds(1);
 
         Vector3 og = this.gameObject.transform.position;
         this.transform.position = target;
-        print("slash");
         // animation placeholder
         yield return new WaitForSeconds(slashTime - 1);
 
         this.transform.position = og;
+        ready = true;
     }
 
     public void splash(Vector3 target)
@@ -78,6 +97,8 @@ public class tentacle : MonoBehaviour
 
     public IEnumerator splashAttack(Vector3 target)
     {
+        //indication placeholder
+        ready = false;
         enemyUtils.projectile(25, target - this.gameObject.transform.position, baseSprite, 5, this.gameObject.transform.position);
         enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, 1).normalized)), baseSprite, 5, this.gameObject.transform.position);
         enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, -1).normalized)), baseSprite, 5, this.gameObject.transform.position);
@@ -85,7 +106,9 @@ public class tentacle : MonoBehaviour
         enemyUtils.projectile(25, target - this.gameObject.transform.position, baseSprite, 5, this.gameObject.transform.position);
         enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, 1).normalized)), baseSprite, 5, this.gameObject.transform.position);
         enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, -1).normalized)), baseSprite, 5, this.gameObject.transform.position);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(slashTime - 1);
+        ready = true;
+
     }
 
     public void slam(Vector3 target)
@@ -95,12 +118,13 @@ public class tentacle : MonoBehaviour
 
     public IEnumerator slamAttack(Vector3 target)
     {
+        
+        ready = false;
         //indication placeholder
         yield return new WaitForSeconds(1);
-
+        slamming = true;
         Vector3 og = this.gameObject.transform.position;
         this.transform.position = target;
-        print("slam");
         // animation placeholder
         combatable = true;
         yield return new WaitForSeconds(slamTime - 1);
@@ -108,7 +132,7 @@ public class tentacle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("player"))
+        if (collision.CompareTag("player") && alive && active)
         {
             interactable = true;
         }
@@ -126,11 +150,15 @@ public class tentacle : MonoBehaviour
     {
         if (interactable)
         {
-            if (Input.GetKeyDown(KeyCode.Z) && active && alive)
+            if (Input.GetKeyDown(KeyCode.Z) && active && alive && slamming)
             {
                 interactable = false;
                 StartCoroutine(controller.enterCombat(this));
             }
+        }
+        if (controller.isCombat && this.gameObject.transform.position.x < 100)
+        {
+            this.transform.Translate(new Vector3(1000, 0, 0));
         }
     }
 }

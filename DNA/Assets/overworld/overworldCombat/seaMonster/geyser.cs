@@ -15,7 +15,6 @@ public class geyser : MonoBehaviour
         geyser.GetComponent<BoxCollider2D>().isTrigger = true;
         geyser.AddComponent<Rigidbody2D>().gravityScale = 0;
         geyser.AddComponent<geyser>();
-        print("geyserMade");
     }
 
     private void Start()
@@ -27,15 +26,14 @@ public class geyser : MonoBehaviour
     {
         //animation placeholder
         yield return new WaitForSeconds(1);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 0), proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 45), proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 90), proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 135), proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 180), proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 225), proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 270), proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 315), proj, 5, this.gameObject.transform.position);
-        print("geysershoot");
+        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 0) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 45) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 90) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 135) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 180) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 225) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 270) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 315) * 3, proj, 5, this.gameObject.transform.position);
         yield return new WaitForSeconds(1);
         Destroy(this.gameObject);
     }

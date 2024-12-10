@@ -15,7 +15,6 @@ public class realcombatController : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        Debug.Log("taken " + damage);
         playerHealth -= damage - playerDef;
         if (playerHealth <= 0)
         {
