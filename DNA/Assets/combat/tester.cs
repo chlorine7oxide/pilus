@@ -16,8 +16,12 @@ public class tester : MonoBehaviour
 
     public GameObject[] buttons;
 
+    public GameObject tentaclePrefab;
+
     void Start()
     {
+        tentacleEnemy.tentaclePrefab = tentaclePrefab;
+
         scroller.box = box;
         scroller.arrow = arrow;
         scroller.buttonprefab = buttonprefab;

@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class tentacleEnemy : combatEntity
 {
+    public static GameObject tentaclePrefab;
+
     public tentacleEnemy(int hp, int def) : base(hp, def)
     {
-        entity = new GameObject("tentacle");
+        entity = GameObject.Instantiate(tentaclePrefab);
         entity.tag = "enemy";
     }
 

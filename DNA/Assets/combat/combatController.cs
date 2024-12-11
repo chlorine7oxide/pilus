@@ -25,6 +25,8 @@ public class combatController : MonoBehaviour
 
     public static GameObject[] buttons = new GameObject[4];
 
+    public GameObject tentaclePrefab;
+
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -163,7 +165,6 @@ public class combatController : MonoBehaviour
                 case "tentacle":
                     {
                         Enemies[i] = new tentacleEnemy(80, 0);
-                        ((tentacleEnemy)Enemies[i]).entity.AddComponent<SpriteRenderer>().sprite = testenemySprite;///////////////////////////////////// placeholer sprite
                         ((tentacleEnemy)Enemies[i]).entity.transform.Translate(new Vector3(2 * i, 3, 0));
                         Enemies[i].hpBar.transform.position = (Enemies[i].entity.transform.position);
                         Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
