@@ -10,7 +10,7 @@ using System.Diagnostics;
 public class boss1Controller : MonoBehaviour
 {
     public tentacle[] tentacles = new tentacle[8];
-    public Sprite tent;
+    public Sprite tent, projectileSprite;
     public static GameObject mc;
     public static Tilemap water;
     public static Tile waterTile;
@@ -26,7 +26,7 @@ public class boss1Controller : MonoBehaviour
 
     void Start()
     {
-        
+        tentacle.projectile = projectileSprite;
         mc = GameObject.FindGameObjectWithTag("player");
         if (playerPos != Vector3.zero)
         {
@@ -35,7 +35,7 @@ public class boss1Controller : MonoBehaviour
         water = water_;
         waterTile = waterTile_;
         tentacle.baseSprite = tent;
-        geyser.proj = tent;
+        geyser.proj = projectileSprite;
         
         if (GameObject.Find("tentacle") != null)
         {

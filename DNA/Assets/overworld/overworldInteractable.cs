@@ -1,15 +1,19 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public abstract class overworldInteractable : MonoBehaviour
 {
     public bool interactable = false;
+
+    public static bool talkable = false;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("player"))
         {
             interactable = true;
+            talkable = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -17,6 +21,7 @@ public abstract class overworldInteractable : MonoBehaviour
         if (other.gameObject.CompareTag("player"))
         {
             interactable = false;
+            talkable = false;
         }
     }
 
@@ -25,6 +30,8 @@ public abstract class overworldInteractable : MonoBehaviour
         if (interactable && Input.GetKeyDown(KeyCode.Z))
         {
             GameObject g = GameObject.FindGameObjectWithTag("dialogue");
+            GameObject h = GameObject.FindGameObjectWithTag("inv");
+            Debug.Log(h.name);
             if (g is null && !GameObject.FindGameObjectWithTag("inv").GetComponent<inventoryController>().active)
             {
                 interact();

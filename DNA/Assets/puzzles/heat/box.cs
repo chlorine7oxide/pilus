@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -56,6 +57,11 @@ public class box : overworldInteractable
         }           
     }
 
+    private void Start()
+    {
+        heatController.decreaseHeat();
+    }
+
     public IEnumerator slideStop(Vector2 dir)
     {
         this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = dir;
@@ -67,6 +73,8 @@ public class box : overworldInteractable
     {
         base.Update();
 
+
+        /*
         if (heatController.heat <= 0)
         {
             water.SetTile(water.WorldToCell(this.transform.position), waterTile[(int)(this.transform.position.x + this.transform.position.y) % 4]);
@@ -75,6 +83,7 @@ public class box : overworldInteractable
         {
             water.SetTile(water.WorldToCell(this.transform.position), null);
         }
+        */
         if (this.gameObject.GetComponent<Rigidbody2D>().linearVelocity.magnitude == 0)
         {
             if (Mathf.Round(2 * this.gameObject.transform.position.x) != 2* this.gameObject.transform.position.x)
@@ -99,6 +108,7 @@ public class box : overworldInteractable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("endButton"))
         {
             this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;

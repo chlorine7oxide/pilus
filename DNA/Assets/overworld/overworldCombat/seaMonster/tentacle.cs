@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class tentacle : MonoBehaviour
 {
+    public static Sprite projectile;
     public static Sprite baseSprite;
 
     public bool alive = true;
@@ -36,7 +37,7 @@ public class tentacle : MonoBehaviour
     {
         this.transform.position = pos;
         this.gameObject.AddComponent<SpriteRenderer>().sprite = baseSprite;
-        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
         active = true;
         // animation placeholder
     }
@@ -99,13 +100,13 @@ public class tentacle : MonoBehaviour
     {
         //indication placeholder
         ready = false;
-        enemyUtils.projectile(25, target - this.gameObject.transform.position, baseSprite, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, 1).normalized)), baseSprite, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, -1).normalized)), baseSprite, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, target - this.gameObject.transform.position, projectile, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, 1).normalized)), projectile, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, -1).normalized)), projectile, 5, this.gameObject.transform.position);
         yield return new WaitForSeconds(1);
-        enemyUtils.projectile(25, target - this.gameObject.transform.position, baseSprite, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, 1).normalized)), baseSprite, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, -1).normalized)), baseSprite, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, target - this.gameObject.transform.position, projectile, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, 1).normalized)), projectile, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, -1).normalized)), projectile, 5, this.gameObject.transform.position);
         yield return new WaitForSeconds(slashTime - 1);
         ready = true;
 

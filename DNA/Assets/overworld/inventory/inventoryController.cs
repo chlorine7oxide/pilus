@@ -27,6 +27,8 @@ public class inventoryController : MonoBehaviour
 
     public Sprite sel;
 
+    public Sprite itemHeld;
+
     public bool active = false;
 
     private void Update()
@@ -329,10 +331,11 @@ public class inventoryController : MonoBehaviour
                 switch (item)
                 {
                     case "item1":
-                        itemDialogue i = itemDialogue.create("item 1 used", inventoryTester.port, portrait.transform.position);
+                        itemDialogue i = itemDialogue.create("im holding it", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i.done);
                         i.destroy();
                         playerData.items.Remove(item);
+                        carryableItem.create(itemHeld, "item1", GameObject.FindGameObjectWithTag("player").transform.position, true, true);
                         break;
                     case "item2":
                         itemDialogue i2 = itemDialogue.create("item 2", inventoryTester.port, portrait.transform.position);

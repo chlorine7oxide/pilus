@@ -9,7 +9,7 @@ public class geyser : MonoBehaviour
     {
         GameObject geyser = new GameObject();
         geyser.transform.position = position;
-        geyser.AddComponent<SpriteRenderer>().sprite = proj;
+        geyser.AddComponent<SpriteRenderer>().sprite = tentacle.baseSprite;
         geyser.GetComponent<SpriteRenderer>().sortingOrder = 3;
         geyser.AddComponent<BoxCollider2D>();
         geyser.GetComponent<BoxCollider2D>().isTrigger = true;
