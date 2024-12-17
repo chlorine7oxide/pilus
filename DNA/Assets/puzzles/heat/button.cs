@@ -8,7 +8,7 @@ public class button : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("puzzlePart"))
         {
-            door.transform.Translate(new Vector3(-1, 0, 0));
+            Destroy(door);
         }
     }
 }

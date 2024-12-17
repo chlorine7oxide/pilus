@@ -11,12 +11,13 @@ public class inventoryTester : MonoBehaviour
     public GameObject canvas;
     public GameObject money;
 
-    public static Sprite port;
+    public static Sprite port, giantRock;
 
-    public Sprite boxSprite, ports;
+    public Sprite boxSprite, ports, giantRocks;
 
     void Start()
     {
+        giantRock = giantRocks;
         inventoryController.money = money;
 
         playerData.eyes.Add(new eye(eye1, eye1t, eye1b, eye1j));
@@ -39,7 +40,7 @@ public class inventoryTester : MonoBehaviour
         geneDescription.box = box;
         geneDescription.s = s;
 
-        playerData.items.Add("item1");
+        playerData.items.Add("Giant Rock");
         playerData.items.Add("item2");
         playerData.items.Add("item3");
         playerData.items.Add("item4");

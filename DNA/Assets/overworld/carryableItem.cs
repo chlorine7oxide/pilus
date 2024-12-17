@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class carryableItem : MonoBehaviour
@@ -14,6 +15,7 @@ public class carryableItem : MonoBehaviour
         g.AddComponent<carryableItem>();
         g.AddComponent<BoxCollider2D>();
         g.AddComponent<Rigidbody2D>().gravityScale = 0;
+        g.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         g.GetComponent<BoxCollider2D>().isTrigger = true;
         g.AddComponent<SpriteRenderer>().sprite = sprite;
         g.GetComponent<SpriteRenderer>().sortingOrder = (isHeld) ? 8 : 6;
@@ -25,6 +27,11 @@ public class carryableItem : MonoBehaviour
             walkingAnimation.heldItem = true;
         }
         g.tag = "holdableObject";
+        if (item == "Giant Rock")
+        {
+            g.AddComponent<giantRock>();
+            g.AddComponent<BoxCollider2D>().excludeLayers = 1 << 3;
+        }
 
     }
 
@@ -41,6 +48,12 @@ public class carryableItem : MonoBehaviour
         if (isHeld)
         {
             this.transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(0, 1, 0);
+            this.gameObject.GetComponent<Rigidbody2D>().excludeLayers |= 1 << 7;
+        }
+        else
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().excludeLayers &= ~(1 << 7);
+
         }
         if ((Input.GetKeyDown(KeyCode.Z) && interactable && !overworldInteractable.talkable))
         {

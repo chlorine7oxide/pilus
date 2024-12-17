@@ -10,12 +10,12 @@ public class generalText : MonoBehaviour
     public static generalText createAt(string text, Sprite portrait, Sprite face, Vector3 pos)
     {
         GameObject textBox = new();
-        textBox.transform.position = GameObject.FindGameObjectWithTag("player").transform.position + pos;
+        textBox.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + pos;
 
         textBox.AddComponent<generalText>().textBox = textBox;
 
         GameObject port = new();
-        port.transform.position = GameObject.FindGameObjectWithTag("player").transform.position + pos + new Vector3(-2f, 0, 0);
+        port.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + pos + new Vector3(-2f, 0, 0);
         port.AddComponent<SpriteRenderer>().sprite = portrait;
         port.GetComponent<SpriteRenderer>().sortingOrder = 22;
         textBox.GetComponent<generalText>().portrait = port;
@@ -27,7 +27,7 @@ public class generalText : MonoBehaviour
         faceObj.GetComponent<SpriteRenderer>().sortingOrder = 23;
         textBox.GetComponent<generalText>().face = faceObj;
 
-        GameObject t = Instantiate(textPrefabUI, convertUI(GameObject.FindGameObjectWithTag("player").transform.position + pos), Quaternion.identity);
+        GameObject t = Instantiate(textPrefabUI, convertUI(GameObject.FindGameObjectWithTag("MainCamera").transform.position + pos), Quaternion.identity);
         t.transform.SetParent(canvas.transform);
         t.GetComponent<TextMeshProUGUI>().text = text;
         textBox.GetComponent<generalText>().text = t;
@@ -56,7 +56,7 @@ public class generalText : MonoBehaviour
 
     public static Vector3 convertUI(Vector3 pos)
     {
-        GameObject p = GameObject.FindGameObjectWithTag("player");
+        GameObject p = GameObject.FindGameObjectWithTag("MainCamera");
         return new Vector3((pos.x - p.transform.position.x) * 960 * 2 / 17.7f + 960, (pos.y - p.transform.position.y) * 540 * 2 / 9.8f + 540, 0);
     }
 
@@ -81,13 +81,14 @@ public class generalText : MonoBehaviour
 
     public void Update()
     {
+        offset.z = 10;
         if (Input.GetKeyDown(KeyCode.Z) || time > timeEnd || Input.GetKeyDown(KeyCode.C))
         {
             done = true;
         }
-        textBox.transform.position = GameObject.FindGameObjectWithTag("player").transform.position + offset;
-        portrait.transform.position = GameObject.FindGameObjectWithTag("player").transform.position + offset + new Vector3(-2f, 0, 0);
-        face.transform.position = GameObject.FindGameObjectWithTag("player").transform.position + offset + new Vector3(-2f, 0, 0);
+        textBox.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + offset;
+        portrait.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + offset + new Vector3(-2f, 0, 0);
+        face.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + offset + new Vector3(-2f, 0, 0);
         time += Time.deltaTime;
     }
 }

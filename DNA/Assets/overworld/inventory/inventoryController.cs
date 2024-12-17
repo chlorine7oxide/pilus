@@ -49,7 +49,7 @@ public class inventoryController : MonoBehaviour
 
     public void open()
     {
-        inv.transform.position = GameObject.FindGameObjectWithTag("player").transform.position;
+        inv.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + 10 * Vector3.forward;
         money.transform.position = new Vector3(-480 + 960, -350 + 540, 0);
         money.GetComponent<TextMeshProUGUI>().text = playerData.money.ToString() + " money";
     }
@@ -71,7 +71,7 @@ public class inventoryController : MonoBehaviour
 
     public void toBase()
     {
-        inv.transform.position = GameObject.FindGameObjectWithTag("player").transform.position;
+        inv.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + 10 * Vector3.forward;
         gene.transform.position = new Vector3(1000, 0, 0);
         item.transform.position = new Vector3(1000, 0, 0);
         money.transform.position = new Vector3(-480 + 960, -350 + 540, 0);
@@ -330,12 +330,12 @@ public class inventoryController : MonoBehaviour
             case 0: // use
                 switch (item)
                 {
-                    case "item1":
-                        itemDialogue i = itemDialogue.create("im holding it", inventoryTester.port, portrait.transform.position);
+                    case "Giant Rock":
+                        itemDialogue i = itemDialogue.create("I'm carrying it, somehow...", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i.done);
                         i.destroy();
                         playerData.items.Remove(item);
-                        carryableItem.create(itemHeld, "item1", GameObject.FindGameObjectWithTag("player").transform.position, true, true);
+                        carryableItem.create(inventoryTester.giantRock, "Giant Rock", GameObject.FindGameObjectWithTag("player").transform.position, false, true);
                         break;
                     case "item2":
                         itemDialogue i2 = itemDialogue.create("item 2", inventoryTester.port, portrait.transform.position);
@@ -374,9 +374,10 @@ public class inventoryController : MonoBehaviour
             case 1:// drop
                 playerData.items.Remove(item);
                 switch (item) { 
-                    case "item1":
-                        itemDialogue i = itemDialogue.create("item 1 dropped", inventoryTester.port, portrait.transform.position);
+                    case "Giant Rock":
+                        itemDialogue i = itemDialogue.create("Finally, I don't have to carry that around...", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i.done);
+                        carryableItem.create(inventoryTester.giantRock, "Giant Rock", GameObject.FindGameObjectWithTag("player").transform.position, false, false);
                         i.destroy();
                         break;
                     case "item2":
@@ -412,8 +413,8 @@ public class inventoryController : MonoBehaviour
             case 2: // inspect
                 switch (item)
                 {
-                    case "item1":
-                        itemDialogue i = itemDialogue.create("its an item", inventoryTester.port, portrait.transform.position);
+                    case "Giant Rock":
+                        itemDialogue i = itemDialogue.create("It's a huge boulder, that I, for some reason, decided to pick up.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i.done);
                         i.destroy();
                         break;
