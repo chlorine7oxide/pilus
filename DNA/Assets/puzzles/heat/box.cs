@@ -108,11 +108,15 @@ public class box : overworldInteractable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("endButton"))
         {
             this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
             this.gameObject.transform.position = collision.gameObject.transform.position;
+        }
+        else if (collision.gameObject.CompareTag("puzzlePart"))
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+            collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
         }
     }
 
