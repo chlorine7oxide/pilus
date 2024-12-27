@@ -6,39 +6,46 @@ public class generalText : MonoBehaviour
     public static GameObject textPrefabUI;
     public static GameObject canvas;
     public static Sprite box;
+    public static bool textExists = false;
 
     public static generalText createAt(string text, Sprite portrait, Sprite face, Vector3 pos)
     {
-        GameObject textBox = new();
-        textBox.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + pos;
 
-        textBox.AddComponent<generalText>().textBox = textBox;
+        if (!textExists)
+        {
+            GameObject textBox = new();
+            textBox.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + pos;
 
-        GameObject port = new();
-        port.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + pos + new Vector3(-2f, 0, 0);
-        port.AddComponent<SpriteRenderer>().sprite = portrait;
-        port.GetComponent<SpriteRenderer>().sortingOrder = 22;
-        textBox.GetComponent<generalText>().portrait = port;
-        port.transform.localScale = new Vector3(0.3f, 0.3f, 1);
+            textBox.AddComponent<generalText>().textBox = textBox;
 
-        GameObject faceObj = new();
-        faceObj.transform.position = pos + new Vector3(-2f, 0, 0);
-        faceObj.AddComponent<SpriteRenderer>().sprite = face;
-        faceObj.GetComponent<SpriteRenderer>().sortingOrder = 23;
-        textBox.GetComponent<generalText>().face = faceObj;
+            GameObject port = new();
+            port.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + pos + new Vector3(-2f, 0, 0);
+            port.AddComponent<SpriteRenderer>().sprite = portrait;
+            port.GetComponent<SpriteRenderer>().sortingOrder = 22;
+            textBox.GetComponent<generalText>().portrait = port;
+            port.transform.localScale = new Vector3(0.3f, 0.3f, 1);
 
-        GameObject t = Instantiate(textPrefabUI, convertUI(GameObject.FindGameObjectWithTag("MainCamera").transform.position + pos), Quaternion.identity);
-        t.transform.SetParent(canvas.transform);
-        t.GetComponent<TextMeshProUGUI>().text = text;
-        textBox.GetComponent<generalText>().text = t;
-        t.transform.Translate(new Vector3(100f, 0, 0));
+            GameObject faceObj = new();
+            faceObj.transform.position = pos + new Vector3(-2f, 0, 0);
+            faceObj.AddComponent<SpriteRenderer>().sprite = face;
+            faceObj.GetComponent<SpriteRenderer>().sortingOrder = 23;
+            textBox.GetComponent<generalText>().face = faceObj;
 
-        textBox.AddComponent<SpriteRenderer>().sprite = box;
-        textBox.GetComponent<SpriteRenderer>().sortingOrder = 21;
+            GameObject t = Instantiate(textPrefabUI, convertUI(GameObject.FindGameObjectWithTag("MainCamera").transform.position + pos), Quaternion.identity);
+            t.transform.SetParent(canvas.transform);
+            t.GetComponent<TextMeshProUGUI>().text = text;
+            textBox.GetComponent<generalText>().text = t;
+            t.transform.Translate(new Vector3(100f, 0, 0));
 
-        textBox.GetComponent<generalText>().offset = pos;
+            textBox.AddComponent<SpriteRenderer>().sprite = box;
+            textBox.GetComponent<SpriteRenderer>().sortingOrder = 21;
 
-        return textBox.GetComponent<generalText>();
+            textBox.GetComponent<generalText>().offset = pos;
+            textExists = true;
+
+            return textBox.GetComponent<generalText>();
+        }
+        return null;
     }
 
     public static generalText createTimed(string text, Sprite portrait, Sprite face, Vector3 pos, float time)
@@ -85,10 +92,19 @@ public class generalText : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) || time > timeEnd || Input.GetKeyDown(KeyCode.C))
         {
             done = true;
+            textExists = false;
         }
         textBox.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + offset;
         portrait.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + offset + new Vector3(-2f, 0, 0);
         face.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + offset + new Vector3(-2f, 0, 0);
         time += Time.deltaTime;
     }
+
+    public void changeText(string text)
+    {
+        this.text.GetComponent<TextMeshProUGUI>().text = text;
+        textExists = true;
+        done = false;
+    }
+
 }

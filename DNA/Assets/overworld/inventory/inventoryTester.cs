@@ -56,15 +56,8 @@ public class inventoryTester : MonoBehaviour
 
         itemDialogue.boxSprite = boxSprite;
 
-        StartCoroutine(texttest());
+
         port = ports;
     }
 
-    public IEnumerator texttest()
-    {
-        yield return new WaitForSeconds(1);
-        generalText g = generalText.create("text test", ports, null);
-        yield return new WaitUntil(() => g.done);
-        g.destroy();
-    }
 }
