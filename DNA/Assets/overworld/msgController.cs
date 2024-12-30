@@ -85,6 +85,12 @@ public class msgController : MonoBehaviour
                     setFace(m.speaker, m.face);
                     StartCoroutine(decision1Listener(createDecision(m.name, "choice 1", "choice 2", (m.speaker.transform.position.x > 0))));
                 }
+                else if (t.Contains("Sit"))
+                {
+                    activateSpeaker(m.speaker);
+                    setFace(m.speaker, m.face);
+                    StartCoroutine(decisionSitListener(createDecision(m.name, "Sit and rest.", "Continue on.", false)));
+                }
             }
             else
             {
@@ -123,6 +129,37 @@ public class msgController : MonoBehaviour
         else
         {
             msgs.Enqueue(new msg(null, () => "You chose 2", "decision2", speakers[0]));
+        }
+        decision = false;
+        nextMsg();
+    }
+
+    public IEnumerator decisionSitListener(decision d)
+    {
+        yield return new WaitUntil(() => d.complete);
+        if (d.isUp)
+        {
+            msgs.Dequeue();
+            msgs.Enqueue(new msg(null, () => "All these puzzles are tiring aren't they", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "I find it a little strange that an abandoned place like this has them.", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "It does seem a little...", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "Insecure? Of a security system.", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "I'm not gonna argue though.", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "Makes it easier for us.", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "Mmm.", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "How much further do you think we have to go here?", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "How big is this place anyways?", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "I didn't know this place even existed before now - it WAS abandoned when I was here though.", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "And I was only a toddler, so even if I had been here I doubt I would've remembered.", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "I'm just wondering why it was abandoned.", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "It's making me a little anxious, what if there's something dangerous...", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "I doubt that, we haven't seen anything yet.", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "Still.", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "We should be careful.", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "I agree, let's keep going now.", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "I've had enough of sitting here.", "TestSpeaker2", speakers[1]));
+            
+
         }
         decision = false;
         nextMsg();

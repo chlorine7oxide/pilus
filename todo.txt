@@ -1,17 +1,11 @@
 COMBAT
 inactive entities cant be targeted
 
-BOSS
-ground projectile
-indicator of ground projectile
-killing boss / taking damage
-animations and sprites
-easing functions for the dashes
-
 DIALOGUE
 box moving looks a little strange with spamming
 bit of an offset in decisin text
 make portraits resizze about the bottom
+font
 
 Inventory
 Settings menu
@@ -19,34 +13,27 @@ dynamic portrait
 - make it look good
 dynamic selector offset
 item action buttons
-
-HEAT PUZZLE
-postprocessing heat effect
-reset block, heat/cold triggers, more heat/ combined puzzles.
+item text in wrong place
 
 ART
-finish stone tileset - add a few more little things
-character walking animation - diagonals
 selector sprite
 redo textbox
-fix up inventory sprite
+fix up inventory sprites
 
-steam, water edges
+ICE PUZZLE
+combat encounters - room1 has an angry crow guarding the boulder
+fishman and his house
+water animation
+fog
 
+sprites room2 - abondoned market stalls, abondened fishing post, "fish tank", broken fountain
+combat encounters - giant rat
+water animation
+gate
+fog
 
-1. Sea monster boss overworld - bug that when going back theres 2 bosses
-2. arena for it art / water animation such that the water in the bg will fill in the gaps
-3. tentacle fight in regular combat
-4. extra little things in the arena art like plants or whateevr
-5. actual ice puzzles
-6. little extra decorations for the puzle area
-7. design main area next to the crater
-8. shops and money
-9. main area art
-10. another puzzle mechanic - (potentialy the one i was thinking abt with the picking up and placing items in the right place)
-11. some character portraits
-12. some dialogue in the main area, ice puzzles and sea monster boss.
+abondoned mansion and dock
+boat
 
-
-
-
+BOSS
+animations and sprites
