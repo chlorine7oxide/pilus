@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting.FullSerializer;
 
 public static class playerData
 {
@@ -11,10 +12,14 @@ public static class playerData
     {
         List<string> cur = new()
         {
-            "Check", "Focus", "Check", "Focus"
+            "Check", "Focus"
         };
-        foreach (Gene gene in genes)
+        foreach (Gene gene in equiped)
         {
+            if (gene == null)
+            {
+                continue;
+            }
             switch (gene.name)
             {
                 case "Arm":
@@ -80,4 +85,5 @@ public static class playerData
 
     ///////////////// flags
     public static bool armWarning = false;
+    public static bool crowBeaten = false;
 }

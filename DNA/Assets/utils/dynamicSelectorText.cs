@@ -56,12 +56,12 @@ public class dynamicSelectorText : MonoBehaviour
 
     public static Vector3 convertUI(Vector3 pos)
     {
-        GameObject p = GameObject.FindGameObjectWithTag("player");
+        GameObject p = GameObject.FindGameObjectWithTag("items");
         if (p == null)
         {
-            return new Vector3((pos.x) * 960 * 2 / 17.7f + 960, (pos.y) * 540 * 2 / 9.8f + 540, 0);
+            return new Vector3((pos.x) * 1920 / 19.2f + 960, (pos.y) * 1080 / 10.8f + 540, 0);
         }
-        return new Vector3((pos.x - p.transform.position.x) * 960 * 2 / 17.7f + 960, (pos.y - p.transform.position.y) * 540 * 2 / 9.8f + 540, 0);
+        return new Vector3((pos.x - p.transform.position.x) * 1920 / 19.2f + 960, (pos.y - p.transform.position.y) * 1080 / 10.8f + 540, 0);
     }
 
     public void destroy()
@@ -108,6 +108,10 @@ public class dynamicSelectorText : MonoBehaviour
         {
             result = pos;
             done = true;
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            destroy();
         }
 
         updateTexts();

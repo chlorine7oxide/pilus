@@ -31,6 +31,8 @@ public class inventoryController : MonoBehaviour
 
     public bool active = false;
 
+    public GameObject textItem1, textItem2, textItem3;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.C) && !active && GameObject.FindGameObjectWithTag("dialogue") == null)
@@ -315,6 +317,9 @@ public class inventoryController : MonoBehaviour
         d.destroy();
 
         staticSelector s = staticSelector.create(itemOptionButtons, 1, sel);
+        textItem1.transform.position = new Vector3(-300, -200, 0) + new Vector3(960, 540, 0);
+        textItem2.transform.position = new Vector3(-300, -300, 0) + new Vector3(960, 540, 0);
+        textItem3.transform.position = new Vector3(-300, -400, 0) + new Vector3(960, 540, 0);
 
         yield return new WaitUntil(() => s.done || Input.GetKeyDown(KeyCode.X));
 
@@ -489,6 +494,10 @@ public class inventoryController : MonoBehaviour
                 } // item inspect text and functionality
                 break;
         }
+
+        textItem1.transform.position = new Vector3(-3000, -200, 0);
+        textItem2.transform.position = new Vector3(-3000, -300, 0);
+        textItem3.transform.position = new Vector3(-3000, -400, 0);
 
         StartCoroutine(itemSel());
         yield break;

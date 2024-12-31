@@ -69,6 +69,16 @@ public class combatController : MonoBehaviour
                 }
                
             }
+            else if (enemys.Contains("boulder"))
+            {
+                if (Enemies[0].hp <= 0)
+                {
+                    playerData.crowBeaten = true;
+                    SceneManager.LoadScene("endSuccess");
+                    
+                    Destroy(this.gameObject);
+                }
+            }
         }
         
 
@@ -110,6 +120,29 @@ public class combatController : MonoBehaviour
 
                             StartCoroutine(tentacleAnimate());
                             break;
+                        case "crowEnemy":
+                            {
+                                crowEnemy crow = (crowEnemy)Enemies[turnNum];
+                                if (Random.Range(0, 2) == 0)
+                                {
+                                    crow.dive(Players[Random.Range(0, 2)]);
+                                    StartCoroutine(crowDive());
+                                }
+                                else
+                                {
+                                    crow.doubleDive(Players[0], Players[1]);
+                                    StartCoroutine(crowDoubleDive());
+
+                                }
+                                break;
+                            }
+                        case "boulderEnemy":
+                            {
+                                boulderEnemy boulder = (boulderEnemy)Enemies[turnNum];
+                                boulder.shield(Enemies[Random.Range(0, Enemies.Length)]);
+                                StartCoroutine(boulderAnimate());
+                                break;
+                            }
                     }
                     turnNum++;
                     if (turnNum >= Enemies.Length)
@@ -170,6 +203,22 @@ public class combatController : MonoBehaviour
                         Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
                         break;
                     }
+                case "crow":
+                    {
+                        Enemies[i] = new crowEnemy(180, 0);
+                        ((crowEnemy)Enemies[i]).entity.transform.Translate(new Vector3(2, 3, 0));
+                        Enemies[i].hpBar.transform.position = (Enemies[i].entity.transform.position);
+                        Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
+                        break;
+                    }
+                case "boulder":
+                    {
+                        Enemies[i] = new boulderEnemy(10000, 0);
+                        ((boulderEnemy)Enemies[i]).entity.transform.Translate(new Vector3(2, 2, 0));
+                        Enemies[i].hpBar.transform.position = (Enemies[i].entity.transform.position);
+                        Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
+                        break;
+                    }
 
             }
         }
@@ -183,6 +232,21 @@ public class combatController : MonoBehaviour
         readyForTurn = true;
     }
     public IEnumerator tentacleAnimate()
+    {
+        yield return new WaitForSeconds(1);
+        readyForTurn = true;
+    }
+    public IEnumerator crowDive()
+    {
+        yield return new WaitForSeconds(1);
+        readyForTurn = true;
+    }
+    public IEnumerator crowDoubleDive()
+    {
+        yield return new WaitForSeconds(1);
+        readyForTurn = true;
+    }
+    public IEnumerator boulderAnimate()
     {
         yield return new WaitForSeconds(1);
         readyForTurn = true;

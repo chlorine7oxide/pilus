@@ -69,7 +69,7 @@ public class msgController : MonoBehaviour
 
     public void nextMsg()
     {
-        
+        print("next");
         if (msgs.Count > 0)
         {
             inText = true;

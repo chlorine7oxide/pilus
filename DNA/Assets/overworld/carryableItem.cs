@@ -18,7 +18,7 @@ public class carryableItem : MonoBehaviour
         g.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         g.GetComponent<BoxCollider2D>().isTrigger = true;
         g.AddComponent<SpriteRenderer>().sprite = sprite;
-        g.GetComponent<SpriteRenderer>().sortingOrder = (isHeld) ? 8 : 6;
+        g.GetComponent<SpriteRenderer>().sortingOrder = (isHeld) ? 9 : 6;
         g.transform.position = pos;
         g.GetComponent<carryableItem>().isHeld = isHeld;
         g.GetComponent<carryableItem>().inventory = inventory;
@@ -68,7 +68,7 @@ public class carryableItem : MonoBehaviour
     public IEnumerator pickUp()
     {
         yield return new WaitForSeconds(0.05f);
-        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 8;
+        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 9;
         walkingAnimation.heldItem = true;
         isHeld = true;
     }

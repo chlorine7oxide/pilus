@@ -14,6 +14,7 @@ public class victory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             DontDestroyOnLoad(this.gameObject);
+            print(combatData.scene);
             SceneManager.LoadScene(combatData.scene);
             StartCoroutine(locate());
         }
@@ -21,7 +22,7 @@ public class victory : MonoBehaviour
 
     public IEnumerator locate()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("player") != null);
         GameObject.FindGameObjectWithTag("player").transform.position = combatData.playerPos;
         Destroy(this.gameObject);
     }

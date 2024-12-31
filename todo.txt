@@ -21,10 +21,8 @@ redo textbox
 fix up inventory sprites
 
 ICE PUZZLE
-combat encounters - room1 has an angry crow guarding the boulder
 fishman and his house
-water animation
-fog
+remove river on puzzle complete
 
 sprites room2 - abondoned market stalls, abondened fishing post, "fish tank", broken fountain
 combat encounters - giant rat
@@ -37,3 +35,4 @@ boat
 
 BOSS
 animations and sprites
+
