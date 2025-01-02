@@ -48,6 +48,15 @@ public class generalText : MonoBehaviour
         return null;
     }
 
+    public bool other;
+
+    public static generalText create(string text, Sprite portrait, Sprite face, bool other)
+    {
+        generalText g = create(text, portrait, face);
+        g.other = other;
+        return g;
+    }
+
     public static generalText createTimed(string text, Sprite portrait, Sprite face, Vector3 pos, float time)
     {
         generalText t = createAt(text, portrait, face, pos);
@@ -93,6 +102,10 @@ public class generalText : MonoBehaviour
         {
             done = true;
             textExists = false;
+            if (other)
+            {
+                destroy();
+            }
         }
         textBox.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + offset;
         portrait.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position + offset + new Vector3(-2f, 0, 0);

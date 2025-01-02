@@ -21,6 +21,8 @@ public class crowtroller : MonoBehaviour
 
     public int stage = 0;
 
+    public GameObject alertPrefab;
+
     private void Start()
     {
         crowEnemy.crowPrefab = crowPrefab;
@@ -109,6 +111,8 @@ public class crowtroller : MonoBehaviour
         crow.GetComponent<SpriteRenderer>().flipX = true;
         crow.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         Animator anim = crow.GetComponent<Animator>();
+
+        Instantiate(alertPrefab, crow.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
 
         anim.SetInteger("state", 1);
         yield return new WaitForSeconds(1f);

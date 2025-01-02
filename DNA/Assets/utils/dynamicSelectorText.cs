@@ -30,6 +30,7 @@ public class dynamicSelectorText : MonoBehaviour
 
         g.GetComponent<dynamicSelectorText>().options = texts;
         g.GetComponent<SpriteRenderer>().sortingOrder = 21;
+        g.gameObject.transform.position = positions[1];
 
         return g.GetComponent<dynamicSelectorText>();
     }

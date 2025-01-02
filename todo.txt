@@ -1,5 +1,6 @@
 COMBAT
 inactive entities cant be targeted
+enemy animations for rat and tentacle
 
 DIALOGUE
 box moving looks a little strange with spamming
@@ -12,20 +13,13 @@ Settings menu
 dynamic portrait
 - make it look good
 dynamic selector offset
-item action buttons
-item text in wrong place
-
-ART
-selector sprite
-redo textbox
-fix up inventory sprites
 
 ICE PUZZLE
 fishman and his house
 remove river on puzzle complete
 
 sprites room2 - abondoned market stalls, abondened fishing post, "fish tank", broken fountain
-combat encounters - giant rat
+rat alert exclaimation mark
 water animation
 gate
 fog
@@ -36,3 +30,7 @@ boat
 BOSS
 animations and sprites
 
+
+
+
+1st puzzle remove ice rendrer

@@ -86,4 +86,5 @@ public static class playerData
     ///////////////// flags
     public static bool armWarning = false;
     public static bool crowBeaten = false;
+    public static bool ratBeaten = false;
 }

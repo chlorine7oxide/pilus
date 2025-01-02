@@ -27,6 +27,8 @@ public class combatController : MonoBehaviour
 
     public GameObject tentaclePrefab;
 
+    public static Sprite crowTop, crowIdle, crowSide;
+
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -60,6 +62,12 @@ public class combatController : MonoBehaviour
                 {
                     GameObject g = GameObject.Find("boss1");
                     g.GetComponent<boss1Controller>().isCombat = false;
+                    Destroy(this.gameObject);
+                }
+                else if (enemys.Contains("rat"))
+                {
+                    playerData.ratBeaten = true;
+                    SceneManager.LoadScene("endSuccess");
                     Destroy(this.gameObject);
                 }
                 else
@@ -125,13 +133,14 @@ public class combatController : MonoBehaviour
                                 crowEnemy crow = (crowEnemy)Enemies[turnNum];
                                 if (Random.Range(0, 2) == 0)
                                 {
-                                    crow.dive(Players[Random.Range(0, 2)]);
-                                    StartCoroutine(crowDive());
+                                    combatEntity target = Players[Random.Range(0, Players.Length)];
+                                    
+                                    StartCoroutine(crowDive(target));
                                 }
                                 else
                                 {
                                     crow.doubleDive(Players[0], Players[1]);
-                                    StartCoroutine(crowDoubleDive());
+                                    StartCoroutine(crowDoubleDive(Players[0]));
 
                                 }
                                 break;
@@ -141,6 +150,38 @@ public class combatController : MonoBehaviour
                                 boulderEnemy boulder = (boulderEnemy)Enemies[turnNum];
                                 boulder.shield(Enemies[Random.Range(0, Enemies.Length)]);
                                 StartCoroutine(boulderAnimate());
+                                break;
+                            }
+                        case "ratEnemy":
+                            {
+                                ratEnemy rat = (ratEnemy)Enemies[turnNum];
+                                if(Random.Range(0, 2) == 0)
+                                {
+                                    rat.scratch(Players[Random.Range(0, Players.Length)]);
+                                    StartCoroutine(ratScratch());
+                                }
+                                else
+                                {
+                                    rat.dodge();
+                                    StartCoroutine(ratDodge());
+                                }
+                                if (!Enemies[1].active)
+                                {
+                                    rat.def = Mathf.Min(0, rat.def);
+                                    rat.scratch(Players[Random.Range(0, Players.Length)]);
+                                    if (!rat.enrageSeen)
+                                    {
+                                        rat.enrageSeen = true;
+                                        generalText.create("It's gotten angrier!", ratEnemy.portrait, null, true);
+                                    }
+                                }
+                                break;
+                            }
+                        case "ratTailEnemy":
+                            {
+                                ratTailEnemy ratTail = (ratTailEnemy)Enemies[turnNum];
+                                ratTail.hit(Players[0], Players[1]);
+                                StartCoroutine(ratScratch());
                                 break;
                             }
                     }
@@ -167,7 +208,7 @@ public class combatController : MonoBehaviour
 
     public IEnumerator starter()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.01f);
         Players = new combatEntity[numPlayers];
         Enemies = new combatEntity[numEnemies];
         defended = new bool[numPlayers];
@@ -219,6 +260,22 @@ public class combatController : MonoBehaviour
                         Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
                         break;
                     }
+                case "rat":
+                    {
+                        Enemies[i] = new ratEnemy(120, 0);
+                        ((ratEnemy)Enemies[i]).entity.transform.Translate(new Vector3(1.5f, 2, 0));
+                        Enemies[i].hpBar.transform.position = (Enemies[i].entity.transform.position);
+                        Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
+                        break;
+                    }
+                case "ratTail":
+                    {
+                        Enemies[i] = new ratTailEnemy(50, 0);
+                        ((ratTailEnemy)Enemies[i]).entity.transform.Translate(new Vector3(2.5f, 2, 0));
+                        Enemies[i].hpBar.transform.position = (Enemies[i].entity.transform.position);
+                        Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
+                        break;
+                    }
 
             }
         }
@@ -236,17 +293,115 @@ public class combatController : MonoBehaviour
         yield return new WaitForSeconds(1);
         readyForTurn = true;
     }
-    public IEnumerator crowDive()
+    public IEnumerator crowDive(combatEntity target)
     {
-        yield return new WaitForSeconds(1);
+
+        Animator anim = Enemies[0].entity.GetComponent<Animator>();
+        
+        anim.SetInteger("mode", 1);
+        anim.StartPlayback();
+
+        yield return new WaitForSeconds(0.2f);
+
+        anim.StopPlayback();
+        Enemies[0].entity.GetComponent<SpriteRenderer>().sprite = crowTop;
+
+        for (int i = 0; i < 15; i++)
+        {
+            Enemies[0].entity.transform.Translate(new Vector3(0, 0.3f, 0));
+            yield return new WaitForFixedUpdate();
+        }
+
+        Enemies[0].entity.transform.position = new Vector3(target.entity.transform.position.x, Enemies[0].entity.transform.position.y, 0);
+
+        yield return new WaitForSeconds(0.1f);
+
+        for (int i = 0; i < 40; i++)
+        {
+            Enemies[0].entity.transform.Translate(new Vector3(0, -0.3f, 0));
+            yield return new WaitForFixedUpdate();
+        }
+
+        ((crowEnemy)Enemies[0]).dive(target);
+        Enemies[0].entity.GetComponent<SpriteRenderer>().sprite = crowIdle;
+        Enemies[0].entity.GetComponent<SpriteRenderer>().flipX = false;
+        Enemies[0].entity.transform.position = new Vector3(2, 7.5f, 0);
+
+        for (int i = 0; i < 15; i++)
+        {
+            Enemies[0].entity.transform.Translate(new Vector3(0, -0.3f, 0));
+            yield return new WaitForFixedUpdate();
+        }
+
         readyForTurn = true;
     }
-    public IEnumerator crowDoubleDive()
+    public IEnumerator crowDoubleDive(combatEntity target1)
     {
-        yield return new WaitForSeconds(1);
+        Animator anim = Enemies[0].entity.GetComponent<Animator>();
+
+        anim.SetInteger("mode", 1);
+        anim.StartPlayback();
+        Enemies[0].entity.GetComponent<SpriteRenderer>().flipX = true;
+
+        yield return new WaitForSeconds(0.2f);
+
+        Enemies[0].entity.GetComponent<SpriteRenderer>().sprite = crowSide;
+
+        for (int i = 0; i < 30; i++)
+        {
+            Enemies[0].entity.transform.Translate(new Vector3(0.3f, 0, 0));
+            yield return new WaitForFixedUpdate();
+        }
+
+        Enemies[0].entity.transform.position = new Vector3(-Enemies[0].entity.transform.position.x, target1.entity.transform.position.y, 0);
+
+        yield return new WaitForSeconds(0.1f);
+
+        anim.StopPlayback();
+
+        for (int i = 0; i < 60; i++)
+        {
+            Enemies[0].entity.transform.Translate(new Vector3(0.4f, 0, 0));
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        Enemies[0].entity.transform.position = new Vector3(11, 3, 0);
+
+        for (int i = 0; i < 30; i++)
+        {
+            Enemies[0].entity.transform.Translate(new Vector3(-0.3f, 0, 0));
+            yield return new WaitForFixedUpdate();
+        }
         readyForTurn = true;
+
+        Enemies[0].entity.GetComponent<SpriteRenderer>().sprite = crowIdle;
+        Enemies[0].entity.GetComponent<SpriteRenderer>().flipX = false;
     }
     public IEnumerator boulderAnimate()
+    {
+        float time = 0;
+
+        while (time < 0.6f)
+        {
+            Enemies[0].entity.transform.localScale = new Vector3(-1.5f * time * (time - 0.6f) + 1, -1.5f* time * (time - 0.6f) + 1, 1);
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        readyForTurn = true;
+    }
+    public IEnumerator ratScratch()
+    {
+        yield return new WaitForSeconds(1);
+        readyForTurn = true;
+    }
+    public IEnumerator ratDodge()
+    {
+        yield return new WaitForSeconds(1);
+        readyForTurn = true;
+    }
+    public IEnumerator ratTail()
     {
         yield return new WaitForSeconds(1);
         readyForTurn = true;
@@ -256,6 +411,14 @@ public class combatController : MonoBehaviour
 
     public IEnumerator takePlayerTurn()
     {
+
+        if (enemys.Contains("rat"))
+        {
+            if (!Enemies[1].active)
+            {
+                ((ratEnemy)Enemies[0]).msgSeen = true;
+            }
+        }
 
         if (Players[turnNum].hp <= 0)
         {
@@ -281,13 +444,13 @@ public class combatController : MonoBehaviour
             case 0: // ability
                 Vector3[] pos = new Vector3[5]
                 {
-                    new Vector3(-8, -2, 0),
-                    new Vector3(-8, -2.5f, 0),
-                    new Vector3(-8, -3, 0),
-                    new Vector3(-8, -3.5f, 0),
-                    new Vector3(-8, -4, 0),
+                    new Vector3(-3, -2, 0),
+                    new Vector3(-3, -2.5f, 0),
+                    new Vector3(-3, -3, 0),
+                    new Vector3(-3, -3.5f, 0),
+                    new Vector3(-3, -4, 0),
                 };
-                selector = dynamicSelectorText.create(pos, turnNum == 0 ? playerData.MCabilities.ToArray() : playerData.friendAbilities.ToArray(), mcSprite);
+                selector = dynamicSelectorText.create(pos, turnNum == 0 ? playerData.MCabilities.ToArray() : playerData.friendAbilities.ToArray(), mcSprite, new Vector3(0, 0.3f, 0));
                 yield return new WaitUntil(() => selector.done);
                 string ability = turnNum == 0 ? playerData.MCabilities[selector.result] : playerData.friendAbilities[selector.result];
                 selector.destroy();
