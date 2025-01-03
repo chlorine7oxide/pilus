@@ -91,6 +91,13 @@ public class msgController : MonoBehaviour
                     setFace(m.speaker, m.face);
                     StartCoroutine(decisionSitListener(createDecision(m.name, "Sit and rest.", "Continue on.", false)));
                 }
+                else if (t.Contains("Fishing"))
+                {
+                    activateSpeaker(m.speaker);
+                    setFace(m.speaker, m.face);
+                    StartCoroutine(decisionFishingListener(createDecision(m.name, "Pick up the rod.", "Don't touch it.", false)));
+
+                }
             }
             else
             {
@@ -160,6 +167,25 @@ public class msgController : MonoBehaviour
             msgs.Enqueue(new msg(null, () => "I've had enough of sitting here.", "TestSpeaker2", speakers[1]));
             
 
+        }
+        decision = false;
+        nextMsg();
+    }
+
+    public IEnumerator decisionFishingListener(decision d)
+    {
+        yield return new WaitUntil(() => d.complete);
+        if (d.isUp)
+        {
+            msgs.Enqueue(new msg(null, () => "Let's try catch something now then.", "TestSpeaker1", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "Sure why not!", "TestSpeaker1", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "FULLART PLACEHOLDER", "TestSpeaker1", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "Woah, we fished up a key.", "TestSpeaker1", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "What's it for?", "TestSpeaker1", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "How would I know that?", "TestSpeaker1", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "Rhetorical question I guess.", "TestSpeaker1", speakers[1]));
+            rod.thisRod.GetComponent<SpriteRenderer>().sprite = rod.rod2;
+            playerData.items.Add("FishKey");
         }
         decision = false;
         nextMsg();

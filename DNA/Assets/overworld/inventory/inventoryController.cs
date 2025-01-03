@@ -384,6 +384,11 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i8.done);
                         i8.destroy();
                         break;
+                    case "FishKey":
+                        itemDialogue i9 = itemDialogue.create("What do I do with this?", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i9.done);
+                        i9.destroy();
+                        break;
                 } // item use funtionality and text
                 break;
             case 1:// drop
@@ -440,6 +445,11 @@ public class inventoryController : MonoBehaviour
                         i8.destroy();
                         playerData.items.Remove(item);
                         break;
+                    case "FishKey":
+                        itemDialogue i9 = itemDialogue.create("I should keep this.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i9.done);
+                        i9.destroy();
+                        break;
                 } // item drop text and functionality
                 break;
             case 2: // inspect
@@ -490,6 +500,11 @@ public class inventoryController : MonoBehaviour
                         itemDialogue i8 = itemDialogue.create("A computer from at least a decade ago, it doesn't work", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i8.done);
                         i8.destroy();
+                        break;
+                    case "FishKey":
+                        itemDialogue i9 = itemDialogue.create("This came from the bottom of the lake, I doubt I can find where to use it.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i9.done);
+                        i9.destroy();
                         break;
                 } // item inspect text and functionality
                 break;
