@@ -18,9 +18,9 @@ ICE PUZZLE
 fishman and his house
 remove river on puzzle complete
 bench full art
+crow gene
 
 sprites room2 - abondoned market stalls, abondened fishing post, "fish tank", broken fountain
-rat alert exclaimation mark
 water animation
 gate
 rat tail gene
