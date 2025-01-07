@@ -8,6 +8,9 @@ bit of an offset in decisin text
 make portraits resizze about the bottom
 font
 
+GENERAL
+follower snaps into place at the begionning
+
 Inventory
 Settings menu
 dynamic portrait
