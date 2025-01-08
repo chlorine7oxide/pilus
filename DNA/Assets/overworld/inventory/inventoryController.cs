@@ -342,38 +342,6 @@ public class inventoryController : MonoBehaviour
                         playerData.items.Remove(item);
                         carryableItem.create(inventoryTester.giantRock, "Giant Rock", GameObject.FindGameObjectWithTag("player").transform.position, false, true);
                         break;
-                    case "item2":
-                        itemDialogue i2 = itemDialogue.create("item 2", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i2.done);
-                        i2.destroy();
-                        i2 = itemDialogue.create("used", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i2.done);
-                        i2.destroy();
-                        playerData.items.Remove(item);
-                        break;
-                    case "item3":
-                        itemDialogue i3 = itemDialogue.create("cant use item 3", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i3.done);
-                        i3.destroy();
-                        break;
-                    case "item4":
-                        itemDialogue i4 = itemDialogue.create("item 4", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i4.done);
-                        i4.destroy();
-                        playerData.items.Remove(item);
-                        break;
-                    case "item5":
-                        itemDialogue i5 = itemDialogue.create("item 5", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i5.done);
-                        i5.destroy();
-                        playerData.items.Remove(item);
-                        break;
-                    case "item6":
-                        itemDialogue i6 = itemDialogue.create("item 6", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i6.done);
-                        i6.destroy();
-                        playerData.items.Remove(item);
-                        break;
                     case "Desk Key":
                         itemDialogue i7 = itemDialogue.create("There's no lock, how do I use a key here?", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i7.done);
@@ -385,10 +353,34 @@ public class inventoryController : MonoBehaviour
                         i8.destroy();
                         break;
                     case "FishKey":
-                        itemDialogue i9 = itemDialogue.create("What do I do with this?", inventoryTester.port, portrait.transform.position);
+                        itemDialogue i9 = itemDialogue.create("There's no lock, how do I use a key here?", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i9.done);
                         i9.destroy();
                         break;
+                    case "\"Aged\" wine":
+                        itemDialogue i10 = itemDialogue.create("Please don't make me drink this...", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i10.done);
+                        i10.destroy();
+                        break;
+                    case "Library card":
+                        itemDialogue i11 = itemDialogue.create("This isn't a library?", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i11.done);
+                        i11.destroy();
+                        break;
+                    case "Drilling Book":
+                        itemDialogue i12 = itemDialogue.create("I don't want to read this.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i12.done);
+                        i12.destroy();
+                        break;
+                    case "Fountain pen":
+                        itemDialogue i13 = itemDialogue.create("I don't have anything to write on.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i13.done);
+                        i13.destroy();
+                        i13 = itemDialogue.create("Or any ink.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i13.done);
+                        i13.destroy();
+                        break;
+
                 } // item use funtionality and text
                 break;
             case 1:// drop
@@ -399,39 +391,6 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i.done);
                         carryableItem.create(inventoryTester.giantRock, "Giant Rock", GameObject.FindGameObjectWithTag("player").transform.position, false, false);
                         i.destroy();
-                        playerData.items.Remove(item);
-                        break;
-                    case "item2":
-                        itemDialogue i2 = itemDialogue.create("item 2 dropped", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i2.done);
-                        i2.destroy();
-                        playerData.items.Remove(item);
-                        break;
-                    case "item3":
-                        itemDialogue i3 = itemDialogue.create("item 3 dropped", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i3.done);
-                        i3.destroy();
-                        playerData.items.Remove(item);
-                        break;
-                    case "item4":
-                        itemDialogue i4 = itemDialogue.create("item 4 dropped", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i4.done);
-                        i4.destroy();
-                        playerData.items.Remove(item);
-                        break;
-                    case "item5":
-                        itemDialogue i5 = itemDialogue.create("item 5 dropped", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i5.done);
-                        i5.destroy();
-                        playerData.items.Remove(item);
-                        break;
-                    case "item6":
-                        itemDialogue i6 = itemDialogue.create("item 6 dropped", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i6.done);
-                        i6.destroy();
-                        i6 = itemDialogue.create("tragic...", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i6.done);
-                        i6.destroy();
                         playerData.items.Remove(item);
                         break;
                     case "Desk Key":
@@ -450,6 +409,27 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i9.done);
                         i9.destroy();
                         break;
+                    case "\"Aged\" wine":
+                        itemDialogue i10 = itemDialogue.create("I really didn't need to pick this up...", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i10.done);
+                        i10.destroy();
+                        playerData.items.Remove(item);
+                        break;
+                    case "Library card":
+                        itemDialogue i11 = itemDialogue.create("It's counting on me to take care of it...", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i11.done);
+                        i11.destroy();
+                        break;
+                    case "Drilling Book":
+                        itemDialogue i12 = itemDialogue.create("I can't drop this! It's a library book.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i12.done);
+                        i12.destroy();
+                        break;
+                    case "Fountain pen":
+                        itemDialogue i13 = itemDialogue.create("I think it would be immoral to throw this away now.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i13.done);
+                        i13.destroy();
+                        break;
                 } // item drop text and functionality
                 break;
             case 2: // inspect
@@ -459,37 +439,6 @@ public class inventoryController : MonoBehaviour
                         itemDialogue i = itemDialogue.create("It's a huge boulder, that I, for some reason, decided to pick up.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i.done);
                         i.destroy();
-                        break;
-                    case "item2":
-                        itemDialogue i2 = itemDialogue.create("its an item", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i2.done);
-                        i2.destroy();
-                        break;
-                    case "item3":
-                        itemDialogue i3 = itemDialogue.create("its an item", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i3.done);
-                        i3.destroy();
-                        break;
-                    case "item4":
-                        itemDialogue i4 = itemDialogue.create("its an item", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i4.done);
-                        i4.destroy();
-                        break;
-                    case "item5":
-                        itemDialogue i5 = itemDialogue.create("its an item", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i5.done);
-                        i5.destroy();
-                        break;
-                    case "item6":
-                        itemDialogue i6 = itemDialogue.create("ahh", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i6.done);
-                        i6.destroy();
-                        i6 = itemDialogue.create("indeed", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i6.done);
-                        i6.destroy();
-                        i6 = itemDialogue.create("its an item", inventoryTester.port, portrait.transform.position);
-                        yield return new WaitUntil(() => i6.done);
-                        i6.destroy();
                         break;
                     case "Desk Key":
                         itemDialogue i7 = itemDialogue.create("It's a small key, I'm not sure what it's used for.", inventoryTester.port, portrait.transform.position);
@@ -505,6 +454,29 @@ public class inventoryController : MonoBehaviour
                         itemDialogue i9 = itemDialogue.create("This came from the bottom of the lake, I doubt I can find where to use it.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i9.done);
                         i9.destroy();
+                        break;
+                    case "\"Aged\" wine":
+                        itemDialogue i10 = itemDialogue.create("An old bottle of wine I found, it smells terrible.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i10.done);
+                        i10.destroy();
+                        break;
+                    case "Library card":
+                        itemDialogue i11 = itemDialogue.create("An old library card, the name is worn off, but it's supposed to say my name.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i11.done);
+                        i11.destroy();
+                        break;
+                    case "Drilling Book":
+                        itemDialogue i12 = itemDialogue.create("A book filled with mostly drilling information.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i12.done);
+                        i12.destroy();
+                        break;
+                    case "Fountain pen":
+                        itemDialogue i13 = itemDialogue.create("An ill-gotten fancy fountain pen.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i13.done);
+                        i13.destroy();
+                        i13 = itemDialogue.create("It's moral ambiguity makes it more valuable.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i13.done);
+                        i13.destroy();
                         break;
                 } // item inspect text and functionality
                 break;

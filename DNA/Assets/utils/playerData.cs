@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using Unity.VisualScripting.FullSerializer;
+using TMPro;
 
 public static class playerData
 {
@@ -88,4 +89,8 @@ public static class playerData
     public static bool crowBeaten = false;
     public static bool ratBeaten = false;
     public static bool rodConvo = false;
+    public static int documentsRead = 0;
+    public static bool libraryRegistryRead = false;
+    public static bool visitedLibrary = false;
+    public static bool strangeLibrary = false;
 }

@@ -10,6 +10,7 @@ font
 
 GENERAL
 follower snaps into place at the begionning
+replace mc2 portraitrs and rewrite dialogue
 
 Inventory
 Settings menu

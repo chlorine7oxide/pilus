@@ -31,7 +31,6 @@ public abstract class overworldInteractable : MonoBehaviour
         {
             GameObject g = GameObject.FindGameObjectWithTag("dialogue");
             GameObject h = GameObject.FindGameObjectWithTag("inv");
-            Debug.Log(h.name);
             if (g is null && !GameObject.FindGameObjectWithTag("inv").GetComponent<inventoryController>().active)
             {
                 interact();
