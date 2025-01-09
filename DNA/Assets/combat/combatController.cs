@@ -184,6 +184,11 @@ public class combatController : MonoBehaviour
                                 StartCoroutine(ratScratch());
                                 break;
                             }
+                        case "skeleton":
+                            {
+                                StartCoroutine(boneJangle());
+                                break;
+                            }
                     }
                     turnNum++;
                     if (turnNum >= Enemies.Length)
@@ -218,11 +223,15 @@ public class combatController : MonoBehaviour
         ((MC)Players[0]).entity.transform.Translate(new Vector3(-6, 0, 0));
         Players[0].hpBar.transform.position = (Players[0].entity.transform.position);
         Players[0].hpBar2.transform.position = (Players[0].entity.transform.position);
-        Players[1] = new friend(playerData.hp, playerData.def);
-        ((friend)Players[1]).entity.AddComponent<SpriteRenderer>().sprite = friendSprite;
-        ((friend)Players[1]).entity.transform.Translate(new Vector3(-2, 0, 0));
-        Players[1].hpBar.transform.position = (Players[1].entity.transform.position);
-        Players[1].hpBar2.transform.position = (Players[1].entity.transform.position);
+        if (Players.Length == 2)
+        {
+            Players[1] = new friend(playerData.hp, playerData.def);
+            ((friend)Players[1]).entity.AddComponent<SpriteRenderer>().sprite = friendSprite;
+            ((friend)Players[1]).entity.transform.Translate(new Vector3(-2, 0, 0));
+            Players[1].hpBar.transform.position = (Players[1].entity.transform.position);
+            Players[1].hpBar2.transform.position = (Players[1].entity.transform.position);
+        }
+        
         for (int i = 0; i < enemys.Length; i++)
         {
             switch (enemys[i])
@@ -272,6 +281,14 @@ public class combatController : MonoBehaviour
                     {
                         Enemies[i] = new ratTailEnemy(50, 0);
                         ((ratTailEnemy)Enemies[i]).entity.transform.Translate(new Vector3(2.5f, 2, 0));
+                        Enemies[i].hpBar.transform.position = (Enemies[i].entity.transform.position);
+                        Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
+                        break;
+                    }
+                case "skeleton":
+                    {
+                        Enemies[i] = new skeletonEnemy(100, 0);
+                        ((skeletonEnemy)Enemies[i]).entity.transform.Translate(new Vector3(2, 3, 0));
                         Enemies[i].hpBar.transform.position = (Enemies[i].entity.transform.position);
                         Enemies[i].hpBar2.transform.position = (Enemies[i].entity.transform.position);
                         break;
@@ -406,6 +423,11 @@ public class combatController : MonoBehaviour
         yield return new WaitForSeconds(1);
         readyForTurn = true;
     }
+    public IEnumerator boneJangle()
+    {
+        yield return new WaitForSeconds(1);
+        readyForTurn = true;
+    }
 
     protected dynamicSelectorText selector;
 
@@ -418,6 +440,11 @@ public class combatController : MonoBehaviour
             {
                 ((ratEnemy)Enemies[0]).msgSeen = true;
             }
+        }
+        
+        if (turnNum >= Players.Length)
+        {
+            turnNum = 0;
         }
 
         if (Players[turnNum].hp <= 0)

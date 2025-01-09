@@ -93,4 +93,6 @@ public static class playerData
     public static bool libraryRegistryRead = false;
     public static bool visitedLibrary = false;
     public static bool strangeLibrary = false;
+    public static bool skeletonFought = false;
+    public static bool skeletonDialogue = false;
 }
