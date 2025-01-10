@@ -105,7 +105,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -121,11 +121,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 1x3hole_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e3f236294b5414e94f6dec13add3ab
+      internalID: -1658535392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1x3hole_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a61c7df6740020940b79a20ab9824e5a
+      internalID: 1747622278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: df8f9344c7cd31b408af9c7ffce34f17
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +180,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       1x3hole_0: -7786418553523724965
+      1x3hole_1: -1658535392
+      1x3hole_2: 1747622278
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -103,10 +103,10 @@ TextureImporter:
       name: 1x4hole_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 1
-        width: 57
-        height: 13
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,11 +121,77 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 1x4hole_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ab3e39389525f4fab35f3482fd0d73
+      internalID: 1178876737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1x4hole_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6b36495a895cbe4394c4b124dbdb9c5
+      internalID: 1156794461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1x4hole_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9232e5902edcdf24eb7b3807eba0c055
+      internalID: -1038989169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2bde834cadf602941896a1ceee83a423
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +202,9 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       1x4hole_0: 3815402410570433424
+      1x4hole_1: 1178876737
+      1x4hole_2: 1156794461
+      1x4hole_3: -1038989169
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

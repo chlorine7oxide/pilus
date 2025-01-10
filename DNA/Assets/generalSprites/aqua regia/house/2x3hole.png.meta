@@ -104,9 +104,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 48
-        height: 31
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,11 +121,121 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 2x3hole_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c4cc569ceb77c42b82aafdd8ef73c8
+      internalID: 42645259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2x3hole_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1974a03a1636c54a9fc386f1d69236b
+      internalID: -1893992145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2x3hole_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ade4aaabc068ed74b9d423049d76cc9f
+      internalID: 1725228576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2x3hole_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7dd80f5b6e46d445acf6cf491dcdf98
+      internalID: -1170780550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2x3hole_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c32ea3ab9d86fbe41b1f18f622134f63
+      internalID: 1605846594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e69ebb1827718e4409290f9a12d0bb20
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +246,11 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       2x3hole_0: 6139116486672201589
+      2x3hole_1: 42645259
+      2x3hole_2: -1893992145
+      2x3hole_3: 1725228576
+      2x3hole_4: -1170780550
+      2x3hole_5: 1605846594
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

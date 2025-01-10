@@ -380,6 +380,11 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i13.done);
                         i13.destroy();
                         break;
+                    case "Red Seal":
+                        itemDialogue i14 = itemDialogue.create("I'll use this when I need to seal something.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i14.done);
+                        i14.destroy();
+                        break;
 
                 } // item use funtionality and text
                 break;
@@ -430,6 +435,11 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i13.done);
                         i13.destroy();
                         break;
+                    case "Red Seal":
+                        itemDialogue i14 = itemDialogue.create("What if I need to forge government documents?", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i14.done);
+                        i14.destroy();
+                        break;
                 } // item drop text and functionality
                 break;
             case 2: // inspect
@@ -477,6 +487,11 @@ public class inventoryController : MonoBehaviour
                         i13 = itemDialogue.create("It's moral ambiguity makes it more valuable.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i13.done);
                         i13.destroy();
+                        break;
+                    case "Red Seal":
+                        itemDialogue i14 = itemDialogue.create("A red mayorial seal. Apparently they're still used now.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i14.done);
+                        i14.destroy();
                         break;
                 } // item inspect text and functionality
                 break;

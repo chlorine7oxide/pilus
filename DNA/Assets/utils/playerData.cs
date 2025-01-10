@@ -95,4 +95,5 @@ public static class playerData
     public static bool strangeLibrary = false;
     public static bool skeletonFought = false;
     public static bool skeletonDialogue = false;
+    public static bool antihistamineGene = false;  
 }
