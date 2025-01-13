@@ -38,7 +38,7 @@ public class movement : MonoBehaviour
         GameObject d = GameObject.FindGameObjectWithTag("dialogue");
         if (d is null)
         {
-            if (inv.GetComponent<inventoryController>().active)
+            if (inv.GetComponent<inventoryController>().active || lockDoor1.lockActive)
             {
                 
                 this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;

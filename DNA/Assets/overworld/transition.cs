@@ -20,6 +20,7 @@ public class transition : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         SceneManager.LoadScene(SceneName);
         yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("player") != null);
+        yield return new WaitForEndOfFrame();
         GameObject.FindGameObjectWithTag("player").transform.position = playerPos;
         Destroy(this.gameObject);
     }
