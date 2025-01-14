@@ -1201,7 +1201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: icePuzzle2
-  playerPosition: {x: -24.75, y: 12, z: 0}
+  playerPosition: {x: -24.75, y: 13, z: 0}
   contact: 0
 --- !u!61 &466155984
 BoxCollider2D:

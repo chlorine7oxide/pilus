@@ -9997,7 +9997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneName: icePuzzle2
-  playerPos: {x: 15.375, y: 30.5, z: 0}
+  playerPos: {x: 15.375, y: 29, z: 0}
 --- !u!1 &467772027
 GameObject:
   m_ObjectHideFlags: 0

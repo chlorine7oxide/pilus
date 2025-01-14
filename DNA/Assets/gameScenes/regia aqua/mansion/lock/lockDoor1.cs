@@ -26,7 +26,7 @@ public class lockDoor1 : overworldInteractable
                     }
                 case 2:
                     {
-                        //placholder
+                        SceneManager.LoadScene("dock");
                         break;
                     }
             }

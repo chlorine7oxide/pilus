@@ -385,6 +385,12 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i14.done);
                         i14.destroy();
                         break;
+                    case "Unlabeled drink":
+                        itemDialogue i15 = itemDialogue.create("It didn't actually taste that bad.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i15.done);
+                        i15.destroy();
+                        playerData.items.Remove(item);
+                        break;
 
                 } // item use funtionality and text
                 break;
@@ -440,6 +446,13 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i14.done);
                         i14.destroy();
                         break;
+                    case "Unlabeled drink":
+                        itemDialogue i15 = itemDialogue.create("I didn't want to drink a decades old drink anyway.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i15.done);
+                        i15.destroy();
+                        playerData.items.Remove(item);
+                        break;
+
                 } // item drop text and functionality
                 break;
             case 2: // inspect
@@ -492,6 +505,15 @@ public class inventoryController : MonoBehaviour
                         itemDialogue i14 = itemDialogue.create("A red mayorial seal. Apparently they're still used now.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i14.done);
                         i14.destroy();
+                        break;
+                    case "Unlabeled drink":
+                        itemDialogue i15 = itemDialogue.create("A drink from a very long time ago", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i15.done);
+                        i15.destroy();
+                        i15 = itemDialogue.create("Dispite it's age, it looks like it could heal me in combat.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i15.done);
+                        i15.destroy();
+                        playerData.items.Remove(item);
                         break;
                 } // item inspect text and functionality
                 break;
