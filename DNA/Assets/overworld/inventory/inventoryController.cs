@@ -391,6 +391,11 @@ public class inventoryController : MonoBehaviour
                         i15.destroy();
                         playerData.items.Remove(item);
                         break;
+                    case "Marine life book":
+                        itemDialogue i16 = itemDialogue.create("I don't think I need to read this again.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i16.done);
+                        i16.destroy();
+                        break;
 
                 } // item use funtionality and text
                 break;
@@ -432,7 +437,7 @@ public class inventoryController : MonoBehaviour
                         i11.destroy();
                         break;
                     case "Drilling Book":
-                        itemDialogue i12 = itemDialogue.create("I can't drop this! It's a library book.", inventoryTester.port, portrait.transform.position);
+                        itemDialogue i12 = itemDialogue.create("I can't get rid of this! It's a library book.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i12.done);
                         i12.destroy();
                         break;
@@ -451,6 +456,11 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i15.done);
                         i15.destroy();
                         playerData.items.Remove(item);
+                        break;
+                    case "Marine life book":
+                        itemDialogue i16 = itemDialogue.create("I can't get rid of this! It's a library book.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i16.done);
+                        i16.destroy();
                         break;
 
                 } // item drop text and functionality
@@ -484,7 +494,7 @@ public class inventoryController : MonoBehaviour
                         i10.destroy();
                         break;
                     case "Library card":
-                        itemDialogue i11 = itemDialogue.create("An old library card, the name is worn off, but it's supposed to say my name.", inventoryTester.port, portrait.transform.position);
+                        itemDialogue i11 = itemDialogue.create("An old library card, the name is worn off, but it's supposed to say MY name.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i11.done);
                         i11.destroy();
                         break;
@@ -514,6 +524,14 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i15.done);
                         i15.destroy();
                         playerData.items.Remove(item);
+                        break;
+                    case "Marine life book":
+                        itemDialogue i16 = itemDialogue.create("A book about the local marine life.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i16.done);
+                        i16.destroy();
+                        i16 = itemDialogue.create("It's a bit water damaged, but still readable.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i16.done);
+                        i16.destroy();
                         break;
                 } // item inspect text and functionality
                 break;

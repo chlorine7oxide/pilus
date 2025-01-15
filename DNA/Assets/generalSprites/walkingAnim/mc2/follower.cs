@@ -26,7 +26,7 @@ public class follower : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (positions[posIndex] != null)
+        if (positions[posIndex] != null && playerData.companion)
         {
             if (mc.transform.position != positions[(posIndex + 9) % 10])
             {
@@ -144,6 +144,10 @@ public class follower : MonoBehaviour
                     startAnim = true;
                 }
             }
+        }
+        else
+        {
+            //boat animate placholder
         }
     }
 

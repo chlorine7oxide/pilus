@@ -98,6 +98,12 @@ public class msgController : MonoBehaviour
                     StartCoroutine(decisionFishingListener(createDecision(m.name, "Pick up the rod.", "Don't touch it.", false)));
 
                 }
+                else if (t.Contains("Boat"))
+                {
+                    activateSpeaker(m.speaker);
+                    setFace(m.speaker, m.face);
+                    StartCoroutine(decisionBoatListener(createDecision(m.name, "Yes", "No", false)));
+                }
             }
             else
             {
@@ -186,6 +192,22 @@ public class msgController : MonoBehaviour
             msgs.Enqueue(new msg(null, () => "Rhetorical question I guess.", "TestSpeaker1", speakers[1]));
             rod.thisRod.GetComponent<SpriteRenderer>().sprite = rod.rod2;
             playerData.items.Add("FishKey");
+        }
+        decision = false;
+        nextMsg();
+    }
+
+    public IEnumerator decisionBoatListener(decision d)
+    {
+        yield return new WaitUntil(() => d.complete);
+        if (d.isUp)
+        {
+            msgs.Enqueue(new msg(null, () => "Alright! Lets go.", "e", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "Be careful, it's beginning to get dark.", "e", speakers[1]));
+        }
+        else
+        {
+            msgs.Enqueue(new msg(null, () => "Make sure you do what you need to do before we leave.", "e", speakers[1]));
         }
         decision = false;
         nextMsg();

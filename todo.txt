@@ -1,38 +1,38 @@
 COMBAT
 inactive entities cant be targeted
 enemy animations for rat and tentacle
+you only lose when you die not your companion
+game over screen and battle win screen.
 
 DIALOGUE
 box moving looks a little strange with spamming
 bit of an offset in decisin text
 make portraits resizze about the bottom
 font
+box size correction
 
 GENERAL
 follower snaps into place at the begionning
 replace mc2 portraitrs and rewrite dialogue
+add healilng and buff items occasionally.
 
 Inventory
 Settings menu
 dynamic portrait
-- make it look good
-dynamic selector offset
 
 ICE PUZZLE
-fishman and his house
-remove river on puzzle complete
-bench full art
-crow gene
-
-sprites room2 - abondoned market stalls, abondened fishing post, "fish tank", broken fountain
-water animation
+remove river on puzzle complete - just that one
+bench full art (maybe not)
+crow gene - rat gene
 gate
-rat tail gene
 
-abondoned mansion and dock
-fishing full art
-boat
+MANSION
+boat animations
 
 BOSS
 animations and sprites
+make it block off the enterances and exits
+
+CITY
+library and books
 

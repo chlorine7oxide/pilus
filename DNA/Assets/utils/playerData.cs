@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using Unity.VisualScripting.FullSerializer;
 using TMPro;
+using UnityEditor.PackageManager;
 
 public static class playerData
 {
@@ -85,6 +86,7 @@ public static class playerData
     public static int money = 0;
 
     ///////////////// flags
+    public static bool companion = true;
     public static bool armWarning = false;
     public static bool crowBeaten = false;
     public static bool ratBeaten = false;
@@ -97,4 +99,5 @@ public static class playerData
     public static bool skeletonDialogue = false;
     public static bool antihistamineGene = false;
     public static bool[] lockFlags = { false, false };
+    public static bool boatPrepared = false;
 }

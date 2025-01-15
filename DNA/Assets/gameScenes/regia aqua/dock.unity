@@ -49238,6 +49238,9 @@ GameObject:
   - component: {fileID: 1969676837}
   - component: {fileID: 1969676836}
   - component: {fileID: 1969676835}
+  - component: {fileID: 1969676839}
+  - component: {fileID: 1969676838}
+  - component: {fileID: 1969676840}
   m_Layer: 0
   m_Name: boat_0
   m_TagString: Untagged
@@ -49337,6 +49340,106 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1969676838
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969676834}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -1.5, y: 1.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 0.58, y: 0.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 3}
+  m_EdgeRadius: 0
+--- !u!50 &1969676839
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969676834}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1969676840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969676834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa97cc360ca09f479009de529215c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: 0
+  speakers:
+  - {fileID: 525252176}
+  - {fileID: 1095046750}
+  faces:
+  - {fileID: 183611650}
+  - {fileID: 441361947}
+  testFace: {fileID: 0}
+  selector: {fileID: 5211086781936739708, guid: e0a6d8ff7d9f52e4d95ce27cdd1087b9, type: 3}
+  textPrefab: {fileID: 5733570775210333018, guid: 56c6b1b5e2eac92488b69376d7ccae70, type: 3}
+  boxSprite1: {fileID: 4340143670946724112, guid: 3911ee59448ec10468dfa7786a4ee2f3, type: 3}
+  boxSprite2: {fileID: -9148079100729670451, guid: 47035a409f51701479ccf9121050674c, type: 3}
+  boxSprite3: {fileID: 6879785910209034016, guid: 137400dae72529f4eba55256317b57a6, type: 3}
+  boxSprite4: {fileID: -3989668330587312247, guid: 2b07e58bd729ec1459cdd243e648e179, type: 3}
+  msgController: {fileID: 0}
 --- !u!1 &2007107254
 GameObject:
   m_ObjectHideFlags: 0

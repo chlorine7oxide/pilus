@@ -35,7 +35,7 @@ public class followerCreator : MonoBehaviour
 
     private void Update()
     {
-        if ((this.gameObject.transform.position - startpos).magnitude > 0.5f && !created)
+        if ((this.gameObject.transform.position - startpos).magnitude > 0.5f && !created && playerData.companion)
         {
             follower.create(gameObject, transform.position);
             created = true;
