@@ -10,8 +10,8 @@ public class tentacle : MonoBehaviour
     public bool active = false;
     public bool ready = true;
 
-    public static float submergeTime = 0.5f;
-    public static float emergeTime = 0.5f;
+    public static float submergeTime = 1.5f;
+    public static float emergeTime = 0.875f;
     public static float slashTime = 2;
     public static float splashTime = 3;
     public static float slamTime = 5;
@@ -21,6 +21,9 @@ public class tentacle : MonoBehaviour
     public bool interactable = false;
     public bool combatable = false;
     public bool slamming = false;
+
+    public static Sprite[] emergeAnim;
+    public static Sprite[] submergeAnim;
 
     public static tentacle create()
     {
@@ -44,7 +47,6 @@ public class tentacle : MonoBehaviour
 
     public void submerge()
     {
-        // animation placeholder
         this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
         StartCoroutine(submergeAnimation());
     }
@@ -52,7 +54,12 @@ public class tentacle : MonoBehaviour
     public IEnumerator submergeAnimation()
     {
         ready = false;
-        yield return new WaitForSeconds(submergeTime);
+        for (int i = 0; i < 12; i++)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = submergeAnim[i];
+            yield return new WaitForSeconds(submergeTime / 12);
+        }
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
         ready = true;
     }
 
@@ -67,7 +74,11 @@ public class tentacle : MonoBehaviour
     public IEnumerator emergeAnimation()
     {
         ready = false;
-        yield return new WaitForSeconds(emergeTime);
+        for (int i = 0; i < 7; i++)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = emergeAnim[i];
+            yield return new WaitForSeconds(emergeTime / 7);
+        }
         ready = true;
     }
 

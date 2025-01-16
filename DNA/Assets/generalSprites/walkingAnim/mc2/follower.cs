@@ -9,7 +9,7 @@ public class follower : MonoBehaviour
 
     public static void create(GameObject mc, Vector3 startPos)
     {
-        GameObject g = Instantiate(followerCreator.followerPrefab);
+        GameObject g = Instantiate(followerCreator.followerPrefab, startPos, Quaternion.identity);
         follower f = g.AddComponent<follower>();
         f.mc = mc;
         f.entry = startPos;

@@ -757,6 +757,27 @@ MonoBehaviour:
   isCombat: 0
   phase: 0
   playerPos: {x: 0, y: 0, z: 0}
+  submergeAnim:
+  - {fileID: 5677104470554504781, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: -3729479310503309274, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: -7434063991269179417, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: -1577487715911419259, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: 7356356445422489373, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: 3841294016686198195, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: 4210788650659361220, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: 8891693311787716369, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: 1324307618550076526, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: -8599400784397731834, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: -3835483295958486428, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  - {fileID: 4011791473442058840, guid: 7872c70286124a942bdd942f09b3372c, type: 3}
+  emergeAnim:
+  - {fileID: 3852659915989107408, guid: 016eb8b84bc5b1b489ad9c607c56339f, type: 3}
+  - {fileID: -6845508350629057158, guid: 016eb8b84bc5b1b489ad9c607c56339f, type: 3}
+  - {fileID: -8485120246104281329, guid: 016eb8b84bc5b1b489ad9c607c56339f, type: 3}
+  - {fileID: 9136408731359003439, guid: 016eb8b84bc5b1b489ad9c607c56339f, type: 3}
+  - {fileID: 598028314757049159, guid: 016eb8b84bc5b1b489ad9c607c56339f, type: 3}
+  - {fileID: 8436442294685171648, guid: 016eb8b84bc5b1b489ad9c607c56339f, type: 3}
+  - {fileID: 2092811985644099903, guid: 016eb8b84bc5b1b489ad9c607c56339f, type: 3}
 --- !u!50 &260003613
 Rigidbody2D:
   serializedVersion: 5
@@ -1477,6 +1498,7 @@ MonoBehaviour:
   money: {fileID: 40514774}
   boxSprite: {fileID: 4340143670946724112, guid: 3911ee59448ec10468dfa7786a4ee2f3, type: 3}
   ports: {fileID: -931796786173825612, guid: b6250a47362bd4b4491ee2b945d152a5, type: 3}
+  giantRocks: {fileID: 0}
 --- !u!212 &325228970
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2073,6 +2095,9 @@ MonoBehaviour:
   sel: {fileID: 5211086781936739708, guid: e0a6d8ff7d9f52e4d95ce27cdd1087b9, type: 3}
   itemHeld: {fileID: 0}
   active: 0
+  textItem1: {fileID: 0}
+  textItem2: {fileID: 0}
+  textItem3: {fileID: 0}
 --- !u!212 &614634816
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -109849,6 +109874,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1993143352}
+  maxY: 1000
+  minY: -1000
+  maxX: 1000
+  minX: -1000
 --- !u!114 &1809765633
 MonoBehaviour:
   m_ObjectHideFlags: 0

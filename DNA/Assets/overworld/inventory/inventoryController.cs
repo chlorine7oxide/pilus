@@ -396,6 +396,15 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i16.done);
                         i16.destroy();
                         break;
+                    case "Old rations":
+                        itemDialogue i17 = itemDialogue.create("Just as I thought!", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i17.done);
+                        i17.destroy();
+                        i17 = itemDialogue.create("They taste terrible...", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i17.done);
+                        i17.destroy();
+                        playerData.items.Remove(item);
+                        break;
 
                 } // item use funtionality and text
                 break;
@@ -461,6 +470,12 @@ public class inventoryController : MonoBehaviour
                         itemDialogue i16 = itemDialogue.create("I can't get rid of this! It's a library book.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i16.done);
                         i16.destroy();
+                        break;
+                    case "Old rations":
+                        itemDialogue i17 = itemDialogue.create("Probably the best choice, I don't think they would taste very good.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i17.done);
+                        i17.destroy();
+                        playerData.items.Remove(item);
                         break;
 
                 } // item drop text and functionality
@@ -532,6 +547,15 @@ public class inventoryController : MonoBehaviour
                         i16 = itemDialogue.create("It's a bit water damaged, but still readable.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i16.done);
                         i16.destroy();
+                        break;
+                    case "Old rations":
+                        itemDialogue i17 = itemDialogue.create("Some old rations, they look like they're still good.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i17.done);
+                        i17.destroy();
+                        i17 = itemDialogue.create("Even after so long, they could probably heal me in combat.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i17.done);
+                        i17.destroy();
+                        playerData.items.Remove(item);
                         break;
                 } // item inspect text and functionality
                 break;

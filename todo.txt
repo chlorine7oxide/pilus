@@ -1,6 +1,6 @@
 COMBAT
 inactive entities cant be targeted
-enemy animations for rat and tentacle
+enemy animations for rat and tentacle4:02 PM 16/01/2025
 you only lose when you die not your companion
 game over screen and battle win screen.
 
@@ -12,17 +12,17 @@ font
 box size correction
 
 GENERAL
-follower snaps into place at the begionning
 replace mc2 portraitrs and rewrite dialogue
+-bench and some objects
 add healilng and buff items occasionally.
 
-Inventory
+INVENTORY
+fix visual bug when u only have 1 gene of a type
 Settings menu
 dynamic portrait
 
 ICE PUZZLE
-remove river on puzzle complete - just that one
-bench full art (maybe not)
+add more stuff at the beginning
 crow gene - rat gene
 gate
 
@@ -31,8 +31,17 @@ boat animations
 
 BOSS
 animations and sprites
+-slam
+-slash
+-splash
+-projectile sprite
+-geyser
+-intro and end
 make it block off the enterances and exits
 
 CITY
 library and books
+game beginning
 
+OPTIONAL
+bench full art

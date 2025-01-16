@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class followerCreator : MonoBehaviour
@@ -25,21 +26,22 @@ public class followerCreator : MonoBehaviour
 
         followerPrefab = followerPrefab_;
 
-        startpos = this.gameObject.transform.position;
-
-        
+        StartCoroutine(startFetch());
     }
+
+    public IEnumerator startFetch()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        startpos = this.gameObject.transform.position;
+        yield return new WaitUntil(() => ((this.gameObject.transform.position - startpos).magnitude > 0.5f && !created && playerData.companion));
+        follower.create(gameObject, transform.position);
+        created = true;
+    }
+    
 
     public Vector3 startpos;
     public bool created = false;
 
-    private void Update()
-    {
-        if ((this.gameObject.transform.position - startpos).magnitude > 0.5f && !created && playerData.companion)
-        {
-            follower.create(gameObject, transform.position);
-            created = true;
-        }
-    }
 }
 

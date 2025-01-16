@@ -24,8 +24,13 @@ public class boss1Controller : MonoBehaviour
 
     public Vector3 playerPos = Vector3.zero;
 
+    public Sprite[] submergeAnim;
+    public Sprite[] emergeAnim;
+
     void Start()
     {
+        tentacle.emergeAnim = emergeAnim;
+        tentacle.submergeAnim = submergeAnim;
         tentacle.projectile = projectileSprite;
         mc = GameObject.FindGameObjectWithTag("player");
         if (playerPos != Vector3.zero)
