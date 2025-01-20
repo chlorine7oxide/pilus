@@ -6,9 +6,12 @@ public class geyserController : MonoBehaviour
     public static float cd;
     public static bool combat = false;
 
+    public Sprite[] geyserAnim;
+
     private void Start()
     {
         cd = 100000000;
+        geyser.geyserAnim = geyserAnim;
     }
 
     void Update()

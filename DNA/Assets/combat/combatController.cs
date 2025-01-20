@@ -12,6 +12,8 @@ public class combatController : MonoBehaviour
 {
     public int numPlayers, numEnemies;
 
+    public int mcHp = -1, friendHp = -1;
+
     public combatEntity[] Players, Enemies;
     public bool[] defended;
     public string[] enemys;
@@ -62,6 +64,8 @@ public class combatController : MonoBehaviour
                 {
                     GameObject g = GameObject.Find("boss1");
                     g.GetComponent<boss1Controller>().isCombat = false;
+                    g.GetComponent<boss1Controller>().mcHp = Players[0].hp;
+                    g.GetComponent<boss1Controller>().companionHp = Players[1].hp;
                     Destroy(this.gameObject);
                 }
                 else if (enemys.Contains("rat"))
@@ -219,6 +223,10 @@ public class combatController : MonoBehaviour
         defended = new bool[numPlayers];
 
         Players[0] = new MC(playerData.hp, playerData.def);
+        if (mcHp != -1)
+        {
+            Players[0].hp = mcHp;
+        }
         ((MC)Players[0]).entity.AddComponent<SpriteRenderer>().sprite = mcSprite;
         ((MC)Players[0]).entity.transform.Translate(new Vector3(-6, 0, 0));
         Players[0].hpBar.transform.position = (Players[0].entity.transform.position);
@@ -226,6 +234,10 @@ public class combatController : MonoBehaviour
         if (Players.Length == 2)
         {
             Players[1] = new friend(playerData.hp, playerData.def);
+            if (friendHp != -1)
+            {
+                Players[1].hp = friendHp;
+            }
             ((friend)Players[1]).entity.AddComponent<SpriteRenderer>().sprite = friendSprite;
             ((friend)Players[1]).entity.transform.Translate(new Vector3(-2, 0, 0));
             Players[1].hpBar.transform.position = (Players[1].entity.transform.position);

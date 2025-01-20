@@ -6,6 +6,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using System.Diagnostics;
+using static UnityEngine.GraphicsBuffer;
 
 public class boss1Controller : MonoBehaviour
 {
@@ -22,16 +23,26 @@ public class boss1Controller : MonoBehaviour
 
     public int phase = 0;
 
+    public int mcHp, companionHp;
+
     public Vector3 playerPos = Vector3.zero;
 
     public Sprite[] submergeAnim;
     public Sprite[] emergeAnim;
+    public Sprite[] slamAnim;
+    public Sprite[] splashAnim;
+
+    public GameObject slamPrefab;
 
     void Start()
     {
+        tentacle.slamPrefab = slamPrefab;
         tentacle.emergeAnim = emergeAnim;
         tentacle.submergeAnim = submergeAnim;
+        tentacle.slamAnim = slamAnim;
         tentacle.projectile = projectileSprite;
+        tentacle.splashAnim = splashAnim;
+
         mc = GameObject.FindGameObjectWithTag("player");
         if (playerPos != Vector3.zero)
         {
@@ -48,13 +59,16 @@ public class boss1Controller : MonoBehaviour
         }
         else
         {
-            print("making tentacles");
             tentacle.controller = this;
             for (int i = 0; i < 8; i++)
             {
                 tentacles[i] = tentacle.create();
             }
         }
+
+        playerData.setStats();
+        mcHp = playerData.hp;
+        companionHp = 100;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -69,7 +83,9 @@ public class boss1Controller : MonoBehaviour
     public void startFight()
     {
         //////////////////////// block exit placeholder
-        tentacles[0].activate(findWater(8));
+        tentacles[0].activate(closestWater());
+        print("starting");
+        print(tentacles[0].gameObject.transform.position);
         geyserController.geyserTime = 5;
         geyserController.cd = 0;
         StartCoroutine(phase0());
@@ -92,7 +108,7 @@ public class boss1Controller : MonoBehaviour
         yield return new WaitForSeconds(tentacle.splashTime);
         tentacles[0].submerge();
         yield return new WaitForSeconds(tentacle.submergeTime + 1);
-        tentacles[0].emerge(closestWater());
+        tentacles[0].emerge(closestHorizontalWater());
         yield return new WaitForSeconds(tentacle.emergeTime);
         tentacles[0].slam(mc.transform.position);
         yield return new WaitForSeconds(2);
@@ -183,7 +199,7 @@ public class boss1Controller : MonoBehaviour
             actives[0].submerge();
             yield return new WaitForSeconds(tentacle.splashTime + tentacle.emergeTime - tentacle.slashTime);
             actives[1].submerge();
-            actives[0].emerge(closestWater());
+            actives[0].emerge(closestHorizontalWater());
             yield return new WaitForSeconds(Mathf.Max(tentacle.emergeTime, tentacle.submergeTime));
             actives[1].emerge(closestWater());
             actives[0].slash(mc.transform.position);
@@ -210,7 +226,7 @@ public class boss1Controller : MonoBehaviour
                 actives[1].submerge();
                 yield return new WaitForSeconds(tentacle.submergeTime);
             }
-            actives[1].emerge(closestWater());
+            actives[1].emerge(closestHorizontalWater());
             yield return new WaitForSeconds(tentacle.emergeTime);
             actives[1].slam(mc.transform.position);
         }
@@ -331,7 +347,7 @@ public class boss1Controller : MonoBehaviour
         }
         try
         {
-            t.emerge(closestWater());
+            t.emerge(closestHorizontalWater());
         }
         catch
         {
@@ -357,7 +373,7 @@ public class boss1Controller : MonoBehaviour
             List<Vector3> tiles = new();
             for (float angle = 0; angle < 360; angle++)
             {
-                if (water.GetTile(water.WorldToCell(mc.transform.position + fromPolar(distance, angle))) == waterTile)
+                if (water.GetTile(water.WorldToCell(mc.transform.position + fromPolar(distance, angle))) != null)
                 {
                     tiles.Add(mc.transform.position + fromPolar(distance, angle));
                 }
@@ -374,6 +390,46 @@ public class boss1Controller : MonoBehaviour
         }
     }
 
+    public static Vector3 HorizontalWater(float distance)
+    {
+        try
+        {
+            List<Vector3> tiles = new();
+            for (float angle = 0; angle < 2; angle++)
+            {
+                if (water.GetTile(water.WorldToCell(mc.transform.position + fromPolar(distance, angle * 180))) != null)
+                {
+                    tiles.Add(mc.transform.position + fromPolar(distance, angle));
+                }
+            }
+            if (tiles.Count == 0)
+            {
+                return Vector3.zero;
+            }
+            return -tiles[(int)Random.Range(0, tiles.Count)] + 2*  mc.transform.position;
+        }
+        catch
+        {
+            return Vector3.zero;
+        }
+    }
+
+    public static Vector3 closestHorizontalWater()
+    {
+        Vector3 result = Vector3.zero;
+        int count = 1;
+        while (result == Vector3.zero)
+        {
+            result = HorizontalWater(count);
+            count++;
+            if (count == 20)
+            {
+                return Vector3.zero;
+            }
+        }
+        return result;
+    }
+
     public static Vector3 findWaterFrom(float distance, Vector3 target)
     {
         try
@@ -381,7 +437,7 @@ public class boss1Controller : MonoBehaviour
             List<Vector3> tiles = new();
             for (float angle = 0; angle < 360; angle++)
             {
-                if (water.GetTile(water.WorldToCell(target + fromPolar(distance, angle))) == waterTile)
+                if (water.GetTile(water.WorldToCell(target + fromPolar(distance, angle))) != null)
                 {
                     tiles.Add(target + fromPolar(distance, angle));
                 }
@@ -458,6 +514,7 @@ public class boss1Controller : MonoBehaviour
         geyserController.combat = false;
         t.alive = false;
         t.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+        t.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
         int numAlive = 0;
         foreach (tentacle c in tentacles)
         {
@@ -472,7 +529,6 @@ public class boss1Controller : MonoBehaviour
         }
         else
         {
-            print(numAlive);
             StartCoroutine(phase1());
         }
     }

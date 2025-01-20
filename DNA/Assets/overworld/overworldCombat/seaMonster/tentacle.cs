@@ -6,6 +6,8 @@ public class tentacle : MonoBehaviour
     public static Sprite projectile;
     public static Sprite baseSprite;
 
+    public static GameObject slamPrefab;
+
     public bool alive = true;
     public bool active = false;
     public bool ready = true;
@@ -13,8 +15,11 @@ public class tentacle : MonoBehaviour
     public static float submergeTime = 1.5f;
     public static float emergeTime = 0.875f;
     public static float slashTime = 2;
-    public static float splashTime = 3;
-    public static float slamTime = 5;
+    public static float splashTime = 2;
+    public static float slamTime = 6;
+
+    public static int numTent = 0;
+    public int tentNum;
 
     public static boss1Controller controller;
 
@@ -24,15 +29,20 @@ public class tentacle : MonoBehaviour
 
     public static Sprite[] emergeAnim;
     public static Sprite[] submergeAnim;
+    public static Sprite[] slamAnim;
+    public static Sprite[] splashAnim;
 
     public static tentacle create()
     {
         GameObject g = new("tentacle");
+        g.tag = "tantacle";
         g.AddComponent<tentacle>();
         g.AddComponent<BoxCollider2D>();
         g.AddComponent<Rigidbody2D>().gravityScale = 0;
         g.GetComponent<BoxCollider2D>().isTrigger = true;
         DontDestroyOnLoad(g);
+        g.GetComponent<tentacle>().tentNum = numTent;
+        numTent++;
 
         return g.GetComponent<tentacle>();
     }
@@ -40,7 +50,8 @@ public class tentacle : MonoBehaviour
     {
         this.transform.position = pos;
         this.gameObject.AddComponent<SpriteRenderer>().sprite = baseSprite;
-        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = tentNum;
+        this.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "enemy";
         active = true;
         // animation placeholder
     }
@@ -69,6 +80,10 @@ public class tentacle : MonoBehaviour
         this.transform.position = pos;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = baseSprite;
         StartCoroutine(emergeAnimation());
+        if (GameObject.FindGameObjectWithTag("player").transform.position.x > this.gameObject.transform.position.x)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     public IEnumerator emergeAnimation()
@@ -111,14 +126,18 @@ public class tentacle : MonoBehaviour
     {
         //indication placeholder
         ready = false;
-        enemyUtils.projectile(25, target - this.gameObject.transform.position, projectile, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, 1).normalized)), projectile, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, -1).normalized)), projectile, 5, this.gameObject.transform.position);
-        yield return new WaitForSeconds(1);
-        enemyUtils.projectile(25, target - this.gameObject.transform.position, projectile, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, 1).normalized)), projectile, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(25, -this.gameObject.transform.position + (target + Vector3.Cross(target - this.gameObject.transform.position, new Vector3(0, 0, -1).normalized)), projectile, 5, this.gameObject.transform.position);
-        yield return new WaitForSeconds(slashTime - 1);
+        for (int i = 0; i < 4;i++)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = splashAnim[i];
+            yield return new WaitForSeconds(0.125f);
+        }
+        geyser.create(this.gameObject.transform.position + new Vector3(-2, 0, 0));
+        for (int i = 4; i < splashAnim.Length; i++)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = splashAnim[i];
+            yield return new WaitForSeconds(0.125f);
+        }
+        yield return new WaitForSeconds(splashTime - 0.125f * splashAnim.Length);
         ready = true;
 
     }
@@ -130,16 +149,56 @@ public class tentacle : MonoBehaviour
 
     public IEnumerator slamAttack(Vector3 target)
     {
-        
+        Vector3 offset = new Vector3(-4, 0, 0);
+
+
+        if (this.gameObject.transform.position.x < GameObject.FindGameObjectWithTag("player").transform.position.x)
+        {
+            offset = new Vector3(4, 0, 0);
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
         ready = false;
+
+        GameObject hitbox = Instantiate(slamPrefab, this.gameObject.transform.position - new Vector3(0, 1, 0), Quaternion.identity, this.gameObject.transform);
+        hitbox.transform.localScale = new Vector3((this.gameObject.GetComponent<SpriteRenderer>().flipX) ? -10 : 10, 1, 1);
+        hitbox.GetComponent<PolygonCollider2D>().enabled = false;
+        hitbox.transform.Translate(offset);
+        hitbox.GetComponent<hitboxSlam>().t = this;
+
         //indication placeholder
         yield return new WaitForSeconds(1);
         slamming = true;
-        Vector3 og = this.gameObject.transform.position;
-        this.transform.position = target;
+        //Vector3 og = this.gameObject.transform.position;
+        //this.transform.position = target;
         // animation placeholder
+
+        hitbox.GetComponent<SpriteRenderer>().enabled = false;
+
+        this.gameObject.transform.Translate(offset);
+
+        for (int i = 0; i < 5; i++)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = slamAnim[i];
+            yield return new WaitForSeconds(0.125f);
+        }
+
+        hitbox.GetComponent<PolygonCollider2D>().enabled = true;
+        hitbox.transform.Translate(-offset);
+
         combatable = true;
-        yield return new WaitForSeconds(slamTime - 1);
+        /*
+        yield return new WaitForSeconds(slamTime - 3);
+        combatable = false;
+
+        for (int i = 5; i < 16; i++)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = slamAnim[i];
+            yield return new WaitForSeconds(0.125f);
+        }
+
+        ready = true;
+        slamming = false;
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -164,8 +223,8 @@ public class tentacle : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z) && active && alive && slamming)
             {
-                interactable = false;
-                StartCoroutine(controller.enterCombat(this));
+                //interactable = false;
+                //StartCoroutine(controller.enterCombat(this));
             }
         }
         if (controller.isCombat && this.gameObject.transform.position.x < 100)
