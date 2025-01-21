@@ -37,14 +37,14 @@ public class geyser : MonoBehaviour
         }
 
         
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 0) * 3, proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 45) * 3, proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 90) * 3, proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 135) * 3, proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 180) * 3, proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 225) * 3, proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 270) * 3, proj, 5, this.gameObject.transform.position);
-        enemyUtils.projectile(10, boss1Controller.fromPolar(1, 315) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, boss1Controller.fromPolar(1, 0) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, boss1Controller.fromPolar(1, 45) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, boss1Controller.fromPolar(1, 90) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, boss1Controller.fromPolar(1, 135) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, boss1Controller.fromPolar(1, 180) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, boss1Controller.fromPolar(1, 225) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, boss1Controller.fromPolar(1, 270) * 3, proj, 5, this.gameObject.transform.position);
+        enemyUtils.projectile(25, boss1Controller.fromPolar(1, 315) * 3, proj, 5, this.gameObject.transform.position);
 
         yield return new WaitForSeconds(0.125f);
         this.gameObject.GetComponent<SpriteRenderer>().sprite = geyserAnim[5];

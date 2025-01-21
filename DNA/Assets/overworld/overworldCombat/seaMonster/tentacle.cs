@@ -6,7 +6,7 @@ public class tentacle : MonoBehaviour
     public static Sprite projectile;
     public static Sprite baseSprite;
 
-    public static GameObject slamPrefab;
+    public static GameObject slamPrefab, slashPrefab;
 
     public bool alive = true;
     public bool active = false;
@@ -14,7 +14,7 @@ public class tentacle : MonoBehaviour
 
     public static float submergeTime = 1.5f;
     public static float emergeTime = 0.875f;
-    public static float slashTime = 2;
+    public static float slashTime = 3;
     public static float splashTime = 2;
     public static float slamTime = 6;
 
@@ -31,11 +31,12 @@ public class tentacle : MonoBehaviour
     public static Sprite[] submergeAnim;
     public static Sprite[] slamAnim;
     public static Sprite[] splashAnim;
+    public static Sprite[] slashAnim;
 
     public static tentacle create()
     {
         GameObject g = new("tentacle");
-        g.tag = "tantacle";
+        g.tag = "tentacle";
         g.AddComponent<tentacle>();
         g.AddComponent<BoxCollider2D>();
         g.AddComponent<Rigidbody2D>().gravityScale = 0;
@@ -105,15 +106,49 @@ public class tentacle : MonoBehaviour
     public IEnumerator slashAttack(Vector3 target)
     {
         ready = false;
-        //indication placeholder
+        
+        
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = slashAnim[0];
+        Vector3 offset = new Vector3(-4, -4, 0);
+        if (this.gameObject.transform.position.x < GameObject.FindGameObjectWithTag("player").transform.position.x)
+        {
+            offset = new Vector3(4, -4, 0);
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        this.gameObject.transform.Translate(offset);
+
+
+        GameObject slash;
+        if (this.gameObject.GetComponent<SpriteRenderer>().flipX == true)
+        {
+            slash = Instantiate(slashPrefab, this.gameObject.transform.position, Quaternion.identity, this.gameObject.transform);
+            slash.GetComponentInChildren<SpriteRenderer>().flipX = true;
+            slash.transform.GetChild(0).transform.Translate(new Vector3(-2, 0, 0));
+            slash.transform.GetChild(1).transform.Translate(new Vector3(-11, 0, 0));
+            slash.GetComponentInChildren<slashHitbox>().flipped = true;
+        }
+        else
+        {
+            slash = Instantiate(slashPrefab, this.gameObject.transform.position, Quaternion.identity, this.gameObject.transform);
+        }
+
         yield return new WaitForSeconds(1);
 
-        Vector3 og = this.gameObject.transform.position;
-        this.transform.position = target;
-        // animation placeholder
-        yield return new WaitForSeconds(slashTime - 1);
+        slash.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        slash.GetComponentInChildren<BoxCollider2D>().enabled = true;
 
-        this.transform.position = og;
+        for (int i = 1;i < slashAnim.Length; i++)
+        {
+            yield return new WaitForSeconds(0.125f);
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = slashAnim[i];
+        }
+
+        Destroy(slash);
+
+        yield return new WaitForSeconds(slashTime - 1 - 0.125f * slashAnim.Length);
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
+        this.gameObject.transform.Translate(-offset);
+
         ready = true;
     }
 
@@ -131,7 +166,7 @@ public class tentacle : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().sprite = splashAnim[i];
             yield return new WaitForSeconds(0.125f);
         }
-        geyser.create(this.gameObject.transform.position + new Vector3(-2, 0, 0));
+        geyser.create(this.gameObject.transform.position + new Vector3((this.gameObject.GetComponent<SpriteRenderer>().flipX == true) ? 2 : -2, 0, 0));
         for (int i = 4; i < splashAnim.Length; i++)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = splashAnim[i];

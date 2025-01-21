@@ -31,8 +31,9 @@ public class boss1Controller : MonoBehaviour
     public Sprite[] emergeAnim;
     public Sprite[] slamAnim;
     public Sprite[] splashAnim;
+    public Sprite[] slashAnim;
 
-    public GameObject slamPrefab;
+    public GameObject slamPrefab, slashPrefab;
 
     void Start()
     {
@@ -42,6 +43,8 @@ public class boss1Controller : MonoBehaviour
         tentacle.slamAnim = slamAnim;
         tentacle.projectile = projectileSprite;
         tentacle.splashAnim = splashAnim;
+        tentacle.slashAnim = slashAnim;
+        tentacle.slashPrefab = slashPrefab;
 
         mc = GameObject.FindGameObjectWithTag("player");
         if (playerPos != Vector3.zero)
@@ -65,10 +68,6 @@ public class boss1Controller : MonoBehaviour
                 tentacles[i] = tentacle.create();
             }
         }
-
-        playerData.setStats();
-        mcHp = playerData.hp;
-        companionHp = 100;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -514,7 +513,7 @@ public class boss1Controller : MonoBehaviour
         geyserController.combat = false;
         t.alive = false;
         t.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-        t.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        t.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
         int numAlive = 0;
         foreach (tentacle c in tentacles)
         {

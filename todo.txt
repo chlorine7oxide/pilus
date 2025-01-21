@@ -1,6 +1,6 @@
 COMBAT
 inactive entities cant be targeted
-enemy animations for rat and tentacle4:02 PM 16/01/20
+enemy animations for rat and tentacle
 you only lose when you die not your companion
 game over screen and battle win screen.
 
@@ -35,8 +35,7 @@ animations and sprites
 -projectile sprite
 -intro and end
 make it block off the enterances and exits
-can emerge not on the water for horizontal.
-switch tentacle sorting order to be based on y coord
+figure out where the tentacle flikering is coiming from
 
 CITY
 library and books
