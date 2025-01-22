@@ -538,7 +538,6 @@ public class inventoryController : MonoBehaviour
                         i15 = itemDialogue.create("Dispite it's age, it looks like it could heal me in combat.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i15.done);
                         i15.destroy();
-                        playerData.items.Remove(item);
                         break;
                     case "Marine life book":
                         itemDialogue i16 = itemDialogue.create("A book about the local marine life.", inventoryTester.port, portrait.transform.position);
@@ -555,7 +554,6 @@ public class inventoryController : MonoBehaviour
                         i17 = itemDialogue.create("Even after so long, they could probably heal me in combat.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i17.done);
                         i17.destroy();
-                        playerData.items.Remove(item);
                         break;
                 } // item inspect text and functionality
                 break;

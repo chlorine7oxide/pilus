@@ -100,4 +100,5 @@ public static class playerData
     public static bool antihistamineGene = false;
     public static bool[] lockFlags = { false, false };
     public static bool boatPrepared = false;
+    public static string[] libraryBooks = { "", "", "", "", "" };
 }

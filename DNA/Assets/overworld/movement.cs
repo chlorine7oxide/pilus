@@ -52,5 +52,12 @@ public class movement : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         }
+        if (GameObject.FindGameObjectWithTag("book") is not null)
+        {
+            if (GameObject.FindGameObjectWithTag("book").GetComponent<bookSelector>().active)
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            }
+        }
     }
 }

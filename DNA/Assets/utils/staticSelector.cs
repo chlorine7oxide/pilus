@@ -21,6 +21,8 @@ public class staticSelector : MonoBehaviour
         g.GetComponent<staticSelector>().prow = pRow;
         g.AddComponent<SpriteRenderer>().sprite = sel;
         g.GetComponent<SpriteRenderer>().sortingOrder = 20;
+        g.GetComponent<SpriteRenderer>().sortingLayerName = "ui";
+
         g.GetComponent<staticSelector>().offset = new Vector3(0, 0, 0);
 
         return g.GetComponent<staticSelector>();
@@ -35,6 +37,7 @@ public class staticSelector : MonoBehaviour
         g.GetComponent<staticSelector>().offset = offset;
         g.AddComponent<SpriteRenderer>().sprite = sel;
         g.GetComponent<SpriteRenderer>().sortingOrder = 20;
+        g.GetComponent<SpriteRenderer>().sortingLayerName = "ui";
 
         return g.GetComponent<staticSelector>();
     } 

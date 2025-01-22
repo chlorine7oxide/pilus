@@ -26,7 +26,6 @@ public class crowtroller : MonoBehaviour
     private void Start()
     {
         crowEnemy.crowPrefab = crowPrefab;
-        print(playerData.crowBeaten);
         if (playerData.crowBeaten)
         {
             carryableItem.create(rock, "Giant Rock", new Vector3(-54, 42, 0), false, false);
@@ -80,10 +79,13 @@ public class crowtroller : MonoBehaviour
         
 
         msgs.Enqueue(new msg(face, () => "What was that?", "TestSpeaker1", p1));
-        msgs.Enqueue(new msg(face, () => "I think it's a crowlder.", "TestSpeaker1", p2));
-        msgs.Enqueue(new msg(face, () => "I've never heard of that before.", "TestSpeaker1", p1));
-        msgs.Enqueue(new msg(face, () => "Me either, I just made it up.", "TestSpeaker1", p2));
-        msgs.Enqueue(new msg(face, () => "I think we should track it down though, we could use that boulder to solve the puzzle.", "TestSpeaker1", p2));
+        msgs.Enqueue(new msg(face, () => "It looked like a crow.", "TestSpeaker1", p2));
+        msgs.Enqueue(new msg(face, () => "But was it carrying that giant rock?", "TestSpeaker1", p2));
+        msgs.Enqueue(new msg(face, () => "Likely to make a nest.", "TestSpeaker1", p1));
+        msgs.Enqueue(new msg(face, () => "These types of birds like to collect stones.", "TestSpeaker1", p1));
+        msgs.Enqueue(new msg(face, () => "That wasn't just a stone though...", "TestSpeaker1", p2));
+        msgs.Enqueue(new msg(face, () => "Yeah I've never seen one with a stone that big before.", "TestSpeaker1", p1));
+        msgs.Enqueue(new msg(face, () => "I think we should track it down though, I don't want to leave something that strange be.", "TestSpeaker1", p2));
 
         speakers[0].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(-6f, -2.8f, 0);
         speakers[1].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(6f, -2.8f, 0);
