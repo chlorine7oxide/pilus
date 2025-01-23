@@ -20,15 +20,20 @@ public class inventoryTester : MonoBehaviour
         giantRock = giantRocks;
         inventoryController.money = money;
 
-        playerData.eyes.Add(new eye(eye1, eye1t, eye1b, eye1j));
-        //playerData.eyes.Add(new watchfulEye(eye2, eye2t, eye2b, eye2j));
-        playerData.arms.Add(new arm(arm1, arm1t, arm1b, arm1j));
-        //playerData.arms.Add(new mechanicalArm(arm2, arm2t, arm2b, arm2j));
-        playerData.genes.Add(new courage(gen1, gen1t, gen1b, gen1j));
-        //playerData.genes.Add(new strongBone(gen2, gen2t, gen2b, gen2j));
+        if (playerData.genes.Count == 0)
+        {
+            playerData.eyes.Add(new eye(eye1, eye1t, eye1b, eye1j));
+            //playerData.eyes.Add(new watchfulEye(eye2, eye2t, eye2b, eye2j));
+            playerData.arms.Add(new arm(arm1, arm1t, arm1b, arm1j));
+            //playerData.arms.Add(new mechanicalArm(arm2, arm2t, arm2b, arm2j));
+            playerData.genes.Add(new courage(gen1, gen1t, gen1b, gen1j));
+            //playerData.genes.Add(new strongBone(gen2, gen2t, gen2b, gen2j));
+        }
+
         dynamicSelector.empty = empty;
 
         playerData.equiped[0] = playerData.eyes[0];
+        playerData.equiped[1] = playerData.eyes[0];
         playerData.equiped[2] = playerData.arms[0];
         playerData.equiped[3] = playerData.arms[0];
         playerData.equiped[4] = playerData.genes[0];

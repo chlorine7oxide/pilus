@@ -98,7 +98,54 @@ public class inventoryController : MonoBehaviour
 
     public IEnumerator geneMenuSel()
     {
-        Debug.Log("Gene");
+        Gene[] e = playerData.eyes.ToArray();
+        List<Sprite> jars = new();
+        List<Sprite> tops = new();
+        List<Sprite> bottoms = new();
+
+        for (int i = 0; i < playerData.eyes.Count; i++)
+        {
+            jars.Add(playerData.eyes[i].jar);
+            tops.Add(playerData.eyes[i].top);
+            bottoms.Add(playerData.eyes[i].bottom);
+        }
+        dynamicSelector d = dynamicSelector.create(eyebuttons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray(), new Vector3(0, -2, 0));
+        d.destroy();
+        e = playerData.arms.ToArray();
+        jars = new();
+        tops = new();
+        bottoms = new();
+
+        for (int i = 0; i < playerData.arms.Count; i++)
+        {
+            jars.Add(playerData.arms[i].jar);
+            tops.Add(playerData.arms[i].top);
+            bottoms.Add(playerData.arms[i].bottom);
+        }
+
+        d = dynamicSelector.create(armButtons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray(), new Vector3(0, -2, 0));
+        d.destroy();
+
+        e = playerData.genes.ToArray();
+        List<Gene> available = new();
+        jars = new();
+        tops = new();
+        bottoms = new();
+
+        for (int i = 0; i < playerData.genes.Count; i++)
+        {
+            if (!playerData.equiped.Contains(playerData.genes[i]))
+            {
+                available.Add(playerData.genes[i]);
+            }
+            jars.Add(playerData.genes[i].jar);
+            tops.Add(playerData.genes[i].top);
+            bottoms.Add(playerData.genes[i].bottom);
+        }
+
+        d = dynamicSelector.create(generalButtons, jars.ToArray(), sel, tops.ToArray(), bottoms.ToArray(), new Vector3(0, -2, 0));
+        d.destroy();
+
         staticSelector s = staticSelector.create(geneButtons, 2, sel, new Vector3(-1, 0, 0));
 
         yield return new WaitUntil(() => (s.done || Input.GetKeyDown(KeyCode.X)));
@@ -142,13 +189,6 @@ public class inventoryController : MonoBehaviour
 
         s.destroy();
     }
-
-    /*
-    public IEnumerator eyeWarning()
-    {
-
-    }
-    */
 
     public IEnumerator eyeSel()
     {

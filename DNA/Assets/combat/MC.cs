@@ -34,4 +34,14 @@ public class MC : combatEntity
     {
         Debug.Log("check placeholder");
     }
+
+    public void punch2(combatEntity target)
+    {
+        target.takeDamage(15);
+    }
+
+    public void slam2(combatEntity target)
+    {
+        target.takeDamage(20);
+    }
 }

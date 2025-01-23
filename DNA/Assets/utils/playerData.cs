@@ -22,17 +22,32 @@ public static class playerData
             {
                 continue;
             }
+            int armCount = 0, mechArmCount = 0;
             switch (gene.name)
             {
                 case "Arm":
                     cur.Add("Punch");
+                    armCount++;
                     break;
                 case "Courage":
                     cur.Add("Insult");
                     break;
                 case "Mechanical Arm":
                     cur.Add("Slam");
+                    mechArmCount++;
                     break;
+            }
+            if (armCount == 2)
+            {
+                cur.Remove("Punch");
+                cur.Remove("Punch");
+                cur.Add("Double Punch");
+            }
+            if (mechArmCount == 2)
+            {
+                cur.Remove("Slam");
+                cur.Remove("Slam");
+                cur.Add("Slam+");
             }
         }
         MCabilities = cur;

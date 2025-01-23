@@ -495,9 +495,19 @@ public class combatController : MonoBehaviour
                 selector.destroy();
 
                 // target selector
-                if (ability == "Punch" || ability == "Slam" || ability == "attack" || ability == "swing" || ability == "Insult" || ability == "Check")
+                if (ability == "Punch" || ability == "Slam" || ability == "attack" || ability == "swing" || ability == "Insult" || ability == "Check" || ability == "Double Punch" || ability == "Slam+")
                 {
-                    staticSelector se = staticSelector.create(Enemies.Select(e => e.entity).ToArray(), 1, mcSprite);
+                    List<combatEntity> c = Enemies.ToList();
+
+                    foreach(combatEntity comb in c)
+                    {
+                        if (!comb.active || comb.hp <= 0)
+                        {
+                            c.Remove(comb);
+                        }
+                    }
+
+                    staticSelector se = staticSelector.create(c.Select(e => e.entity).ToArray(), 1, mcSprite);
                     yield return new WaitUntil(() => se.done);
                     combatEntity res2 = Enemies[se.result];
 
@@ -520,6 +530,12 @@ public class combatController : MonoBehaviour
                             break;
                         case "Check":
                             ((MC)Players[turnNum]).check(res2);
+                            break;
+                        case "Double Punch":
+                            ((MC)Players[turnNum]).punch2(res2);
+                            break;
+                        case "Slam+":
+                            ((MC)Players[turnNum]).slam2(res2);
                             break;
                     }
                 }

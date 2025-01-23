@@ -10,7 +10,7 @@ public class textBox
     protected GameObject text;
 
     public static GameObject textPrefab;
-    public static float charsPerLine = 31f, heightPerLine = 0.35f;
+    public static float charsPerLine = 26f, heightPerLine = 0.35f;
     public static Sprite boxSprite1, boxSprite2, boxSprite3, boxSprite4;
     public Vector3 textpos, namePos;
 
@@ -39,7 +39,8 @@ public class textBox
                 box.GetComponent<SpriteRenderer>().sprite = boxSprite4;
                 break;
         }
-        textpos = new Vector3(0, (height - 1) * heightPerLine - 0.25f * (height - 1), 0);
+        //textpos = new Vector3(0, (height - 1) * heightPerLine - 0.25f * (height - 1), 0);
+        textpos = Vector3.zero;
         namePos = new Vector3(-5f, height * heightPerLine, 0);
 
         box.GetComponent<SpriteRenderer>().flipX = isRight;
@@ -47,6 +48,7 @@ public class textBox
         box.GetComponent<SpriteRenderer>().sortingOrder = 10;
         this.text.GetComponent<TextMeshPro>().sortingOrder = 11;
         this.name.GetComponent<TextMeshPro>().sortingOrder = 11;
+        this.text.transform.position = box.transform.position;
 
         moveTo(new Vector3(0, -5f, 0));
     }

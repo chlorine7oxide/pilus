@@ -43,6 +43,7 @@ public class dynamicSelector : MonoBehaviour
         g.GetComponent<dynamicSelector>().tops = tops;
         g.GetComponent<dynamicSelector>().bottoms = bottoms;
         g.transform.Rotate(new Vector3(0, 0, 90));
+        d.updateSprites();
 
         return d;
     }

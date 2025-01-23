@@ -33,7 +33,7 @@ public class bench : overworldInteractable
         msgs.Enqueue(new msg(testFace, () => "We've been going for a while now.", "TestSpeaker2", p2));
         msgs.Enqueue(new msg(testFace, () => "Don't you think it's time for a break?", "TestSpeaker2", p2));
         msgs.Enqueue(new msg(testFace, () => "decisionSit", "TestSpeaker1", p1));
-        msgs.Enqueue(new msg(null, () => "I guess we do have to keep going then...", "TestSpeaker2", speakers[1]));
+        msgs.Enqueue(new msg(null, () => "I guess we do have to keep going then...", "TestSpeaker2", p2));
 
         speakers[0].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(-6f, -2.8f, 0);
         speakers[1].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(6f, -2.8f, 0);

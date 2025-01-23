@@ -69,7 +69,6 @@ public class msgController : MonoBehaviour
 
     public void nextMsg()
     {
-        print("next");
         if (msgs.Count > 0)
         {
             inText = true;
@@ -109,7 +108,7 @@ public class msgController : MonoBehaviour
             {
                 activateSpeaker(m.speaker);
                 setFace(m.speaker, m.face);
-                createBox(m.name, m.text(), (m.speaker.transform.position.x > 0));
+                createBox(m.name, m.text(), (m.speaker.transform.position.x - GameObject.FindGameObjectWithTag("player").transform.position.x > 0));
             }
 
             
@@ -153,17 +152,15 @@ public class msgController : MonoBehaviour
         if (d.isUp)
         {
             msgs.Dequeue();
-            msgs.Enqueue(new msg(null, () => "All these puzzles are tiring aren't they", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "All these puzzles are tiring aren't they", "TestSpeaker2", speakers[0]));
             msgs.Enqueue(new msg(null, () => "I find it a little strange that an abandoned place like this has them.", "TestSpeaker2", speakers[1]));
             msgs.Enqueue(new msg(null, () => "It does seem a little...", "TestSpeaker2", speakers[0]));
             msgs.Enqueue(new msg(null, () => "Insecure? Of a security system.", "TestSpeaker2", speakers[0]));
-            msgs.Enqueue(new msg(null, () => "I'm not gonna argue though.", "TestSpeaker2", speakers[1]));
-            msgs.Enqueue(new msg(null, () => "Makes it easier for us.", "TestSpeaker2", speakers[1]));
-            msgs.Enqueue(new msg(null, () => "Mmm.", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "I'm not gonna argue though.", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "Makes it easier for us.", "TestSpeaker2", speakers[0]));
+            msgs.Enqueue(new msg(null, () => "It does.", "TestSpeaker2", speakers[1]));
             msgs.Enqueue(new msg(null, () => "How much further do you think we have to go here?", "TestSpeaker2", speakers[0]));
-            msgs.Enqueue(new msg(null, () => "How big is this place anyways?", "TestSpeaker2", speakers[0]));
-            msgs.Enqueue(new msg(null, () => "I didn't know this place even existed before now - it WAS abandoned when I was here though.", "TestSpeaker2", speakers[1]));
-            msgs.Enqueue(new msg(null, () => "And I was only a toddler, so even if I had been here I doubt I would've remembered.", "TestSpeaker2", speakers[1]));
+            msgs.Enqueue(new msg(null, () => "I didn't know this place even existed before now.", "TestSpeaker2", speakers[1]));
             msgs.Enqueue(new msg(null, () => "I'm just wondering why it was abandoned.", "TestSpeaker2", speakers[0]));
             msgs.Enqueue(new msg(null, () => "It's making me a little anxious, what if there's something dangerous...", "TestSpeaker2", speakers[0]));
             msgs.Enqueue(new msg(null, () => "I doubt that, we haven't seen anything yet.", "TestSpeaker2", speakers[1]));
@@ -221,10 +218,10 @@ public class msgController : MonoBehaviour
         b.moveTo(new Vector3(10000, -5f, 0));
         readyForbox = false;
         foreach (textBox box in boxes) {
-            StartCoroutine(moveOverTime(box.box, pos[box] + new Vector3(0, b.getHeight(), 0), 0.2f, b, Vector3.zero));
-            StartCoroutine(moveOverTime(box.name, pos[box] + box.namePos + new Vector3(0, b.getHeight(), 0), 0.2f, b, box.namePos));
-            StartCoroutine(moveOverTime(box.getText(), pos[box] + box.textpos + new Vector3(0, b.getHeight(), 0), 0.2f, b, box.textpos));
-            pos[box] = pos[box] + new Vector3(0, b.getHeight(), 0);
+            StartCoroutine(moveOverTime(box.box, pos[box] + new Vector3(0, 0.5f * b.getHeight() + 0.5f * boxes[boxes.Count-1].getHeight(), 0), 0.2f, b, Vector3.zero));
+            StartCoroutine(moveOverTime(box.name, pos[box] + box.namePos + new Vector3(0, 0.5f * b.getHeight() + 0.5f * boxes[boxes.Count - 1].getHeight(), 0), 0.2f, b, box.namePos));
+            StartCoroutine(moveOverTime(box.getText(), pos[box] + box.textpos + new Vector3(0, 0.5f * b.getHeight() + 0.5f * boxes[boxes.Count - 1].getHeight(), 0), 0.2f, b, box.textpos));
+            pos[box] = pos[box] + new Vector3(0, 0.5f * b.getHeight() + 0.5f * boxes[boxes.Count - 1].getHeight(), 0);
         }
         if (boxes.Count == 0)
         {
@@ -243,10 +240,10 @@ public class msgController : MonoBehaviour
         readyForbox = false;
         foreach (textBox box in boxes)
         {
-            StartCoroutine(moveOverTime(box.box, pos[box] + new Vector3(0, b.getHeight(), 0), 0.2f, b, Vector3.zero));
-            StartCoroutine(moveOverTime(box.name, pos[box] + box.namePos + new Vector3(0, b.getHeight(), 0), 0.2f, b, box.namePos));
-            StartCoroutine(moveOverTime(box.getText(), pos[box] + box.textpos + new Vector3(0, b.getHeight(), 0), 0.2f, b, box.textpos));
-            pos[box] = pos[box] + new Vector3(0, b.getHeight(), 0);
+            StartCoroutine(moveOverTime(box.box, pos[box] + new Vector3(0, 0.5f * b.getHeight() + 0.5f * boxes[boxes.Count - 1].getHeight(), 0), 0.2f, b, Vector3.zero));
+            StartCoroutine(moveOverTime(box.name, pos[box] + box.namePos + new Vector3(0, 0.5f * b.getHeight() + 0.5f * boxes[boxes.Count - 1].getHeight(), 0), 0.2f, b, box.namePos));
+            StartCoroutine(moveOverTime(box.getText(), pos[box] + box.textpos + new Vector3(0, 0.5f * b.getHeight() + 0.5f * boxes[boxes.Count - 1].getHeight(), 0), 0.2f, b, box.textpos));
+            pos[box] = pos[box] + new Vector3(0,    0.5f * b.getHeight() + 0.5f * boxes[boxes.Count - 1].getHeight(), 0);
         }
         if (boxes.Count == 0)
         {

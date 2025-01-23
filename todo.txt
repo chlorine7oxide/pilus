@@ -1,5 +1,4 @@
 COMBAT
-inactive entities cant be targeted
 enemy animations for rat and tentacle
 you only lose when you die not your companion
 game over screen and battle win screen.
@@ -13,11 +12,9 @@ box size correction
 
 GENERAL
 replace mc2 portraitrs and rewrite dialogue
--bench and some objects
-add healilng and buff items occasionally.
+add buff items
 
 INVENTORY
-fix visual bug when u only have 1 gene of a type
 Settings menu
 dynamic portrait
 
