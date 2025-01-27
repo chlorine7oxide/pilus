@@ -41,6 +41,7 @@ public abstract class overworldInteractable : MonoBehaviour
             }
             if (g is null && !GameObject.FindGameObjectWithTag("inv").GetComponent<inventoryController>().active)
             {
+                print("trying interact");
                 interact();
             }
         }

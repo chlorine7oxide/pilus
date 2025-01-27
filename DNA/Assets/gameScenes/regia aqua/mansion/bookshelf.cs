@@ -28,6 +28,10 @@ public class bookshelf : overworldInteractable
             yield return new WaitUntil(() => t.done);
             playerData.items.Add("Drilling Book");
         }
+        else
+        {
+            yield return new WaitUntil(() => t.done);
+        }
         t.destroy();
     }
 }

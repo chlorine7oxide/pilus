@@ -752,7 +752,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   tent: {fileID: -3019424127853119141, guid: fbe41e46e9d737048af8a796036ed4f9, type: 3}
-  projectileSprite: {fileID: 7221874881730323659, guid: 8d1e4700f22dc7240a9d041b7167fde6, type: 3}
+  projectileSprite: {fileID: -2272461426679928566, guid: 0fe67bc156484bd41bf3391cca2f677d, type: 3}
   water_: {fileID: 1510714389}
   waterTile_: {fileID: 11400000, guid: 51b085897bdef8f4ab1574c5ea8609e6, type: 2}
   isCombat: 0

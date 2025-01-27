@@ -22,22 +22,17 @@ ICE PUZZLE
 add more stuff at the beginning
 crow gene - rat gene
 gate
-i cant see the desk key???
 the floor moves near the puzzle in icepuzzle2
 topright house in icepuzzle2 needs rewrite
 
 MANSION
 fishing key conversation need rewritten
 boat animations
-rework hitboxes
-fix floor objects in storage room + some sorting order problems
 antihistamine gene implementation
 sneezing in storage room
-something in the library breaks overworldInteractabe
 
 BOSS
 animations and sprites
--projectile sprite
 -intro and end
 make it block off the enterances and exits
 figure out where the tentacle flikering is coiming from
@@ -48,7 +43,10 @@ library and books
  - add librarian and dialogue
  - once 5 donated give next part of the quest
 game beginning
-rest of city
+find a place to put the walkway
+initial alleyway
+main city area - and a couple of buildings u can enter (inc library)
+town hall/important building
 
 OPTIONAL
 bench full art
