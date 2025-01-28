@@ -45,7 +45,15 @@ public class parallaxController : MonoBehaviour
             }
             else
             {
-                this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
+                if (GameObject.FindGameObjectWithTag("player").transform.position.x > -27 && GameObject.FindGameObjectWithTag("player").transform.position.x < 27)
+                {
+                    this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
+                }
+                else
+                {
+                    this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+                }
+                
             }
         }
         else
