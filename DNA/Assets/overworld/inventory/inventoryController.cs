@@ -445,6 +445,13 @@ public class inventoryController : MonoBehaviour
                         i17.destroy();
                         playerData.items.Remove(item);
                         break;
+                    case "Friendship Book":
+                        itemDialogue i18 = itemDialogue.create("I don't think I need to read this again.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i18.done);
+                        i18.destroy();
+                        i18 = itemDialogue.create("I already have friends.", inventoryTester.port, portrait.transform.position);
+                        break;
+
 
                 } // item use funtionality and text
                 break;
@@ -516,6 +523,11 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i17.done);
                         i17.destroy();
                         playerData.items.Remove(item);
+                        break;
+                    case "Friendship Book":
+                        itemDialogue i18 = itemDialogue.create("I can't get rid of this! Someone might find it useful.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i18.done);
+                        i18.destroy();
                         break;
 
                 } // item drop text and functionality
@@ -594,6 +606,14 @@ public class inventoryController : MonoBehaviour
                         i17 = itemDialogue.create("Even after so long, they could probably heal me in combat.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i17.done);
                         i17.destroy();
+                        break;
+                    case "Friendship Book":
+                        itemDialogue i18 = itemDialogue.create("A guide to making friends.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i18.done);
+                        i18.destroy();
+                        i18 = itemDialogue.create("It's a bit worn, but still readable.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i18.done);
+                        i18.destroy();
                         break;
                 } // item inspect text and functionality
                 break;

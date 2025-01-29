@@ -116,4 +116,5 @@ public static class playerData
     public static bool[] lockFlags = { false, false };
     public static bool boatPrepared = false;
     public static string[] libraryBooks = { "", "", "", "", "" };
+    public static bool garbageBook = false;
 }
