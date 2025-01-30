@@ -905,7 +905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 88475897}
   - component: {fileID: 88475898}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: speaker1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1080,7 +1080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 125829904}
   - component: {fileID: 125829905}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genericView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53602,7 +53602,7 @@ GameObject:
   m_Component:
   - component: {fileID: 184243259}
   - component: {fileID: 184243260}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54105,7 +54105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 264161620}
   - component: {fileID: 264161621}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54531,7 +54531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 379564556}
   - component: {fileID: 379564557}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: inspect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60689,7 +60689,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440217868}
   - component: {fileID: 440217869}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60877,6 +60877,10 @@ PrefabInstance:
     - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
       propertyPath: m_Name
       value: UItext
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61523,7 +61527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 570214999}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: inspect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62160,7 +62164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 597015095}
   - component: {fileID: 597015096}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: items
   m_TagString: items
   m_Icon: {fileID: 0}
@@ -62259,7 +62263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 598518646}
   - component: {fileID: 598518647}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eyeView (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62478,7 +62482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 618594031}
   - component: {fileID: 618594032}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: face2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62565,7 +62569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 656669869}
   - component: {fileID: 656669870}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62871,7 +62875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 727382301}
   - component: {fileID: 727382302}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63418,6 +63422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UItext
       objectReference: {fileID: 0}
+    - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -63433,7 +63441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 817266831}
   - component: {fileID: 817266832}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63520,7 +63528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 837931962}
   - component: {fileID: 837931963}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: arm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63708,6 +63716,10 @@ PrefabInstance:
     - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
       propertyPath: m_Name
       value: UItext
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -63950,6 +63962,7 @@ GameObject:
   - component: {fileID: 875760458}
   - component: {fileID: 875760457}
   - component: {fileID: 875760456}
+  - component: {fileID: 875760460}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -64092,6 +64105,66 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &875760460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875760454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 875760455}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 479
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &914113000
 GameObject:
   m_ObjectHideFlags: 0
@@ -64903,7 +64976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 958843789}
   - component: {fileID: 958843790}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65265,7 +65338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1051807950}
   - component: {fileID: 1051807951}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65713,7 +65786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1121068292}
   - component: {fileID: 1121068293}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66509,6 +66582,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1162400871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1162400873}
+  - component: {fileID: 1162400872}
+  m_Layer: 0
+  m_Name: outside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1162400872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162400871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: a2e0702f1b1d1a04b881dcc8a7b7347b, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!4 &1162400873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162400871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.486757, y: 15.660993, z: 0.6513456}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1171087425
 GameObject:
   m_ObjectHideFlags: 0
@@ -66682,7 +66804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1177462794}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66847,7 +66969,7 @@ GameObject:
   - component: {fileID: 1203563833}
   - component: {fileID: 1203563835}
   - component: {fileID: 1203563834}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67084,7 +67206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1234117653}
   - component: {fileID: 1234117654}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eyeView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67565,7 +67687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1375108122}
   - component: {fileID: 1375108123}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67826,7 +67948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441494746}
   - component: {fileID: 1441494747}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: speaker2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67914,7 +68036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1446537432}
   - component: {fileID: 1446537433}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68209,7 +68331,7 @@ GameObject:
   - component: {fileID: 1453643518}
   - component: {fileID: 1453643520}
   - component: {fileID: 1453643519}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: inventory
   m_TagString: inv
   m_Icon: {fileID: 0}
@@ -68357,7 +68479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489347495}
   - component: {fileID: 1489347496}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: face1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107057,7 +107179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1494483939}
   - component: {fileID: 1494483940}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: armView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107318,7 +107440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1524541664}
   - component: {fileID: 1524541665}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: armView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107405,7 +107527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1532128774}
   - component: {fileID: 1532128775}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107492,7 +107614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1572273477}
   - component: {fileID: 1572273478}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: arm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107579,7 +107701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1622951975}
   - component: {fileID: 1622951976}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107666,7 +107788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1629953805}
   - component: {fileID: 1629953806}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genericView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107840,7 +107962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1646773581}
   - component: {fileID: 1646773582}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108036,7 +108158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1671425279}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108068,7 +108190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1715007581}
   - component: {fileID: 1715007582}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: armView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108155,7 +108277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1724348569}
   - component: {fileID: 1724348570}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genericView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108582,7 +108704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1826757769}
   - component: {fileID: 1826757770}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eye2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111303,7 +111425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1875477783}
   - component: {fileID: 1875477784}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111390,7 +111512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1888206468}
   - component: {fileID: 1888206469}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112017,7 +112139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1950794214}
   - component: {fileID: 1950794215}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eyeView (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112191,7 +112313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007222365}
   - component: {fileID: 2007222366}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eye1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114250,6 +114372,7 @@ SceneRoots:
   - {fileID: 1048561964}
   - {fileID: 583431569}
   - {fileID: 685235423}
+  - {fileID: 1162400873}
   - {fileID: 871742508}
   - {fileID: 1221234162}
   - {fileID: 216059777}

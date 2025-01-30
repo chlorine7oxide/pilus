@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class skeleton : MonoBehaviour
 {
     public GameObject skeletonPrefab;
+    public PostProcessProfile scary;
 
     public bool entered = false;
     private void OnCollisionEnter2D(Collision2D collision)

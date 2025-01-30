@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 21514130}
   - component: {fileID: 21514131}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 47132910}
   - component: {fileID: 47132911}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genericView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 84936161}
   - component: {fileID: 84936162}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 172116469}
   - component: {fileID: 172116470}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 189070891}
   - component: {fileID: 189070893}
   - component: {fileID: 189070892}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: inventory
   m_TagString: inv
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 205024207}
   - component: {fileID: 205024208}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: inspect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,6 +790,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &234444231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 234444233}
+  - component: {fileID: 234444232}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &234444232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234444231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 34781c7becd3cf44db62c7fa83252d62, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!4 &234444233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234444231}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30.351074, y: -3.9152224, z: 0.6543103}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &259547902
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,7 +849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 259547903}
   - component: {fileID: 259547904}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -989,6 +1038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UItext
       objectReference: {fileID: 0}
+    - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1077,7 +1130,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338213142}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1278,7 +1331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 398873332}
   - component: {fileID: 398873333}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1365,7 +1418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418892592}
   - component: {fileID: 418892593}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: armView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1791,7 +1844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478141686}
   - component: {fileID: 478141687}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: arm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2054,7 +2107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 504559208}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2188,6 +2241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UItext
       objectReference: {fileID: 0}
+    - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2216,6 +2273,7 @@ GameObject:
   - component: {fileID: 637168694}
   - component: {fileID: 637168693}
   - component: {fileID: 637168692}
+  - component: {fileID: 637168696}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2358,6 +2416,66 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &637168696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637168690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 637168691}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 479
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &663744410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,7 +2486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 663744411}
   - component: {fileID: 663744412}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eyeView (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2649,7 +2767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 687494660}
   - component: {fileID: 687494661}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genericView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3803,7 +3921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 770344692}
   - component: {fileID: 770344693}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genericView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3890,7 +4008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 807266473}
   - component: {fileID: 807266474}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3978,7 +4096,7 @@ GameObject:
   - component: {fileID: 858040214}
   - component: {fileID: 858040216}
   - component: {fileID: 858040215}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4174,7 +4292,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: abef62384b2f4cb429bf531da4195b71, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5786,7 +5904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 914438348}
   - component: {fileID: 914438349}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5873,7 +5991,7 @@ GameObject:
   m_Component:
   - component: {fileID: 931798595}
   - component: {fileID: 931798596}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5959,7 +6077,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 985639372}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6172,6 +6290,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UItext
       objectReference: {fileID: 0}
+    - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6197,7 +6319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1087444786}
   - component: {fileID: 1087444787}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6284,7 +6406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1109792121}
   - component: {fileID: 1109792122}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6371,7 +6493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1232825385}
   - component: {fileID: 1232825386}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6458,7 +6580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1266816875}
   - component: {fileID: 1266816876}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eyeView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6545,7 +6667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1295650047}
   - component: {fileID: 1295650048}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6632,7 +6754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1365151986}
   - component: {fileID: 1365151987}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: armView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6719,7 +6841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1368027123}
   - component: {fileID: 1368027124}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6822,7 +6944,7 @@ Transform:
   m_GameObject: {fileID: 1378044445}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 97.26925, y: 0.3164072, z: 0.087008975}
+  m_LocalPosition: {x: 97.26925, y: 0, z: 0.087008975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6940,7 +7062,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7157,7 +7279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421592510}
   - component: {fileID: 1421592511}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7244,7 +7366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1425789595}
   - component: {fileID: 1425789596}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7331,7 +7453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1448711164}
   - component: {fileID: 1448711165}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: armView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7504,7 +7626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1507885549}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: inspect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7702,6 +7824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonPrefab: {fileID: 676251813419582534, guid: 0ac838c97704e1448bb9a992f7ac3164, type: 3}
+  scary: {fileID: 0}
   entered: 0
   speakers:
   - {fileID: 1378044445}
@@ -7731,7 +7854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580272243}
   - component: {fileID: 1580272244}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eye2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8129,7 +8252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1749468337}
   - component: {fileID: 1749468338}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eye1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8469,6 +8592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeleton: {fileID: 1523904912}
+  scary: {fileID: 11400000, guid: d49e228a1be2ff24c8c33f304ca0ddda, type: 2}
+  post: {fileID: 234444231}
 --- !u!1 &1884394668
 GameObject:
   m_ObjectHideFlags: 0
@@ -8479,7 +8604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1884394669}
   - component: {fileID: 1884394670}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eyeView (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8789,7 +8914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2025652242}
   - component: {fileID: 2025652243}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8921,7 +9046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084443080}
   - component: {fileID: 2084443081}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: items
   m_TagString: items
   m_Icon: {fileID: 0}
@@ -9020,7 +9145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087508435}
   - component: {fileID: 2087508436}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: arm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9123,7 +9248,7 @@ Transform:
   m_GameObject: {fileID: 2140138895}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.028999329, y: 1.02194, z: 0}
+  m_LocalPosition: {x: -0.028999329, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9173,7 +9298,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 5137186619700060145, guid: 3834c920a4e3e864b9cddb8ad72f5f68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9202,3 +9327,4 @@ SceneRoots:
   - {fileID: 1523904914}
   - {fileID: 480633847}
   - {fileID: 338213145}
+  - {fileID: 234444233}

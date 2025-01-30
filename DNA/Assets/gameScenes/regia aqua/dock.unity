@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 23322925}
   - component: {fileID: 23322926}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 103220255}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183611651}
   - component: {fileID: 183611652}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: face1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 197394297}
   - component: {fileID: 197394298}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eyeView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 209445211}
   - component: {fileID: 209445212}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: items
   m_TagString: items
   m_Icon: {fileID: 0}
@@ -622,6 +622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UItext
       objectReference: {fileID: 0}
+    - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -647,7 +651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 259384700}
   - component: {fileID: 259384701}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eye2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,7 +1004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380388005}
   - component: {fileID: 380388006}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eyeView (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1137,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: abef62384b2f4cb429bf531da4195b71, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36148,7 +36152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 434227535}
   - component: {fileID: 434227536}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: armView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36235,7 +36239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 441361948}
   - component: {fileID: 441361949}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: face2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36592,7 +36596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 525252177}
   - component: {fileID: 525252178}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: speaker1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36808,7 +36812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 538946293}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36841,7 +36845,7 @@ GameObject:
   - component: {fileID: 554014121}
   - component: {fileID: 554014123}
   - component: {fileID: 554014122}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37078,7 +37082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 564648236}
   - component: {fileID: 564648237}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37165,7 +37169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 571373592}
   - component: {fileID: 571373593}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eyeView (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37252,7 +37256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 571839232}
   - component: {fileID: 571839233}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37340,7 +37344,7 @@ GameObject:
   - component: {fileID: 588188672}
   - component: {fileID: 588188674}
   - component: {fileID: 588188673}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: inventory
   m_TagString: inv
   m_Icon: {fileID: 0}
@@ -37487,7 +37491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 609580378}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: inspect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38373,7 +38377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 791356508}
   - component: {fileID: 791356509}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38819,7 +38823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 891917387}
   - component: {fileID: 891917388}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: eye1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38906,7 +38910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 910993910}
   - component: {fileID: 910993911}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39039,7 +39043,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: abef62384b2f4cb429bf531da4195b71, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -42811,7 +42815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1005674087}
   - component: {fileID: 1005674088}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43150,7 +43154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1038276023}
   - component: {fileID: 1038276024}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: arm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43237,7 +43241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1095046751}
   - component: {fileID: 1095046752}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: speaker2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43312,7 +43316,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!1 &1096752093
@@ -43325,7 +43329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1096752094}
   - component: {fileID: 1096752095}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43412,7 +43416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1160328630}
   - component: {fileID: 1160328631}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genericView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43499,7 +43503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1194548903}
   - component: {fileID: 1194548904}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genericView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43839,7 +43843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1320384845}
   - component: {fileID: 1320384846}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43926,7 +43930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441850599}
   - component: {fileID: 1441850600}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44013,7 +44017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1471000741}
   - component: {fileID: 1471000742}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44100,7 +44104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1481998994}
   - component: {fileID: 1481998995}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44187,7 +44191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482549430}
   - component: {fileID: 1482549431}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: inspect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44274,7 +44278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1605101660}
   - component: {fileID: 1605101661}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44361,7 +44365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1708612170}
   - component: {fileID: 1708612171}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44448,7 +44452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1717829717}
   - component: {fileID: 1717829718}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44538,6 +44542,7 @@ GameObject:
   - component: {fileID: 1834212690}
   - component: {fileID: 1834212689}
   - component: {fileID: 1834212688}
+  - component: {fileID: 1834212692}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -44680,6 +44685,66 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1834212692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834212686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 1834212687}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 479
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &1844813299
 GameObject:
   m_ObjectHideFlags: 0
@@ -45110,7 +45175,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -45687,7 +45752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1894545865}
   - component: {fileID: 1894545866}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: item2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45774,7 +45839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1910271392}
   - component: {fileID: 1910271393}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: armView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45861,7 +45926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1932014133}
   - component: {fileID: 1932014134}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: arm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46049,6 +46114,10 @@ PrefabInstance:
     - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
       propertyPath: m_Name
       value: UItext
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -49450,7 +49519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007107255}
   - component: {fileID: 2007107256}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: armView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49771,6 +49840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UItext
       objectReference: {fileID: 0}
+    - target: {fileID: 7859457272846345136, guid: 047b8892baed6a146a7f4d43241be9d6, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -49796,7 +49869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2111073038}
   - component: {fileID: 2111073039}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: genericView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49873,6 +49946,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2118073705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2118073707}
+  - component: {fileID: 2118073706}
+  m_Layer: 0
+  m_Name: outside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2118073706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118073705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: a2e0702f1b1d1a04b881dcc8a7b7347b, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!4 &2118073707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118073705}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.486757, y: 15.660993, z: 0.6513456}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2140022214
 GameObject:
   m_ObjectHideFlags: 0
@@ -49883,7 +50005,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2140022215}
   - component: {fileID: 2140022216}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: equipGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49985,3 +50107,4 @@ SceneRoots:
   - {fileID: 1969676837}
   - {fileID: 1848118148}
   - {fileID: 649151611}
+  - {fileID: 2118073707}
