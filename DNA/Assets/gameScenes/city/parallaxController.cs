@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class parallaxController : MonoBehaviour
 {
@@ -45,14 +46,16 @@ public class parallaxController : MonoBehaviour
             }
             else
             {
-                if (GameObject.FindGameObjectWithTag("player").transform.position.x > -27 && GameObject.FindGameObjectWithTag("player").transform.position.x < 27)
+                if (Mathf.Abs(GameObject.FindGameObjectWithTag("player").GetComponent<Rigidbody2D>().linearVelocity.x) > 0.001)
                 {
+                    print(GameObject.FindGameObjectWithTag("player").GetComponent<Rigidbody2D>().linearVelocity.x);
                     this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
                 }
                 else
                 {
                     this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
                 }
+
                 
             }
         }

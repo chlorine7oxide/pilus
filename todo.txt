@@ -46,7 +46,7 @@ game beginning
 inside post effect
 initial alleyway
 things to flesh out city
--lights, lamposts, garbage cans, cars, signs
+-garbage cans, cars, signs
 town hall
 
 OPTIONAL

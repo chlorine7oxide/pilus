@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9c532c4e838b8d14e9b722948e8799f6
+guid: 87f41d5affdb56849b83ef4dbaf1e705
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5634026908348037240
-    second: dirt_0
+      213: -4963549669556806227
+    second: railSlope_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,11 +100,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dirt_0
+      name: railSlope_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -115,80 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 878b31f6f95103e40800000000000000
-      internalID: 5634026908348037240
+      spriteID: dad1f01afdded1bb0800000000000000
+      internalID: -4963549669556806227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dirt_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87aa1887a70c1ef48945955a2d94857d
-      internalID: -1412871384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dirt_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 90aa202155d88e04da8111bb166af132
-      internalID: -413607224
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dirt_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52f6de4d41f7ec0469d1df29078c8342
-      internalID: 931044171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dirt_4
+      name: railSlope_1
       rect:
         serializedVersion: 2
         x: 16
@@ -203,36 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee2f028d799bf584baf52b918b0646d7
-      internalID: 2055633622
+      spriteID: 0d71fd11f002f4e47ae826d3971ac65a
+      internalID: -1400025891
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dirt_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0473b7043632264c95d72d792a18b03
-      internalID: 2105151790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dirt_6
+      name: railSlope_2
       rect:
         serializedVersion: 2
         x: 0
@@ -247,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb5610f3be69ab54389b45e555b9bedf
-      internalID: 1944493453
+      spriteID: 34fd161c348c01e4a86432f777585b74
+      internalID: -1419605199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dirt_7
+      name: railSlope_3
       rect:
         serializedVersion: 2
         x: 16
@@ -269,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a6e480ff4e640940a2b37d3e93bf2a9
-      internalID: 426068665
+      spriteID: ff93d2158f0c8c847b75c450ba82bf54
+      internalID: 1820135027
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dirt_8
+      name: railSlope_4
       rect:
         serializedVersion: 2
         x: 32
@@ -291,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 775edd021e8b74443bb0ea36d12c2fca
-      internalID: -74230784
+      spriteID: f0a0608fb97b88e45a43c95a79c7dcf8
+      internalID: 1064148142
       vertices: []
       indices: 
       edges: []
@@ -301,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dd3921d5e18ce4e468f445d6b8536436
+    spriteID: cada47046d48107408e332bc0ecfecc1
     internalID: 0
     vertices: []
     indices: 
@@ -311,15 +223,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dirt_0: 5634026908348037240
-      dirt_1: -1412871384
-      dirt_2: -413607224
-      dirt_3: 931044171
-      dirt_4: 2055633622
-      dirt_5: 2105151790
-      dirt_6: 1944493453
-      dirt_7: 426068665
-      dirt_8: -74230784
+      railSlope_0: -4963549669556806227
+      railSlope_1: -1400025891
+      railSlope_2: -1419605199
+      railSlope_3: 1820135027
+      railSlope_4: 1064148142
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
