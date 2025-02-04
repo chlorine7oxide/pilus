@@ -11,7 +11,7 @@ public class lampost : MonoBehaviour
         }
         else
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 12;
+            this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 9;
         }
     }
 }

@@ -46,8 +46,10 @@ game beginning
 inside post effect
 initial alleyway
 things to flesh out city
--garbage cans, cars, signs
+-cars, signs, tress and plants
 town hall
+downtown
+in gondola area when touching top of bottom walls the bg doesnt work
 
 OPTIONAL
 bench full art

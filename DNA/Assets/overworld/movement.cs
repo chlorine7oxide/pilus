@@ -7,6 +7,8 @@ public class movement : MonoBehaviour
 
     public GameObject inv;
 
+    public bool colliding = false;
+
     void Update()
     {
         int presses = 0;
@@ -59,5 +61,15 @@ public class movement : MonoBehaviour
                 this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        colliding = true;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        colliding = false;
     }
 }

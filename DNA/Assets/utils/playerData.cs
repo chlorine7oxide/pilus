@@ -117,4 +117,5 @@ public static class playerData
     public static bool boatPrepared = false;
     public static string[] libraryBooks = { "", "", "", "", "" };
     public static bool garbageBook = false;
+    public static bool gondolaChecked = false;
 }

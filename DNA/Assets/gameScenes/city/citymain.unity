@@ -1001,7 +1001,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.03333336, y: 0.03333336, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -14093,7 +14093,7 @@ GameObject:
   - component: {fileID: 371938323}
   - component: {fileID: 371938322}
   - component: {fileID: 371938321}
-  - component: {fileID: 371938320}
+  - component: {fileID: 371938325}
   m_Layer: 0
   m_Name: Square (3)
   m_TagString: Untagged
@@ -14101,19 +14101,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &371938320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371938319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f1abcffdcec10c4b97ac6a7cae1431d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: up
 --- !u!50 &371938321
 Rigidbody2D:
   serializedVersion: 5
@@ -14257,6 +14244,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371938325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371938319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d5f53a22166c64b8216bc535832f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: up
+  lost: 0
+  SceneName: citymain
+  port: {fileID: -931796786173825612, guid: b6250a47362bd4b4491ee2b945d152a5, type: 3}
+  port2: {fileID: 5137186619700060145, guid: 3834c920a4e3e864b9cddb8ad72f5f68, type: 3}
 --- !u!1 &410747570
 GameObject:
   m_ObjectHideFlags: 0
@@ -15609,7 +15613,7 @@ Transform:
   m_GameObject: {fileID: 690992383}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 41.55, y: -0, z: 0.087008975}
+  m_LocalPosition: {x: 26.7, y: 9.9, z: 0.087008975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15775,6 +15779,7 @@ MonoBehaviour:
   speed: 5
   move: {x: 0, y: 0}
   inv: {fileID: 2075838501}
+  colliding: 0
 --- !u!212 &690992390
 SpriteRenderer:
   m_ObjectHideFlags: 0

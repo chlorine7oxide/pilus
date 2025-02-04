@@ -46,9 +46,8 @@ public class parallaxController : MonoBehaviour
             }
             else
             {
-                if (Mathf.Abs(GameObject.FindGameObjectWithTag("player").GetComponent<Rigidbody2D>().linearVelocity.x) > 0.001)
+                if (!GameObject.FindGameObjectWithTag("player").GetComponent<movement>().colliding)
                 {
-                    print(GameObject.FindGameObjectWithTag("player").GetComponent<Rigidbody2D>().linearVelocity.x);
                     this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = move;
                 }
                 else
