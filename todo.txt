@@ -39,11 +39,8 @@ figure out where the tentacle flikering is coiming from
 final phase
 
 CITY
-library and books
- - add librarian and dialogue
- - once 5 donated give next part of the quest
+library: faces and that bit where MC gets hit, librarian walks off too early and key giving
 game beginning
-inside post effect
 initial alleyway
 things to flesh out city
 -cars, signs, tress and plants

@@ -118,4 +118,5 @@ public static class playerData
     public static string[] libraryBooks = { "", "", "", "", "" };
     public static bool garbageBook = false;
     public static bool gondolaChecked = false;
+    public static bool librarianMet = false;
 }

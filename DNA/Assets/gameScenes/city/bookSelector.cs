@@ -15,7 +15,41 @@ public class bookSelector : MonoBehaviour
     public GameObject[] itemButtons;
     public GameObject[] bookObjs, indicatorObjs;
 
+    public GameObject librarian;
+
     public Sprite grey, greyB, blue, blueB;
+
+    public float speed;
+
+    public GameObject bookUI;
+
+    public List<GameObject> speakers = new();
+    public List<GameObject> faces = new();
+    public Queue<msg> msgs = new();
+
+    public Sprite testFace, selector2;
+
+    public GameObject textPrefab;
+    public Sprite boxSprite1, boxSprite2, boxSprite3, boxSprite4;
+
+    public msgController msgController;
+
+    protected void Start()
+    {
+        textBox.textPrefab = textPrefab;
+        textBox.boxSprite1 = boxSprite1;
+        textBox.boxSprite2 = boxSprite2;
+        textBox.boxSprite3 = boxSprite3;
+        textBox.boxSprite4 = boxSprite4;
+
+        decision.selector = selector2;
+
+        playerData.items.Add("Drilling Book");
+        playerData.items.Add("Friendship Book");
+        playerData.items.Add("Friendship Book");
+        playerData.items.Add("Friendship Book");
+        playerData.items.Add("Marine life book");
+    }
 
     public IEnumerator select()
     {
@@ -123,7 +157,73 @@ public class bookSelector : MonoBehaviour
                     playerData.libraryBooks[i] = items[d.result];
                 }
             }
-            print(playerData.libraryBooks[0]+"+"+ playerData.libraryBooks[1]+"+"+ playerData.libraryBooks[2]+"+"+ playerData.libraryBooks[3]+"+"+ playerData.libraryBooks[4]);
+
+            GameObject p1 = speakers[0];
+            GameObject p2 = speakers[1];
+            GameObject p3 = speakers[2];
+
+            msgs.Enqueue(new msg(testFace, () => "Ahh, I see you've found one of my books!", "e", p3));
+
+            switch (items[d.result]) {
+                case "Drilling Book":
+                    {
+                        msgs.Enqueue(new msg(testFace, () => "I've never actually this one - too much technical jargon.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "But if you're into technical documentation it's a good read.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "Regia Aqua was a facinating place, though.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "A tragedy, really.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "What actually happened there?", "e", p1));
+                        msgs.Enqueue(new msg(testFace, () => "Ahh, well nobody knows exactly.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "But it's likely that the predators in the area tore the place apart after the locals caught too many of the smaller fish.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "I hear people are trying to restablish the area, I hope they don't make the same mistake again.", "e", p3));
+
+                        break;
+                    }
+                case "Marine life book":
+                    {
+                        msgs.Enqueue(new msg(testFace, () => "An old marine encyclopedia, people used to use these all the time.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "Now our infrastructure is less reliant on the ocean these are made less.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "This is definetely a rare find.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "I'd like to check this one out if that's alright.", "e", p2));
+                        msgs.Enqueue(new msg(testFace, () => "Of course, just remember to return by the end of the month.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "...", "e", p1));
+                        msgs.Enqueue(new msg(testFace, () => "What's that for?", "e", p1));
+                        msgs.Enqueue(new msg(testFace, () => "My father is a fisherman.", "e", p2));
+                        msgs.Enqueue(new msg(testFace, () => "I'd like to show it to him when we return.", "e", p2));
+                        msgs.Enqueue(new msg(testFace, () => "If he's a fisherman wouldn't have one if he needed it then?", "e", p1));
+                        msgs.Enqueue(new msg(testFace, () => "Yes, but it's always interesting to look at older books in your field.", "e", p2));
+                        msgs.Enqueue(new msg(testFace, () => "I see.", "e", p1));
+
+                        break;
+                    }
+                case "Friendship Book":
+                    {
+                        msgs.Enqueue(new msg(testFace, () => "What a strange book to see once again.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "Nobody ever checked it out - so I was quite suprised to see it missing.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "Nonetheless it returns, in case someone ever wanted it.", "e", p3));
+                        msgs.Enqueue(new msg(testFace, () => "It did help me through a tough time years ago.", "e", p3));
+
+                        break;
+                    }
+            }
+
+            speakers[0].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(-7f, -2.8f, 0);
+            speakers[1].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(-5f, -2.8f, 0);
+            speakers[2].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(6f, -2.8f, 0);
+
+            msgController = msgController.createDialogue(speakers, msgs, faces).GetComponent<msgController>();
+
+            if (!playerData.libraryBooks.Contains(""))
+            {
+                d.destroy();
+                itemMenu.transform.position = new Vector3(-100, -100, 0);
+                this.gameObject.transform.position = new Vector3(-100, -100, 0);
+
+                yield return new WaitUntil(() => !msgController.inText);
+
+                StartCoroutine(allFound(d));
+                StopCoroutine(select());
+            }
+
         }
 
         d.destroy();
@@ -131,18 +231,41 @@ public class bookSelector : MonoBehaviour
         this.gameObject.transform.position = new Vector3(-100, -100, 0);
 
         active = false;
-    }
+    }    
 
-
-
-    
-    private void Start()
+    public IEnumerator allFound(dynamicSelectorText d)
     {
-        playerData.items.Add("Drilling Book");
-        playerData.items.Add("Marine life book");
-        playerData.items.Add("Marine life book");
-        playerData.items.Add("Marine life book");
-        playerData.items.Add("Marine life book");
+        
+
+        for (int i = 0;i < (1 / speed); i++)
+        {
+            librarian.transform.Translate(0, speed, 0);
+            yield return new WaitForFixedUpdate();
+        }
+        for (int i = 0; i < (6 / speed); i++)
+        {
+            librarian.transform.Translate(-speed, 0, 0);
+            yield return new WaitForFixedUpdate();
+        }
+
+        librarian.GetComponent<SpriteRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(1);
+
+        librarian.GetComponent<SpriteRenderer>().enabled = true;
+
+        for (int i = 0; i < (6 / speed); i++)
+        {
+            librarian.transform.Translate(speed, 0, 0);
+            yield return new WaitForFixedUpdate();
+        }
+        for (int i = 0; i < (1 / speed); i++)
+        {
+            librarian.transform.Translate(0, -speed , 0);
+            yield return new WaitForFixedUpdate();
+        }
+
+
+        active = false;
     }
-    
 }

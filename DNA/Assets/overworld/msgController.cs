@@ -193,7 +193,8 @@ public class msgController : MonoBehaviour
         decision = false;
         nextMsg();
     }
-
+    
+    
     public IEnumerator decisionBoatListener(decision d)
     {
         yield return new WaitUntil(() => d.complete);
@@ -259,7 +260,9 @@ public class msgController : MonoBehaviour
         foreach(GameObject s in speakers)
         {
             s.transform.localScale = new Vector3(1, 1, 1);
+            s.GetComponent<SpriteRenderer>().sortingOrder = 5;
         }
+        speaker.GetComponent<SpriteRenderer>().sortingOrder = 6;
         speaker.transform.localScale = new Vector3(19.0f/16.0f, 19.0f/16.0f, 1);
     }
 
