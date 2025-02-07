@@ -119,4 +119,7 @@ public static class playerData
     public static bool garbageBook = false;
     public static bool gondolaChecked = false;
     public static bool librarianMet = false;
+    public static bool inspectsConvo = false;
+    public static bool secretLibraryUnlocked = false;
+    public static bool secretLibraryKey = false;
 }

@@ -39,14 +39,16 @@ figure out where the tentacle flikering is coiming from
 final phase
 
 CITY
-library: faces and that bit where MC gets hit, librarian walks off too early and key giving
+library: faces and that bit where MC gets hit
 game beginning
 initial alleyway
 things to flesh out city
--cars, signs, tress and plants
+-cars, signs, trees and plants
 town hall
 downtown
 in gondola area when touching top of bottom walls the bg doesnt work
 
 OPTIONAL
 bench full art
+balcony full art
+boat full art

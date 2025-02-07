@@ -67,11 +67,15 @@ public class dynamicSelectorText : MonoBehaviour
 
     public void destroy()
     {
-        foreach(GameObject t in texts)
+        foreach (GameObject t in texts)
         {
             Destroy(t);
         }
-        Destroy(this.gameObject);
+        if (this.gameObject is not null)
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 
     public void updateTexts()

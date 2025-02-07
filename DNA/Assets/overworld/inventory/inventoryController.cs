@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -25,6 +27,9 @@ public class inventoryController : MonoBehaviour
 
     public static GameObject money;
 
+    public static int inspects = 0;
+    public static bool inspectsFlag = false;
+
     public Sprite sel;
 
     public Sprite itemHeld;
@@ -32,6 +37,38 @@ public class inventoryController : MonoBehaviour
     public bool active = false;
 
     public GameObject textItem1, textItem2, textItem3;
+
+    public Sprite port1, port2;
+
+    public List<GameObject> speakers, faces;
+
+    public Queue<msg> msgs = new();
+
+    public Sprite testFace, selector2;
+
+    public GameObject textPrefab;
+    public Sprite boxSprite1, boxSprite2, boxSprite3, boxSprite4;
+    public msgController msgController;
+
+    protected void Start()
+    {
+        textBox.textPrefab = textPrefab;
+        textBox.boxSprite1 = boxSprite1;
+        textBox.boxSprite2 = boxSprite2;
+        textBox.boxSprite3 = boxSprite3;
+        textBox.boxSprite4 = boxSprite4;
+
+        decision.selector = selector2;
+
+        playerData.items.Add("Drilling Book");
+        playerData.items.Add("Friendship Book");
+        playerData.items.Add("Friendship Book");
+        playerData.items.Add("Friendship Book");
+        playerData.items.Add("Marine life book");
+
+        speakers = GameObject.FindGameObjectsWithTag("speaker").ToList();
+        faces = speakers.Select(x => x.transform.GetChild(0).gameObject).ToList();
+    }
 
     private void Update()
     {
@@ -62,6 +99,97 @@ public class inventoryController : MonoBehaviour
         gene.transform.position = new Vector3(1000, 0, 0);
         item.transform.position = new Vector3(1000, 0, 0);
         money.transform.position = new Vector3(10000, 0, 0);
+
+        if (inspectsFlag)
+        {
+            StartCoroutine(inspectsConvo());
+        }
+    }
+
+    public IEnumerator inspectsConvo()
+    {
+        inspectsFlag = false;
+        generalText t = generalText.create("Why is that you talk to yourself while rummaging through your pockets?", port2, null);
+
+        yield return new WaitUntil(() => t.done);
+
+        t.destroy();
+
+        t = generalText.create("I do?", port1, null);
+
+        yield return new WaitUntil(() => t.done);
+        t.changeText("I didn't even realise I did it.");
+        yield return new WaitUntil(() => t.done);
+        t.changeText("Do you want me to stop?");
+
+        t.destroy();
+
+        t = generalText.create("No.", port2, null);
+
+        yield return new WaitUntil(() => t.done);
+
+        t.changeText("It gives a bit of insight into what you're thinking about.");
+
+        yield return new WaitUntil(() => t.done);
+
+        t.destroy();
+
+        t = generalText.create("So I should do it more often then?", port1, null);
+
+        yield return new WaitUntil(() => t.done);
+        t.changeText("I'll narrate all my thoughts for you.");
+        yield return new WaitUntil(() => t.done);
+
+        t.destroy();
+
+        t = generalText.create("Sure, this could be interesting.", port2, null);
+
+        yield return new WaitUntil(() => t.done);
+
+        t.destroy();
+
+        yield return new WaitForSeconds(1);
+
+        GameObject p1 = speakers[0];
+        GameObject p2 = speakers[1];
+        GameObject p3 = speakers[2];
+
+        msgs.Enqueue(new msg(testFace, () => "So...", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "What am I thinking?", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "Hmmm...", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "I guess I'm thinking that we haven't eaten in a while.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "I really don't think it's been that long.", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "8 hours maybe?", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "That's definetely a while.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "But what should we eat when we get back, that's really what matters.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "Does it really matter...", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "Of course it does!", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "I'm offended you even suggest that.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "I'm quite the cook you know.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "I never said you weren't.", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "I know, but you implied it.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "You know what, nevermind.", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "I'll cook up the fanciest, tastiest meal you've ever eaten.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "Better than any five star establishment.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "You won't believe your eyes.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "You won't beleive your MOUTH!", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "Sure, we'll see.", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "Anyways, what else am I thinking about?", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "I've also been thinking about how I've never been here before.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "It's just over the gorge, and I didn't even realise.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "Well, it's not that I didn't realise, I just didn't know it was so easy to get here.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "The gondola is even so close to my house.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "I can imagine it would be such a good view too.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "A once in a lifetime experience you could say.", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "Even though you could use it every day...", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "Alright, alright, I get the point.", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "I think that's about enough of hearing everything you're thinking.", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "Wait, do you want me to stop with the pockets thing too?", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "That's alright, I was just pointing it out.", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "Just keep things to how they were before.", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "Sure...", "e", p1));
+
+        msgController msg = msgController.createDialogue(speakers, msgs, faces).GetComponent<msgController>();
     }
 
     public void enterGene()
@@ -450,6 +578,13 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i18.done);
                         i18.destroy();
                         i18 = itemDialogue.create("I already have friends.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i18.done);
+                        i18.destroy();
+                        break;
+                    case "Librarian's key":
+                        itemDialogue i19 = itemDialogue.create("I'm ready for the perilous journey to find this secret library.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i19.done);
+                        i19.destroy();
                         break;
 
 
@@ -529,10 +664,19 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i18.done);
                         i18.destroy();
                         break;
+                    case "Librarian's key":
+                        itemDialogue i19 = itemDialogue.create("Getting rid of something this important?", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i19.done);
+                        i19.destroy();
+                        i19 = itemDialogue.create("Are you insane?", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i19.done);
+                        i19.destroy();
+                        break;
 
                 } // item drop text and functionality
                 break;
             case 2: // inspect
+                inspects++;
                 switch (item)
                 {
                     case "Giant Rock":
@@ -615,7 +759,18 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i18.done);
                         i18.destroy();
                         break;
+                    case "Librarian's key":
+                        itemDialogue i19 = itemDialogue.create("An ornate key for a secret library we have yet to find.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i19.done);
+                        i19.destroy();
+                        break;
+
                 } // item inspect text and functionality
+                if (inspects > 10 && !playerData.inspectsConvo)
+                {
+                    inspectsFlag = true;
+                    playerData.inspectsConvo = true;
+                }
                 break;
         }
 
@@ -663,5 +818,6 @@ public class inventoryController : MonoBehaviour
         s.destroy();
 
     }
+
 
 }

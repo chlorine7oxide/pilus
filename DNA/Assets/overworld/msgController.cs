@@ -9,7 +9,7 @@ public class msgController : MonoBehaviour
 {
     public List<textBox> boxes = new();
     public Queue<msg> msgs = new Queue<msg>(); 
-    public bool inText = false;
+    public bool inText = true;
     public bool decision = false;
     public bool readyForbox = false;
 

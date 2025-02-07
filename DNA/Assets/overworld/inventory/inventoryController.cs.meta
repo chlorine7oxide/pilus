@@ -1,2 +1,30 @@
 fileFormatVersion: 2
 guid: 28079f56c5d1dbb4e82404c173eff4c7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - inv: {instanceID: 0}
+  - gene: {instanceID: 0}
+  - item: {instanceID: 0}
+  - portrait: {instanceID: 0}
+  - sel: {instanceID: 0}
+  - itemHeld: {instanceID: 0}
+  - textItem1: {instanceID: 0}
+  - textItem2: {instanceID: 0}
+  - textItem3: {instanceID: 0}
+  - port1: {instanceID: 0}
+  - port2: {instanceID: 0}
+  - testFace: {instanceID: 0}
+  - selector2: {instanceID: 0}
+  - textPrefab: {fileID: 5733570775210333018, guid: 56c6b1b5e2eac92488b69376d7ccae70, type: 3}
+  - boxSprite1: {fileID: 4340143670946724112, guid: 3911ee59448ec10468dfa7786a4ee2f3, type: 3}
+  - boxSprite2: {fileID: -9148079100729670451, guid: 47035a409f51701479ccf9121050674c, type: 3}
+  - boxSprite3: {fileID: 6879785910209034016, guid: 137400dae72529f4eba55256317b57a6, type: 3}
+  - boxSprite4: {fileID: -3989668330587312247, guid: 2b07e58bd729ec1459cdd243e648e179, type: 3}
+  - msgController: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

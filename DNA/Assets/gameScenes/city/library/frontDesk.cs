@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class frontDesk : overworldInteractable
@@ -16,6 +18,8 @@ public class frontDesk : overworldInteractable
 
     public msgController msgController;
 
+    public Sprite portrait, libPortrait;
+
     protected void Start()
     {
         textBox.textPrefab = textPrefab;
@@ -31,10 +35,14 @@ public class frontDesk : overworldInteractable
     {
         if (playerData.librarianMet)
         {
-            if (!bookUI.GetComponent<bookSelector>().active)
+            if (!bookUI.GetComponent<bookSelector>().active && playerData.libraryBooks.Contains(""))
             {
                 bookUI.transform.position = new Vector3(cameraObj.transform.position.x, cameraObj.transform.position.y, 0);
                 StartCoroutine(bookUI.GetComponent<bookSelector>().select());
+            }
+            else if (!playerData.libraryBooks.Contains("") && playerData.secretLibraryKey)
+            {
+                StartCoroutine(libTalk());
             }
         }
         else
@@ -72,6 +80,38 @@ public class frontDesk : overworldInteractable
             msgController = msgController.createDialogue(speakers, msgs, faces).GetComponent<msgController>();
 
             playerData.librarianMet = true;
+        }
+    }
+
+    public IEnumerator libTalk()
+    {
+        generalText t = generalText.create("Any luck in finding the secret library?", libPortrait, null);
+
+        if (t is null)
+        {
+            yield break;
+        }
+
+        yield return new WaitUntil(() => t.done);
+
+        t.destroy();
+
+        if (playerData.secretLibraryUnlocked)
+        {
+            // TODO once secret library is added
+        }
+        else
+        {
+            t = generalText.create("Not yet.", portrait, null);
+
+            if (t is null)
+            {
+                yield break;
+            }
+
+            yield return new WaitUntil(() => t.done);
+
+            t.destroy();
         }
     }
 }

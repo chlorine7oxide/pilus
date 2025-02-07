@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -33,6 +34,11 @@ public class bookSelector : MonoBehaviour
     public Sprite boxSprite1, boxSprite2, boxSprite3, boxSprite4;
 
     public msgController msgController;
+
+    public List<Sprite> up, side, back;
+
+    public GameObject barricade;
+
 
     protected void Start()
     {
@@ -212,40 +218,76 @@ public class bookSelector : MonoBehaviour
 
             msgController = msgController.createDialogue(speakers, msgs, faces).GetComponent<msgController>();
 
+
+
             if (!playerData.libraryBooks.Contains(""))
             {
                 d.destroy();
                 itemMenu.transform.position = new Vector3(-100, -100, 0);
                 this.gameObject.transform.position = new Vector3(-100, -100, 0);
 
-                yield return new WaitUntil(() => !msgController.inText);
-
-                StartCoroutine(allFound(d));
+                StartCoroutine(allFound());
                 StopCoroutine(select());
             }
 
         }
 
-        d.destroy();
+        
         itemMenu.transform.position = new Vector3(-100, -100, 0);
         this.gameObject.transform.position = new Vector3(-100, -100, 0);
+        d.destroy();
+
+        yield return new WaitUntil(() => !msgController.inText);
+
 
         active = false;
     }    
 
-    public IEnumerator allFound(dynamicSelectorText d)
+    public IEnumerator allFound()
     {
+        yield return new WaitUntil(() => !msgController.inText);
+
+        GameObject p1 = speakers[0];
+        GameObject p2 = speakers[1];
+        GameObject p3 = speakers[2];
+
+        msgs.Enqueue(new msg(testFace, () => "...!", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "You've done so much for me, now I am a little closer to bringing this place back to it's former glory.", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "Here, let me get a little something for you, you've earned it.", "e", p3));
+
+        speakers[0].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(-7f, -2.8f, 0);
+        speakers[1].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(-5f, -2.8f, 0);
+        speakers[2].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(6f, -2.8f, 0);
+
+        msgController = msgController.createDialogue(speakers, msgs, faces).GetComponent<msgController>();
+
+        yield return new WaitUntil(() => !msgController.inText);
+
+        int animProgress = 0;
+        librarian.GetComponent<SpriteRenderer>().sprite = up[animProgress];
+        barricade.transform.Translate(-2, 0, 0);
         
 
         for (int i = 0;i < (1 / speed); i++)
         {
             librarian.transform.Translate(0, speed, 0);
             yield return new WaitForFixedUpdate();
+            if (i % 10 == 9)
+            {
+                animProgress++;
+                librarian.GetComponent<SpriteRenderer>().sprite = up[animProgress];
+            }
         }
         for (int i = 0; i < (6 / speed); i++)
         {
             librarian.transform.Translate(-speed, 0, 0);
             yield return new WaitForFixedUpdate();
+            if (i % 10 == 9)
+            {
+                animProgress++;
+                animProgress %= 4;
+                librarian.GetComponent<SpriteRenderer>().sprite = side[animProgress];
+            }
         }
 
         librarian.GetComponent<SpriteRenderer>().enabled = false;
@@ -253,17 +295,54 @@ public class bookSelector : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         librarian.GetComponent<SpriteRenderer>().enabled = true;
+        librarian.GetComponent<SpriteRenderer>().flipX = true;
 
         for (int i = 0; i < (6 / speed); i++)
         {
             librarian.transform.Translate(speed, 0, 0);
             yield return new WaitForFixedUpdate();
+            if (i % 10 == 9)
+            {
+                animProgress++;
+                animProgress %= 4;
+                librarian.GetComponent<SpriteRenderer>().sprite = side[animProgress];
+            }
         }
+
+        librarian.GetComponent<SpriteRenderer>().flipX = false;
+
         for (int i = 0; i < (1 / speed); i++)
         {
             librarian.transform.Translate(0, -speed , 0);
             yield return new WaitForFixedUpdate();
+            if (i % 10 == 9)
+            {
+                animProgress++;
+                animProgress %= 4;
+                librarian.GetComponent<SpriteRenderer>().sprite = back[animProgress];
+            }
         }
+
+        barricade.transform.Translate(2, 0, 0);
+
+        speakers[0].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(-7f, -2.8f, 0);
+        speakers[1].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(-5f, -2.8f, 0);
+        speakers[2].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(6f, -2.8f, 0);
+
+        msgs.Enqueue(new msg(testFace, () => "Take this.", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "A key?", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "Not just any key, this will let you into a secret library in another town.", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "How do we find it?", "e", p2));
+        msgs.Enqueue(new msg(testFace, () => "Don't worry.", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "You will know it once you find it.", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "Any hints?", "e", p1));
+        msgs.Enqueue(new msg(testFace, () => "Not even I know where it is, but I know it's real.", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "Good luck out there.", "e", p3));
+
+        playerData.items.Add("Librarian's key");
+        playerData.secretLibraryKey = true;
+
+        msgController = msgController.createDialogue(speakers, msgs, faces).GetComponent<msgController>();
 
 
         active = false;
