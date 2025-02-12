@@ -61,6 +61,13 @@ public class movement : MonoBehaviour
                 this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             }
         }
+        if (GameObject.FindGameObjectWithTag("ticket") is not null)
+        {
+            if (GameObject.FindGameObjectWithTag("ticket").GetComponent<ticketBooth>().active)
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -10,6 +10,12 @@ public class lostController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("player"))
         {
+            if (playerData.visitedDowntown)
+            {
+                SceneManager.LoadScene("downtown");
+            }
+
+
             DontDestroyOnLoad(this.gameObject);
 
             int rand = Random.Range(1, 3);
@@ -147,6 +153,8 @@ public class lostController : MonoBehaviour
                     break;
             }
 
+            print(target);
+
             yield return new WaitUntil(() => !SceneManager.GetActiveScene().name.Equals(prev));
 
             prev = SceneManager.GetActiveScene().name;
@@ -165,6 +173,8 @@ public class lostController : MonoBehaviour
             else if (i == 4)
             {
                 SceneManager.LoadScene("downtown");
+                playerData.visitedDowntown = true;
+                print("not lost");
                 Destroy(this.gameObject);
             }
 

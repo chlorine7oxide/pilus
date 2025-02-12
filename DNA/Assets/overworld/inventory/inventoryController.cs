@@ -152,7 +152,6 @@ public class inventoryController : MonoBehaviour
 
         GameObject p1 = speakers[0];
         GameObject p2 = speakers[1];
-        GameObject p3 = speakers[2];
 
         msgs.Enqueue(new msg(testFace, () => "So...", "e", p1));
         msgs.Enqueue(new msg(testFace, () => "What am I thinking?", "e", p1));
@@ -189,6 +188,8 @@ public class inventoryController : MonoBehaviour
         msgs.Enqueue(new msg(testFace, () => "Just keep things to how they were before.", "e", p2));
         msgs.Enqueue(new msg(testFace, () => "Sure...", "e", p1));
 
+        speakers[0].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(-6f, -2.8f, 0);
+        speakers[1].transform.position = GameObject.FindGameObjectWithTag("player").transform.position + new Vector3(6f, -2.8f, 0);
         msgController msg = msgController.createDialogue(speakers, msgs, faces).GetComponent<msgController>();
     }
 

@@ -14,6 +14,7 @@ public class follower : MonoBehaviour
         f.mc = mc;
         f.entry = startPos;
         g.GetComponent<SpriteRenderer>().sprite = null;
+        //f.StartCoroutine(f.testlmao()); only if truly necessary :)
     }
 
     public Vector3[] positions = new Vector3[15];
@@ -163,5 +164,11 @@ public class follower : MonoBehaviour
             mc.GetComponent<SpriteRenderer>().sortingOrder = 7;
             this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 8;
         }
+    }
+
+    public IEnumerator testlmao()
+    {
+        yield return new WaitForSeconds(0.1f);
+        create(this.gameObject, entry);
     }
 }

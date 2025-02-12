@@ -260,9 +260,9 @@ public class msgController : MonoBehaviour
         foreach(GameObject s in speakers)
         {
             s.transform.localScale = new Vector3(1, 1, 1);
-            s.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            s.GetComponent<SpriteRenderer>().sortingOrder = 10;
         }
-        speaker.GetComponent<SpriteRenderer>().sortingOrder = 6;
+        speaker.GetComponent<SpriteRenderer>().sortingOrder = 11;
         speaker.transform.localScale = new Vector3(19.0f/16.0f, 19.0f/16.0f, 1);
     }
 

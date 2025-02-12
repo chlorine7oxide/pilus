@@ -15613,7 +15613,7 @@ Transform:
   m_GameObject: {fileID: 690992383}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.7, y: 9.9, z: 0.087008975}
+  m_LocalPosition: {x: 30.5, y: 11.01, z: 0.087008975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23211,6 +23211,18 @@ MonoBehaviour:
   textItem1: {fileID: 301887402}
   textItem2: {fileID: 1122754735}
   textItem3: {fileID: 153484080}
+  port1: {fileID: 0}
+  port2: {fileID: 0}
+  speakers: []
+  faces: []
+  testFace: {fileID: 0}
+  selector2: {fileID: 0}
+  textPrefab: {fileID: 0}
+  boxSprite1: {fileID: 0}
+  boxSprite2: {fileID: 0}
+  boxSprite3: {fileID: 0}
+  boxSprite4: {fileID: 0}
+  msgController: {fileID: 0}
 --- !u!212 &2075838504
 SpriteRenderer:
   m_ObjectHideFlags: 0

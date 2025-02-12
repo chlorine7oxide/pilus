@@ -122,4 +122,7 @@ public static class playerData
     public static bool inspectsConvo = false;
     public static bool secretLibraryUnlocked = false;
     public static bool secretLibraryKey = false;
+    public static bool ticketForge = false;
+    public static bool ticketBooth = false;
+    public static bool visitedDowntown = false;
 }
