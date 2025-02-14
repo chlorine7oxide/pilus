@@ -16,6 +16,7 @@ public class walkingAnimation : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKey(KeyCode.UpArrow) && cd < 0)
         {
             direction = 0;
@@ -86,7 +87,12 @@ public class walkingAnimation : MonoBehaviour
 
         }
 
-        cd -= Time.deltaTime;
+        if (this.gameObject.GetComponent<Rigidbody2D>().linearVelocity.magnitude > 0.001)
+        {
+            cd -= Time.deltaTime;
+        }
+
+        
 
     }
 }

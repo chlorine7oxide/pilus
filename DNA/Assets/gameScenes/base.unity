@@ -4147,6 +4147,18 @@ MonoBehaviour:
   textItem1: {fileID: 1390858881}
   textItem2: {fileID: 1591746556}
   textItem3: {fileID: 40112841}
+  port1: {fileID: 0}
+  port2: {fileID: 0}
+  speakers: []
+  faces: []
+  testFace: {fileID: 0}
+  selector2: {fileID: 5211086781936739708, guid: e0a6d8ff7d9f52e4d95ce27cdd1087b9, type: 3}
+  textPrefab: {fileID: 5733570775210333018, guid: 56c6b1b5e2eac92488b69376d7ccae70, type: 3}
+  boxSprite1: {fileID: 4340143670946724112, guid: 3911ee59448ec10468dfa7786a4ee2f3, type: 3}
+  boxSprite2: {fileID: -9148079100729670451, guid: 47035a409f51701479ccf9121050674c, type: 3}
+  boxSprite3: {fileID: 6879785910209034016, guid: 137400dae72529f4eba55256317b57a6, type: 3}
+  boxSprite4: {fileID: -3989668330587312247, guid: 2b07e58bd729ec1459cdd243e648e179, type: 3}
+  msgController: {fileID: 0}
 --- !u!212 &1509520579
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4399,6 +4411,7 @@ MonoBehaviour:
   speed: 5
   move: {x: 0, y: 0}
   inv: {fileID: 1509520576}
+  colliding: 0
 --- !u!212 &1525499260
 SpriteRenderer:
   m_ObjectHideFlags: 0

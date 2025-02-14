@@ -125,4 +125,5 @@ public static class playerData
     public static bool ticketForge = false;
     public static bool ticketBooth = false;
     public static bool visitedDowntown = false;
+    public static int birthdayGuess = 0;
 }

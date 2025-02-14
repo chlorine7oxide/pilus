@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using System;
 using Unity.VisualScripting;
+using System.Linq;
+using UnityEditor;
 
 public class dynamicSelectorText : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class dynamicSelectorText : MonoBehaviour
     public int pos = 0;
     public bool done = false;
     public int result;
+
+    public int nums;
 
     public static dynamicSelectorText create(Vector3[] positions, string[] texts, Sprite sel)
     {
@@ -26,11 +30,29 @@ public class dynamicSelectorText : MonoBehaviour
             g.GetComponent<dynamicSelectorText>().texts[i] = t;
         }
         g.AddComponent<SpriteRenderer>().sprite = sel;
-        g.transform.position = positions[2];
+        if (positions.Length != 1)
+        {
+            g.transform.position = positions[2];
+        }
+        else
+        {
+            g.transform.position = positions[0];
+        }
+        g.GetComponent<dynamicSelectorText>().nums = positions.Count();
+        
 
         g.GetComponent<dynamicSelectorText>().options = texts;
         g.GetComponent<SpriteRenderer>().sortingOrder = 21;
-        g.gameObject.transform.position = positions[1];
+
+        if (positions.Length == 1)
+        {
+            g.gameObject.transform.position = positions[0];
+        }
+        else
+        {
+            g.gameObject.transform.position = positions[1];
+        }
+        
 
         return g.GetComponent<dynamicSelectorText>();
     }
@@ -39,7 +61,8 @@ public class dynamicSelectorText : MonoBehaviour
     {
         GameObject g = new GameObject();
         g.AddComponent<dynamicSelectorText>();
-
+        g.GetComponent<dynamicSelectorText>().nums = positions.Count();
+        
         for (int i = 0; i < positions.Length; i++)
         {
             GameObject t = Instantiate(textPrefabUI, convertUI(positions[i]), Quaternion.identity);
@@ -47,7 +70,17 @@ public class dynamicSelectorText : MonoBehaviour
             g.GetComponent<dynamicSelectorText>().texts[i] = t;
         }
         g.AddComponent<SpriteRenderer>().sprite = sel;
-        g.transform.position = positions[2] + offset;
+
+        if (positions.Length == 1)
+        {
+            g.transform.position = positions[0] + offset;
+        }
+        else
+        {
+            g.transform.position = positions[2] + offset;
+        }
+
+        
 
         g.GetComponent<dynamicSelectorText>().options = texts;
         g.GetComponent<SpriteRenderer>().sortingOrder = 21;
@@ -57,12 +90,16 @@ public class dynamicSelectorText : MonoBehaviour
 
     public static Vector3 convertUI(Vector3 pos)
     {
-        GameObject p = GameObject.FindGameObjectWithTag("items");
+        /*
+        GameObject p = GameObject.FindGameObjectWithTag("camera");
         if (p == null)
         {
             return new Vector3((pos.x) * 1920 / 19.2f + 960, (pos.y) * 1080 / 10.8f + 540, 0);
         }
         return new Vector3((pos.x - p.transform.position.x) * 1920 / 19.2f + 960, (pos.y - p.transform.position.y) * 1080 / 10.8f + 540, 0);
+        */
+
+        return GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().WorldToScreenPoint(pos);
     }
 
     public void destroy()
@@ -80,10 +117,18 @@ public class dynamicSelectorText : MonoBehaviour
 
     public void updateTexts()
     {
+
+        if (nums == 1)
+        {
+            texts[0].GetComponent<TextMeshProUGUI>().text = options[pos];
+            return;
+        }
+        
         for (int i = 0; i < 5; i++)
         {
             if (texts[i] != null)
             {
+
                 try
                 {
                     texts[i].GetComponent<TextMeshProUGUI>().text = options[i - 2 + pos];
