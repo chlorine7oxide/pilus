@@ -587,6 +587,19 @@ public class inventoryController : MonoBehaviour
                         yield return new WaitUntil(() => i19.done);
                         i19.destroy();
                         break;
+                    case "Anti-stealing Book":
+                        itemDialogue i20 = itemDialogue.create("I don't think I need to read this again.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i20.done);
+                        i20.destroy();
+                        i20 = itemDialogue.create("I've never really had a problem with my things being stolen.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i20.done);
+                        i20.destroy();
+                        break;
+                    case "Townhall Key":
+                        itemDialogue i21 = itemDialogue.create("I can't use it here.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i21.done);
+                        i21.destroy();
+                        break;
 
 
                 } // item use funtionality and text
@@ -672,6 +685,16 @@ public class inventoryController : MonoBehaviour
                         i19 = itemDialogue.create("Are you insane?", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i19.done);
                         i19.destroy();
+                        break;
+                    case "Anti-stealing Book":
+                        itemDialogue i20 = itemDialogue.create("I can't get rid of this! It's a library book.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i20.done);
+                        i20.destroy();
+                        break;
+                    case "Townhall Key":
+                        itemDialogue i21 = itemDialogue.create("This seems important, I'm going to keep it.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i21.done);
+                        i21.destroy();
                         break;
 
                 } // item drop text and functionality
@@ -764,6 +787,16 @@ public class inventoryController : MonoBehaviour
                         itemDialogue i19 = itemDialogue.create("An ornate key for a secret library we have yet to find.", inventoryTester.port, portrait.transform.position);
                         yield return new WaitUntil(() => i19.done);
                         i19.destroy();
+                        break;
+                    case "Anti-stealing Book":
+                        itemDialogue i20 = itemDialogue.create("A book about how to keep your things from being stolen.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i20.done);
+                        i20.destroy();
+                        break;
+                    case "Townhall Key":
+                        itemDialogue i21 = itemDialogue.create("A key, I'm not sure where to use it.", inventoryTester.port, portrait.transform.position);
+                        yield return new WaitUntil(() => i21.done);
+                        i21.destroy();
                         break;
 
                 } // item inspect text and functionality

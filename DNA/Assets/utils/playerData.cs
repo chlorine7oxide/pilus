@@ -126,4 +126,6 @@ public static class playerData
     public static bool ticketBooth = false;
     public static bool visitedDowntown = false;
     public static int birthdayGuess = 0;
+    public static bool townhallUnlock = false;
+    public static int guard2stage = 0;
 }

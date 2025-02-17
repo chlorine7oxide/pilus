@@ -9,7 +9,13 @@ public class mayorOfficeEnter : overworldInteractable
 
     public override void interact()
     {
-        if (playerData.items.Contains("mayorKey"))
+        if (playerData.items.Contains("Townhall Key"))
+        {
+            playerData.items.Remove("Townhall Key");
+            playerData.townhallUnlock = true;
+            StartCoroutine(unlock());
+        }
+        else if (playerData.townhallUnlock)
         {
             SceneManager.LoadScene("mayorOfficeHallway");
         }
@@ -31,5 +37,20 @@ public class mayorOfficeEnter : overworldInteractable
         yield return new WaitUntil(() => t.done);
 
         t.destroy();
+    }
+
+    public IEnumerator unlock()
+    {
+        generalText t = generalText.create("The key fits!", portrait, null);
+
+        if (t is null)
+        {
+            yield break;
+        }
+
+        yield return new WaitUntil(() => t.done);
+
+        t.destroy();
+        SceneManager.LoadScene("mayorOfficeHallway");
     }
 }

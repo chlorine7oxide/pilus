@@ -49,12 +49,6 @@ public class bookSelector : MonoBehaviour
         textBox.boxSprite4 = boxSprite4;
 
         decision.selector = selector2;
-
-        playerData.items.Add("Drilling Book");
-        playerData.items.Add("Friendship Book");
-        playerData.items.Add("Friendship Book");
-        playerData.items.Add("Friendship Book");
-        playerData.items.Add("Marine life book");
     }
 
     public IEnumerator select()

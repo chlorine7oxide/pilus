@@ -14,6 +14,7 @@ public class follower : MonoBehaviour
         f.mc = mc;
         f.entry = startPos;
         g.GetComponent<SpriteRenderer>().sprite = null;
+        g.tag = "follower";
         //f.StartCoroutine(f.testlmao()); only if truly necessary :)
     }
 

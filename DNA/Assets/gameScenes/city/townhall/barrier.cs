@@ -130,7 +130,9 @@ public class barrier : MonoBehaviour
         msgs.Enqueue(new msg(testFace, () => "You seem like the type of guard to give us riddles.", "e", p1));
         msgs.Enqueue(new msg(testFace, () => "Ha!", "e", p3));
         msgs.Enqueue(new msg(testFace, () => "Fine then, if FAILING a riddle will make you leave, I'll give you something you can't POSSIBLY know.", "e", p3));
-        msgs.Enqueue(new msg(testFace, () => "When is my birthday?", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "When", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "Is", "e", p3));
+        msgs.Enqueue(new msg(testFace, () => "...my birthday?", "e", p3));
         msgs.Enqueue(new msg(testFace, () => "If you can tell me that, I'll let you pass.", "e", p3));
         msgs.Enqueue(new msg(testFace, () => "That seems a little unfair...", "e", p2));
         msgs.Enqueue(new msg(testFace, () => "very unfair, can you at least tell us the month?", "e", p1));
