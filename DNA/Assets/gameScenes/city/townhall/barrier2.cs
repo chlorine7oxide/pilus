@@ -24,7 +24,7 @@ public class barrier2 : MonoBehaviour
             Destroy(guard2);
             Destroy(barricade);
         }
-        else if (playerData.guard2stage == 2)
+        else
         {
             Destroy(guard2);
             Destroy(barricade);

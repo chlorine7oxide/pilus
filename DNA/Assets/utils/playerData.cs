@@ -128,4 +128,5 @@ public static class playerData
     public static int birthdayGuess = 0;
     public static bool townhallUnlock = false;
     public static int guard2stage = 0;
+    public static bool chaseLockedDoorSeen = false;
 }

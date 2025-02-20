@@ -12,10 +12,7 @@ public class hallwayGuard : MonoBehaviour
         generalText.canvas = canvas;
         generalText.box = box;
 
-        StartCoroutine(walk());
-        StartCoroutine(text());
-
-        /*
+        
         if (playerData.guard2stage == 1)
         {
             StartCoroutine(walk());
@@ -27,7 +24,7 @@ public class hallwayGuard : MonoBehaviour
             Destroy(barrier1);
             Destroy(barrier2);
         }
-        */
+        
     }
 
     public GameObject guard, barrier1, barrier2;

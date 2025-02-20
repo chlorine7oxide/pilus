@@ -44,16 +44,13 @@ game beginning
 initial alleyway
 things to flesh out city
 -cars, signs, trees and plants
-town hall outside fountain and maybe bushes of smth
-town hall inside
 harbour
 in gondola area when touching top of bottom walls the bg doesnt work
 the lost bit is broken
+chase fleshing out - adding random objects to make it feel more like a real space
 
 OPTIONAL
 bench full art
 balcony full art
 boat full art
 
-
--0.5, 4.1
